@@ -1,0 +1,69 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "company": "SKY TECNOLOGIA",
+      "role": {
+        "es": "Freelance - Desarrollador Front End",
+        "en": "Freelance - Front End Developer"
+      },
+      "startDate": "04/2025",
+      "endDate": null,
+      "responsibilities": {
+        "es": "Colaborador externo ofreciendo apoyo en el desarrollo de distintos productos de la empresa. Durante mi colaboración, he desarrollado interfaces de usuario, adaptado interfaces existentes para dispositivos móviles y desarrollado algunas funcionalidades de backend según las necesidades de los proyectos.",
+        "en": "External collaborator providing support in the development of various company products. During my collaboration, I have developed user interfaces, adapted existing interfaces for mobile devices, and developed some backend functionalities as per project requirements."
+      }
+    },
+    {
+      "id": 0,
+      "company": "NTT DATA Spain",
+      "role": {
+        "es": "Ingeniero de Software",
+        "en": "Software Engineer"
+      },
+      "startDate": "04/2023",
+      "endDate": "04/2025",
+      "responsibilities": {
+        "es": "Trabaje en un pequeño proyecto de migración de datos. Empecé como becario hasta acabar como ingeniero de software, liderando la parte técnica del análisis de calidad, limpieza y migración de los datos.",
+        "en": "I worked on a small data migration project. I started as an intern and ended up as a software engineer, leading the technical part of data quality analysis, cleaning, and migration."
+      }
+    }
+  ],
+  "personal": [
+    {
+      "id": 2,
+      "name": "Portfolio",
+      "description": {
+        "es": "Mi portfolio personal desarrollado con Astro, destacando mis habilidades y proyectos.",
+        "en": "My personal portfolio developed with Astro, showcasing my skills and projects."
+      },
+      "externalLinks": {
+        "github": "https://github.com/AGomezSittima/portfolio/",
+        "demo": "https://agomezsittima.dev/"
+      },
+      "technologies": ["astro", "typescript", "tailwindcss", "react"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Adapta Material Escolar 2.0",
+      "endDate": "05/2023",
+      "description": {
+        "es": "Herramienta web interactiva diseñada para facilitar la personalización y adaptación del material escolar en contextos educativos diversos. Desarrollada como proyecto de fin de grado en la Universidad Complutense de Madrid (UCM).",
+        "en": "Interactive web tool designed to facilitate the customization and adaptation of school materials in diverse educational contexts. Developed as a final degree project at the Complutense University of Madrid (UCM)."
+      },
+      "externalLinks": {
+        "github": "https://github.com/AGomezSittima/TFG-22-23-AdaptaMaterialEscolar2.0/",
+        "demo": "https://adme2.netlify.app/"
+      },
+      "technologies": [
+        "react",
+        "javascript",
+        "tailwindcss",
+        "express",
+        "openai"
+      ],
+      "featured": true
+    }
+  ]
+}

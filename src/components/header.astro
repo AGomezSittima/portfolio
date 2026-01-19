@@ -1,0 +1,37 @@
+---
+import { getI18n } from "@/i18n";
+import type { HeaderDTO } from "@/i18n/data/header";
+import { getLangFromUrl } from "@/i18n/utils";
+import { LucideMoon, LucideSun } from "@lucide/astro";
+import { Toggle } from "astro-theme-toggle";
+import { LanguagePicker } from "./language-picker";
+import Navmenu from "./nav-menu.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = getI18n("headerData", lang) as HeaderDTO;
+---
+
+<header
+  class="header-scroll h-header my-header sticky top-6 z-10 mx-auto flex items-center justify-between supports-animation-timeline:px-4 md:supports-animation-timeline:px-24"
+>
+  <Navmenu class="mx-auto" />
+
+  <!-- Button group -->
+  <div class="flex items-center gap-2">
+    <LanguagePicker
+      client:load
+      currentLanguage={lang}
+      label={t["button.language-picker"]}
+    />
+
+    <!-- Theme toggle -->
+    <Toggle class="hover:text-primary h-fit! w-fit!" aria-label="Toggle theme">
+      <Fragment slot="icon-light">
+        <LucideSun class="size-5" />
+      </Fragment>
+      <Fragment slot="icon-dark">
+        <LucideMoon class="size-5" />
+      </Fragment>
+    </Toggle>
+  </div>
+</header>

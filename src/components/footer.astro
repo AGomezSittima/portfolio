@@ -1,0 +1,54 @@
+---
+import GitHub from "@/assets/brand-logos/github.svg";
+import LinkedinOutline from "@/assets/brand-logos/linkedin-outline.svg";
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { BasicsDTO } from "@/i18n/data/basics";
+import type { CommonDTO } from "@/i18n/data/common";
+import type { FooterDTO } from "@/i18n/data/footer";
+import { githubPath, linkedinPath } from "@/lib/paths";
+import { LinkIconButton } from "./link-icon-button";
+
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const tCommon = getI18n("commonData", language) as CommonDTO;
+const tBasics = getI18n("basicsData", language) as BasicsDTO;
+const tFooter = getI18n("footerData", language) as FooterDTO;
+---
+
+<footer class="border-border text-muted-foreground w-full border-t-2 text-sm">
+  <div
+    class="container mx-auto flex max-w-2xl flex-col items-center justify-between gap-4 px-8 py-6 sm:flex-row"
+  >
+    <div class="flex flex-col items-center justify-between sm:block">
+      <span class="text-muted-foreground text-sm">
+        &copy; {new Date().getFullYear()}
+        <strong class="text-accent-foreground font-bold"
+          >{tCommon["me.full-name"]}</strong
+        >.
+      </span>
+      <span>{tFooter["footer.rights"]}</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <LinkIconButton
+        href={linkedinPath()}
+        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+        aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+        client:visible
+      >
+        <LinkedinOutline class="size-5" />
+      </LinkIconButton>
+      <LinkIconButton
+        href={githubPath()}
+        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+        aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+        client:visible
+      >
+        <GitHub class="size-5" />
+      </LinkIconButton>
+    </div>
+  </div>
+</footer>

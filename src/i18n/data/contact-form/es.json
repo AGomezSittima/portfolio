@@ -1,0 +1,34 @@
+{
+  "form": {
+    "title": "Contáctame",
+    "description": "¿Tienes un proyecto en mente? ¡Hagámoslo realidad!",
+    "fields": {
+      "fullName": {
+        "label": "Nombre completo",
+        "placeholder": "Introduce tu nombre completo"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Introduce tu correo electrónico"
+      },
+      "subject": {
+        "label": "Asunto",
+        "placeholder": "Introduce el asunto de tu mensaje"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Escribe tu mensaje aquí"
+      }
+    },
+    "fieldErrors": {
+      "required": "Este campo es obligatorio.",
+      "invalidEmail": "Por favor, introduce una dirección de correo electrónico válida.",
+      "tooLong": "El campo es demasiado largo."
+    },
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "pending": "Enviando ...",
+    "onSuccess": "Mensaje enviado correctamente. ¡Gracias por contactarme!",
+    "onError": "El mensaje no se ha podido enviar."
+  }
+}

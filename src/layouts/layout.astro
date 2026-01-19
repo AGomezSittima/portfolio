@@ -1,0 +1,45 @@
+---
+import Footer from "@/components/footer.astro";
+import Header from "@/components/header.astro";
+import Metadata from "@/components/metadata.astro";
+import { Toaster } from "@/components/ui/sonner";
+import { getI18n } from "@/i18n";
+import type { CommonDTO } from "@/i18n/data/common";
+import { getLangFromUrl } from "@/i18n/utils";
+import "@/styles/global.css";
+import { ThemeScript } from "astro-theme-toggle/components";
+
+const lang = getLangFromUrl(Astro.url);
+const t = getI18n("commonData", lang) as CommonDTO;
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <Metadata lang={lang} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>
+      {t["me.name"]}
+      {t["me.last-name"]}{title ? ` - ${title}` : ""}
+    </title>
+
+    <ThemeScript defaultTheme="system" attribute="class" />
+  </head>
+  <body
+    class="bg-background text-foreground flex min-h-screen flex-col gap-y-24"
+  >
+    <Toaster client:idle />
+    <Header />
+    <main class="container mx-auto flex-1 px-8">
+      <slot />
+    </main>
+    <Footer language={lang} />
+  </body>
+</html>

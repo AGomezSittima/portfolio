@@ -1,0 +1,6 @@
+[dev]
+autoLaunch = false
+
+[build]
+  command = "pnpm run build"
+  publish = "dist"

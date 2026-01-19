@@ -1,0 +1,11 @@
+{
+  "hero.summary": "Software Engineer from Madrid, Spain 🇪🇸, with over 2 years of experience. Specialized in full-stack web application development.",
+  "contactButton": "Get in Touch",
+  "cv": {
+    "button": "Download Resume",
+    "dropdownOptions": {
+      "es": "Download Resume in Spanish (ES)",
+      "en": "Download Resume in English (EN)"
+    }
+  }
+}

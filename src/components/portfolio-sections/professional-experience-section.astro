@@ -1,0 +1,34 @@
+---
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { ProfessionalExperienceDTO } from "@/i18n/data/professional-experience";
+import type { ProjectsDTO } from "@/i18n/data/projects";
+import ProfessionalExperience from "../professional-experience.astro";
+import PortfolioSection from "./portfolio-section.astro";
+import SectionSeparator from "./section-separator.astro";
+
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const tProfessionalExperience = getI18n(
+  "professionalExperienceData",
+  language
+) as ProfessionalExperienceDTO;
+const tProjects = (getI18n("projectsData", language) as ProjectsDTO)["work"];
+---
+
+<PortfolioSection id="professional-experience">
+  <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
+    <span>{tProfessionalExperience["section.title"]}</span>
+  </h2>
+
+  <SectionSeparator />
+
+  {
+    tProjects.map((project) => (
+      <ProfessionalExperience project={project} language={language} />
+    ))
+  }
+</PortfolioSection>

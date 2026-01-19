@@ -1,0 +1,36 @@
+---
+import { getI18n } from "@/i18n";
+import type { HeaderDTO } from "@/i18n/data/header";
+import { getLangFromUrl } from "@/i18n/utils";
+import {
+  aboutPath,
+  homePath,
+  professionalExperiencePath,
+  projectsShowcasePath,
+} from "@/lib/paths";
+import type { NavItem } from "@/lib/types";
+import NavLink from "./nav-link.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = getI18n("headerData", lang) as HeaderDTO;
+
+const links: NavItem[] = [
+  { href: homePath(lang), label: t["nav.home"] },
+  {
+    href: professionalExperiencePath(lang),
+    label: t["nav.professional-experience"],
+  },
+  { href: projectsShowcasePath(lang), label: t["nav.projects"] },
+  { href: aboutPath(lang), label: t["nav.about"] },
+];
+---
+
+<div class:list={["flex items-center gap-2", className]}>
+  {links.map(({ href, label }) => <NavLink href={href} label={label} />)}
+</div>

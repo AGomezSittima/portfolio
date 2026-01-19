@@ -1,0 +1,87 @@
+---
+import Github from "@/assets/brand-logos/github.svg";
+import LinkedIn from "@/assets/brand-logos/linkedin.svg";
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { BasicsDTO } from "@/i18n/data/basics";
+import type { CommonDTO } from "@/i18n/data/common";
+import type { HeroDTO } from "@/i18n/data/hero";
+import { githubPath, linkedinPath } from "@/lib/paths";
+import { OPEN_TO_WORK } from "astro:env/server";
+import { ContactButton } from "../contact-button";
+import { CVDownloadButton } from "../cv-download-button";
+import { LinkIconButton } from "../link-icon-button";
+import OpenToWork from "../open-to-work.astro";
+import { Separator } from "../ui/separator";
+import PortfolioSection from "./portfolio-section.astro";
+import SectionSeparator from "./section-separator.astro";
+
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const tCommon = getI18n("commonData", language) as CommonDTO;
+const tBasics = getI18n("basicsData", language) as BasicsDTO;
+const tHero = getI18n("heroData", language) as HeroDTO;
+---
+
+<PortfolioSection id="hero" class="min-h-hero justify-start">
+  {OPEN_TO_WORK && <OpenToWork />}
+  <h1 class="text-5xl leading-14 font-bold uppercase">
+    <p>
+      {tCommon["me.name"]}
+    </p>
+    <p>
+      {tCommon["me.last-name"]}
+    </p>
+  </h1>
+
+  <SectionSeparator />
+
+  <div class="text-foreground prose md:prose-lg">
+    <p class="mt-4 text-lg">
+      {tHero["hero.summary"]}
+    </p>
+  </div>
+
+  <div class="flex w-full items-center justify-between">
+    <div class="my-5 flex w-full flex-col items-center gap-4 md:flex-row">
+      <ContactButton
+        client:load
+        label={tHero["contactButton"]}
+        language={language}
+      />
+      <CVDownloadButton
+        client:load
+        label={tHero["cv"]["button"]}
+        currentLanguageCode={language}
+        optionLabels={tHero["cv"]["dropdownOptions"]}
+      />
+    </div>
+    <div class="flex items-center gap-2">
+      <Separator orientation="vertical" className="mr-4 h-8! w-0.5!" />
+
+      <LinkIconButton
+        className="bg-linkedin! text-linkedin-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
+        href={linkedinPath()}
+        rel="noopener noreferrer"
+        target="_blank"
+        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+        client:visible
+      >
+        <LinkedIn class="size-5" />
+      </LinkIconButton>
+      <LinkIconButton
+        className="bg-github! text-github-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
+        href={githubPath()}
+        rel="noopener noreferrer"
+        target="_blank"
+        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+        client:visible
+      >
+        <Github class="size-5" />
+      </LinkIconButton>
+    </div>
+  </div>
+</PortfolioSection>

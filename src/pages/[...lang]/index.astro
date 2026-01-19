@@ -1,0 +1,28 @@
+---
+import AboutMeSection from "@/components/portfolio-sections/about-me-section.astro";
+import FeaturedProjectsSection from "@/components/portfolio-sections/featured-projects-section.astro";
+import HeroSection from "@/components/portfolio-sections/hero-section.astro";
+import ProfessionalExperienceSection from "@/components/portfolio-sections/professional-experience-section.astro";
+import { getI18n } from "@/i18n";
+import type { PortfolioPageDTO } from "@/i18n/data/portfolio-page";
+import { toAcceptedLanguage } from "@/i18n/utils";
+import Layout from "@/layouts/layout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+    { params: { lang: undefined } },
+  ];
+}
+
+const lang = toAcceptedLanguage(Astro.params.lang);
+const tPage = getI18n("portfolioPageData", lang) as PortfolioPageDTO;
+---
+
+<Layout title={tPage["site.title"]}>
+  <HeroSection language={lang} />
+  <ProfessionalExperienceSection language={lang} />
+  <FeaturedProjectsSection language={lang} />
+  <AboutMeSection language={lang} />
+</Layout>

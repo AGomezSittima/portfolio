@@ -1,0 +1,11 @@
+{
+  "hero.summary": "Ingeniero de Software de Madrid, España 🇪🇸, con más de 2 años de experiencia. Especializado en el desarrollo full-stack de aplicaciones web.",
+  "contactButton": "Contáctame",
+  "cv": {
+    "button": "Descargar CV",
+    "dropdownOptions": {
+      "es": "Descargar CV en Español (ES)",
+      "en": "Descargar CV en Inglés (EN)"
+    }
+  }
+}

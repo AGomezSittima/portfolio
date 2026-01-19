@@ -1,0 +1,34 @@
+{
+  "form": {
+    "title": "Contact Me",
+    "description": "Do you have a project in mind? Let's make it happen!",
+    "fields": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email address"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "Enter the subject of your message"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Write your message here"
+      }
+    },
+    "fieldErrors": {
+      "required": "This field is required.",
+      "invalidEmail": "Please enter a valid email address.",
+      "tooLong": "This field is too long."
+    },
+    "submit": "Send",
+    "cancel": "Cancel",
+    "pending": "Sending ...",
+    "onSuccess": "Message sent successfully. Thank you for contacting me!",
+    "onError": "The message could not be sent."
+  }
+}

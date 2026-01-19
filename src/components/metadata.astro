@@ -1,0 +1,39 @@
+---
+import { getI18n, type AcceptedLanguage } from "@/i18n";
+import type { MetadataDTO } from "@/i18n/data/metadata";
+import { SITE_URL } from "astro:env/server";
+
+function getOpenGraphImageUrl(imageUrl: string) {
+  const version = Date.now();
+
+  return `${SITE_URL}${imageUrl}?v=${version}`;
+}
+
+interface Props {
+  lang: AcceptedLanguage;
+}
+
+const lang = Astro.props.lang;
+const t = getI18n("metadataData", lang) as MetadataDTO;
+
+const ogImageUrl = getOpenGraphImageUrl("/OG_1200x630.png");
+---
+
+<!-- General -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+
+<!-- Open Graph -->
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:alt" content={t.og.imageAlt} />
+<meta property="og:title" content={t.og.title} />
+<meta property="og:description" content={t.og.description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={SITE_URL} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content={t.og.imageAlt} />
+<meta name="twitter:title" content={t.og.title} />
+<meta name="twitter:description" content={t.og.description} />

@@ -1,0 +1,40 @@
+---
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { FeaturedProjectsDTO } from "@/i18n/data/featured-projects";
+import type { ProjectsDTO } from "@/i18n/data/projects";
+import PersonalProject from "../personal-project.astro";
+import PortfolioSection from "./portfolio-section.astro";
+import SectionSeparator from "./section-separator.astro";
+
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const tProjectsPage = getI18n(
+  "featuredProjectsData",
+  language
+) as FeaturedProjectsDTO;
+const tProjects = (getI18n("projectsData", language) as ProjectsDTO)[
+  "personal"
+];
+---
+
+<PortfolioSection id="featured-projects">
+  <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
+    <span>{tProjectsPage["section.title"]}</span>
+  </h2>
+
+  <SectionSeparator />
+
+  <div class="flex flex-col gap-4">
+    {
+      tProjects
+        .filter((project) => project.featured)
+        .map((project) => (
+          <PersonalProject project={project} language={language} />
+        ))
+    }
+  </div>
+</PortfolioSection>
