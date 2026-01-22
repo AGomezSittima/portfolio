@@ -22,7 +22,16 @@ pnpm install
 npm install
 ```
 
-3. Start the development server:
+3. Copy the environment example and update values:
+
+```bash
+cp .env.example .env
+cp .env.example .env.development # optional
+```
+
+Edit the `.env` (and optional `.env.development`).
+
+4. Start the development server:
 
 ```bash
 pnpm dev
