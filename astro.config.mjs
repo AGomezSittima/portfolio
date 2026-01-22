@@ -28,6 +28,10 @@ export default defineConfig({
         context: "server",
         access: "public",
       }),
+      EMAIL: envField.string({
+        context: "client",
+        access: "public",
+      }),
       GITHUB_URL: envField.string({
         context: "client",
         access: "public",

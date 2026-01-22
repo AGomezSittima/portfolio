@@ -8,20 +8,20 @@ export const localizedContactMeSchema = (lang: AcceptedLanguage) => {
   return z.object({
     fullName: z
       .string()
-      .min(1, t.form.fieldErrors.required)
-      .max(255, t.form.fieldErrors.tooLong),
+      .min(1, t.contactDialog.form.fieldErrors.required)
+      .max(255, t.contactDialog.form.fieldErrors.tooLong),
     email: z
       .string()
-      .min(1, t.form.fieldErrors.required)
-      .email(t.form.fieldErrors.invalidEmail),
+      .min(1, t.contactDialog.form.fieldErrors.required)
+      .email(t.contactDialog.form.fieldErrors.invalidEmail),
     subject: z
       .string()
-      .min(1, t.form.fieldErrors.required)
-      .max(255, t.form.fieldErrors.tooLong),
+      .min(1, t.contactDialog.form.fieldErrors.required)
+      .max(255, t.contactDialog.form.fieldErrors.tooLong),
     message: z
       .string()
-      .min(1, t.form.fieldErrors.required)
-      .max(5000, t.form.fieldErrors.tooLong),
+      .min(1, t.contactDialog.form.fieldErrors.required)
+      .max(5000, t.contactDialog.form.fieldErrors.tooLong),
   });
 };
 

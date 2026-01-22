@@ -7,9 +7,9 @@ import type { CommonDTO } from "@/i18n/data/common";
 import type { HeroDTO } from "@/i18n/data/hero";
 import { githubPath, linkedinPath } from "@/lib/paths";
 import { OPEN_TO_WORK } from "astro:env/server";
-import { ContactButton } from "../contact-button";
 import { CVDownloadButton } from "../cv-download-button";
-import { LinkIconButton } from "../link-icon-button";
+import { HeroContactButton } from "../hero-contact-button";
+import { LinkIconButton } from "../icon-button";
 import OpenToWork from "../open-to-work.astro";
 import { Separator } from "../ui/separator";
 import PortfolioSection from "./portfolio-section.astro";
@@ -47,7 +47,7 @@ const tHero = getI18n("heroData", language) as HeroDTO;
 
   <div class="flex w-full items-center justify-between">
     <div class="my-5 flex w-full flex-col items-center gap-4 md:flex-row">
-      <ContactButton
+      <HeroContactButton
         client:load
         label={tHero["contactButton"]}
         language={language}

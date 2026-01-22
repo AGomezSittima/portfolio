@@ -52,12 +52,12 @@ export function ContactForm({
           await actions.contact.contactMe(value);
 
         if (error || !responseData.success) {
-          onError?.(t.form.onError);
+          onError?.(t.contactDialog.form.onError);
 
           return;
         }
 
-        onSuccess?.(t.form.onSuccess);
+        onSuccess?.(t.contactDialog.form.onSuccess);
       } catch (error) {
         console.error(error);
       } finally {
@@ -69,128 +69,133 @@ export function ContactForm({
   const [isPending, setIsPending] = useState(false);
 
   return (
-    <form
-      id="contact-form"
-      onSubmit={(e) => {
-        e.preventDefault();
+    <div>
+      <h4 className="mb-4 text-lg font-bold">{t.contactDialog.form.title}</h4>
+      <form
+        id="contact-form"
+        onSubmit={(e) => {
+          e.preventDefault();
 
-        form.handleSubmit();
-      }}
-    >
-      <FieldGroup>
-        <form.Field
-          name="fullName"
-          children={(field) => {
-            const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid;
-            const tField = t.form.fields[field.name];
-
-            return (
-              <Field data-invalid={isInvalid}>
-                <FieldLabel htmlFor={field.name}>{tField.label} (*)</FieldLabel>
-                <Input
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  aria-invalid={isInvalid}
-                  placeholder={tField.placeholder}
-                  autoComplete="off"
-                />
-                {isInvalid && <FieldError errors={field.state.meta.errors} />}
-              </Field>
-            );
-          }}
-        />
-        <form.Field
-          name="email"
-          children={(field) => {
-            const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid;
-            const tField = t.form.fields[field.name];
-
-            return (
-              <Field data-invalid={isInvalid}>
-                <FieldLabel htmlFor={field.name}>{tField.label} (*)</FieldLabel>
-                <Input
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  aria-invalid={isInvalid}
-                  placeholder={tField.placeholder}
-                  autoComplete="off"
-                />
-                {isInvalid && <FieldError errors={field.state.meta.errors} />}
-              </Field>
-            );
-          }}
-        />
-        <form.Field
-          name="subject"
-          children={(field) => {
-            const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid;
-            const tField = t.form.fields[field.name];
-
-            return (
-              <Field data-invalid={isInvalid}>
-                <FieldLabel htmlFor={field.name}>{tField.label} (*)</FieldLabel>
-                <Input
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  aria-invalid={isInvalid}
-                  placeholder={tField.placeholder}
-                  autoComplete="off"
-                />
-                {isInvalid && <FieldError errors={field.state.meta.errors} />}
-              </Field>
-            );
-          }}
-        />
-        <form.Field
-          name="message"
-          children={(field) => {
-            const isInvalid =
-              field.state.meta.isTouched && !field.state.meta.isValid;
-            const tField = t.form.fields[field.name];
-
-            return (
-              <Field data-invalid={isInvalid}>
-                <FieldLabel htmlFor={field.name}>{tField.label} (*)</FieldLabel>
-                <Textarea
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  aria-invalid={isInvalid}
-                  placeholder={tField.placeholder}
-                  autoComplete="off"
-                  className="max-h-44 min-h-24 resize-none overflow-y-auto"
-                />
-                {isInvalid && <FieldError errors={field.state.meta.errors} />}
-              </Field>
-            );
-          }}
-        />
-
-        <Field orientation="horizontal">
-          <SubmitButton className="flex-1" isPending={isPending}>
-            {isPending && <Spinner />}
-            <span>{isPending ? t.form.pending : t.form.submit}</span>
-          </SubmitButton>
-
-          <Button type="button" variant="outline" onClick={() => onCancel?.()}>
-            {t.form.cancel}
-          </Button>
-        </Field>
-      </FieldGroup>
-    </form>
+          form.handleSubmit();
+        }}
+      >
+        <FieldGroup>
+          <form.Field
+            name="fullName"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              const tField = t.contactDialog.form.fields[field.name];
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    aria-invalid={isInvalid}
+                    placeholder={tField.placeholder}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+          <form.Field
+            name="email"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              const tField = t.contactDialog.form.fields[field.name];
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    aria-invalid={isInvalid}
+                    placeholder={tField.placeholder}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+          <form.Field
+            name="subject"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              const tField = t.contactDialog.form.fields[field.name];
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    aria-invalid={isInvalid}
+                    placeholder={tField.placeholder}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+          <form.Field
+            name="message"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              const tField = t.contactDialog.form.fields[field.name];
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                  <Textarea
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    aria-invalid={isInvalid}
+                    placeholder={tField.placeholder}
+                    autoComplete="off"
+                    className="max-h-44 min-h-24 resize-none overflow-y-auto"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+          <Field orientation="horizontal">
+            <SubmitButton className="flex-1" isPending={isPending}>
+              {isPending && <Spinner />}
+              <span>
+                {isPending
+                  ? t.contactDialog.form.pending
+                  : t.contactDialog.form.submit}
+              </span>
+            </SubmitButton>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onCancel?.()}
+            >
+              {t.contactDialog.form.cancel}
+            </Button>
+          </Field>
+        </FieldGroup>
+      </form>
+    </div>
   );
 }

@@ -6,7 +6,8 @@ import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
 import type { FooterDTO } from "@/i18n/data/footer";
 import { githubPath, linkedinPath } from "@/lib/paths";
-import { LinkIconButton } from "./link-icon-button";
+import { ContactIconButton } from "./contact-button";
+import { LinkIconButton } from "./icon-button";
 
 interface Props {
   language: AcceptedLanguage;
@@ -35,6 +36,8 @@ const tFooter = getI18n("footerData", language) as FooterDTO;
     <div class="flex items-center gap-2">
       <LinkIconButton
         href={linkedinPath()}
+        target="_blank"
+        rel="noopener noreferrer"
         tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
         aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
         client:visible
@@ -43,12 +46,15 @@ const tFooter = getI18n("footerData", language) as FooterDTO;
       </LinkIconButton>
       <LinkIconButton
         href={githubPath()}
+        target="_blank"
+        rel="noopener noreferrer"
         tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
         aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
         client:visible
       >
         <GitHub class="size-5" />
       </LinkIconButton>
+      <ContactIconButton client:visible />
     </div>
   </div>
 </footer>
