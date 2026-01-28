@@ -35,3 +35,45 @@ const t = getI18n("headerData", lang) as HeaderDTO;
     </Toggle>
   </div>
 </header>
+
+<style>
+  .header-scroll {
+    backdrop-filter: blur(10px);
+    background-color: var(--background-header);
+    box-shadow: var(--shadow-glow);
+    width: calc(100% - 16px);
+    max-width: var(--container-lg);
+    border-radius: 999px;
+    padding-inline: 1.5rem;
+    padding-block: 1.8rem;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .header-scroll {
+      background-color: transparent;
+      backdrop-filter: none;
+      box-shadow: none;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+
+      animation-timeline: scroll();
+      animation-range: 150px 450px;
+      animation-fill-mode: forwards;
+      animation-name: header-scroll;
+    }
+
+    @keyframes header-scroll {
+      to {
+        backdrop-filter: blur(10px);
+        background-color: var(--background-header);
+        box-shadow: var(--shadow-glow);
+        width: calc(100% - 16px);
+        max-width: var(--container-lg);
+        border-radius: 999px;
+        padding-inline: 1.5rem;
+        padding-block: 1.8rem;
+      }
+    }
+  }
+</style>
