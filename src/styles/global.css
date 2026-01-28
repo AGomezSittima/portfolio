@@ -45,6 +45,7 @@
 
   /* Custom Utilities */
   --text-2xs: 0.625rem;
+  --margin-header-sm: 2.5rem;
   --margin-header: 4.5rem;
   --height-header: 3rem;
   --height-hero: calc(
