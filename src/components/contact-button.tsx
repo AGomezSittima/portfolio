@@ -1,8 +1,13 @@
 import { LucideMail } from "lucide-react";
 import { ContactDialog } from "./contact-dialog";
 import { Button } from "./ui/button";
+import type { AcceptedLanguage } from "@/i18n";
 
-export function ContactIconButton() {
+export function ContactIconButton({
+  language,
+}: {
+  language: AcceptedLanguage;
+}) {
   return (
     <ContactDialog
       trigger={
@@ -12,7 +17,7 @@ export function ContactIconButton() {
           </span>
         </Button>
       }
-      language="en"
+      language={language}
     />
   );
 }
