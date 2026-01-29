@@ -1,4 +1,5 @@
 ---
+import BackgroundEffect from "@/components/background-effect.astro";
 import AboutMeSection from "@/components/portfolio-sections/about-me-section.astro";
 import FeaturedProjectsSection from "@/components/portfolio-sections/featured-projects-section.astro";
 import HeroSection from "@/components/portfolio-sections/hero-section.astro";
@@ -21,6 +22,7 @@ const tPage = getI18n("portfolioPageData", lang) as PortfolioPageDTO;
 ---
 
 <Layout title={tPage["site.title"]}>
+  <BackgroundEffect />
   <HeroSection language={lang} />
   <ProfessionalExperienceSection language={lang} />
   <FeaturedProjectsSection language={lang} />

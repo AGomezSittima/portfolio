@@ -378,9 +378,9 @@ export function TechnologyBadge({
     <Badge
       variant="outline"
       className={cn(
-        "text-muted-foreground px-3 py-1.5",
+        "px-3 py-1.5",
         url &&
-          "hover:bg-accent border-primary cursor-pointer underline transition-all duration-150 hover:scale-105"
+          "hover:border-primary transition-transform duration-150 hover:scale-105"
       )}
       asChild={!!url}
     >
