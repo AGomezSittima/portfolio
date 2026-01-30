@@ -45,7 +45,7 @@ export function ContactDialog({
         </Button>
         <div className="text-muted-foreground flex items-center gap-4">
           <Separator className="flex-1" />
-          <p>{t.contactDialog.separatorText}</p>
+          <p className="uppercase">{t.contactDialog.separatorText}</p>
           <Separator className="flex-1" />
         </div>
         <ContactForm
