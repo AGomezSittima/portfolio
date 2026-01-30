@@ -42,7 +42,11 @@
         "demo": "https://agomezsittima.dev/"
       },
       "technologies": ["astro", "typescript", "tailwindcss", "react"],
-      "featured": true
+      "featured": true,
+      "thumbnail": {
+        "altText": "Captura de pantalla del porfolio personal de Álvaro Gómez Sittima",
+        "hasDarkMode": true
+      }
     },
     {
       "id": 3,
@@ -63,7 +67,11 @@
         "express",
         "openai"
       ],
-      "featured": true
+      "featured": true,
+      "thumbnail": {
+        "altText": "Captura de pantalla de Adapta Material Escolar 2.0",
+        "hasDarkMode": false
+      }
     }
   ]
 }

@@ -1,0 +1,34 @@
+---
+import type { PersonalProjectDTO } from "@/i18n/data/projects";
+import { Image } from "astro:assets";
+
+interface Props {
+  project: PersonalProjectDTO;
+  class?: string;
+  isDarkMode?: boolean;
+}
+
+const { project, class: className, isDarkMode } = Astro.props;
+
+const projectImagesFolder = "/src/assets/projects";
+const projectImagesPath = `${projectImagesFolder}/*.webp`;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/*.webp"
+);
+
+const imagePath = `${projectImagesFolder}/Thumbnail_${project.id}${isDarkMode ? "_Dark" : ""}.webp`;
+
+console.log(images);
+
+if (!images[imagePath]) {
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "${projectImagesPath}"`
+  );
+}
+---
+
+<Image
+  src={images[imagePath]()}
+  alt={project.thumbnail.altText}
+  class:list={["rounded-lg", className]}
+/>

@@ -6,6 +6,7 @@ import type {
   TechnologiesDTO,
 } from "@/i18n/data/projects";
 import { ExternalSourceButton } from "./external-source-button";
+import ProjectThumbnail from "./project-thumbnail.astro";
 import { TechnologiesMore } from "./technologies-more";
 import { TechnologyBadge } from "./technology-badge";
 import {
@@ -28,11 +29,33 @@ const { project, language } = Astro.props;
 ---
 
 <Card>
-  <CardHeader>
+  <CardHeader className="p-0">
     <CardTitle>
-      <h3 class="text-2xl font-semibold">{project.name}</h3>
+      <div class="relative">
+        {
+          project.thumbnail.hasDarkMode ? (
+            <div>
+              <ProjectThumbnail class="dark:hidden" project={project} />
+              <ProjectThumbnail
+                class="hidden dark:block"
+                project={project}
+                isDarkMode
+              />
+            </div>
+          ) : (
+            <ProjectThumbnail project={project} />
+          )
+        }
+        <div
+          class="to-card absolute top-0 left-0 h-full w-full bg-linear-to-b from-transparent to-85%"
+        >
+        </div>
+        <h3 class="absolute bottom-3 left-6 text-2xl font-semibold">
+          {project.name}
+        </h3>
+      </div>
     </CardTitle>
-    <CardDescription>
+    <CardDescription className="px-6">
       <div class="flex flex-wrap gap-2">
         {
           project.technologies
@@ -56,7 +79,7 @@ const { project, language } = Astro.props;
       {project.description[language]}
     </p>
   </CardContent>
-  <CardFooter className="flex gap-2">
+  <CardFooter className="flex gap-2 pb-6">
     {
       Object.entries(project.externalLinks).map(([source, url]) => (
         <ExternalSourceButton source={source as ExternalLinkSource} url={url} />
