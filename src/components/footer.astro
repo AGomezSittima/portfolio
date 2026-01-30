@@ -54,7 +54,11 @@ const tFooter = getI18n("footerData", language) as FooterDTO;
       >
         <GitHub class="size-5" />
       </LinkIconButton>
-      <ContactIconButton language={language} client:visible />
+      <ContactIconButton
+        language={language}
+        aria-label={tBasics["basics.contactMe"]}
+        client:visible
+      />
     </div>
   </div>
 </footer>
