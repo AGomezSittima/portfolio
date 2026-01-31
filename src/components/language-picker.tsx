@@ -13,11 +13,13 @@ import { useState } from "react";
 
 type LanguagePickerProps = {
   currentLanguage: AcceptedLanguage;
+  currentUrl?: string;
   label?: string;
 };
 
 export function LanguagePicker({
   currentLanguage,
+  currentUrl,
   label,
 }: LanguagePickerProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -60,10 +62,8 @@ export function LanguagePicker({
           const translatePath = useTranslatedPath(code as AcceptedLanguage);
 
           return (
-            <DropdownMenuItem asChild>
-              <a key={`language-${code}`} href={translatePath("/")}>
-                {lang}
-              </a>
+            <DropdownMenuItem key={`language-${code}`} asChild>
+              <a href={translatePath(currentUrl || "/")}>{lang}</a>
             </DropdownMenuItem>
           );
         })}

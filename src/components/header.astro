@@ -1,7 +1,7 @@
 ---
 import { getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
-import { getLangFromUrl } from "@/i18n/utils";
+import { getLangFromUrl, getPathWithoutLang } from "@/i18n/utils";
 import { LucideMoon, LucideSun } from "@lucide/astro";
 import { Toggle } from "astro-theme-toggle";
 import { LanguagePicker } from "./language-picker";
@@ -9,6 +9,8 @@ import Navmenu from "./nav-menu.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("headerData", lang) as HeaderDTO;
+
+const currentUrl = getPathWithoutLang(Astro.url);
 ---
 
 <header
@@ -21,6 +23,7 @@ const t = getI18n("headerData", lang) as HeaderDTO;
     <LanguagePicker
       client:load
       currentLanguage={lang}
+      currentUrl={currentUrl}
       label={t["button.language-picker"]}
     />
 

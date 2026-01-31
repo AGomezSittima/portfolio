@@ -23,6 +23,16 @@ export function getLangFromUrl(url: URL) {
   return defaultLanguage;
 }
 
+export function getPathWithoutLang(url: URL) {
+  const [, lang, ...rest] = url.pathname.split("/");
+
+  if (lang in languages) {
+    return `/${rest.join("/")}`;
+  }
+
+  return url.pathname;
+}
+
 export function useTranslatedPath(lang: keyof typeof languages) {
   return function translatePath(path: string, l: string = lang) {
     return !showDefaultLang && l === defaultLanguage ? path : `/${l}${path}`;
