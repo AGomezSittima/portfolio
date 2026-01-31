@@ -7,7 +7,6 @@ import { getI18n } from "@/i18n";
 import type { CommonDTO } from "@/i18n/data/common";
 import { getLangFromUrl } from "@/i18n/utils";
 import "@/styles/global.css";
-import { ThemeScript } from "astro-theme-toggle/components";
 
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("commonData", lang) as CommonDTO;
@@ -29,8 +28,6 @@ const { title } = Astro.props;
       {t["me.name"]}
       {t["me.last-name"]}{title ? ` - ${title}` : ""}
     </title>
-
-    <ThemeScript defaultTheme="system" attribute="class" />
   </head>
   <body
     class="bg-background text-foreground flex min-h-screen flex-col gap-y-8 lg:gap-y-24"

@@ -2,10 +2,9 @@
 import { getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
 import { getLangFromUrl, getPathWithoutLang } from "@/i18n/utils";
-import { LucideMoon, LucideSun } from "@lucide/astro";
-import { Toggle } from "astro-theme-toggle";
 import { LanguagePicker } from "./language-picker";
 import Navmenu from "./nav-menu.astro";
+import ThemeToggle from "./theme-toggle.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("headerData", lang) as HeaderDTO;
@@ -27,15 +26,7 @@ const currentUrl = getPathWithoutLang(Astro.url);
       label={t["button.language-picker"]}
     />
 
-    <!-- Theme toggle -->
-    <Toggle class="hover:text-primary h-fit! w-fit!" aria-label="Toggle theme">
-      <Fragment slot="icon-light">
-        <LucideSun class="size-5" />
-      </Fragment>
-      <Fragment slot="icon-dark">
-        <LucideMoon class="size-5" />
-      </Fragment>
-    </Toggle>
+    <ThemeToggle tooltip={t["button.theme-toggle"]} />
   </div>
 </header>
 

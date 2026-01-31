@@ -3,5 +3,6 @@
   "nav.about": "Sobre mí",
   "nav.professional-experience": "Experiencia",
   "nav.projects": "Proyectos",
-  "button.language-picker": "Seleccionar idioma"
+  "button.language-picker": "Seleccionar idioma",
+  "button.theme-toggle": "Cambiar tema"
 }

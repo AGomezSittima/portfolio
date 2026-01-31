@@ -53,9 +53,6 @@ importers:
       astro:
         specifier: ^5.16.4
         version: 5.16.4(@netlify/blobs@10.1.0)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
-      astro-theme-toggle:
-        specifier: ^0.8.0
-        version: 0.8.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -2483,9 +2480,6 @@ packages:
   ast-module-types@6.0.1:
     resolution: {integrity: sha512-WHw67kLXYbZuHTmcdbIrVArCq5wxo6NEuj3hiYAWr8mwJeC+C2mMCIBIWCiDoCye/OF/xelc+teJ1ERoWmnEIA==}
     engines: {node: '>=18'}
-
-  astro-theme-toggle@0.8.0:
-    resolution: {integrity: sha512-7ngEKDfCLKoVbxX4yxrggtBr8i6W8eT0un0TpNKHUeOG/Pq2g7BrjH+etP/l/XQYYSWQmeOIAI02LvLXDMvOWw==}
 
   astro@5.16.4:
     resolution: {integrity: sha512-rgXI/8/tnO3Y9tfAaUyg/8beKhlIMltbiC8Q6jCoAfEidOyaue4KYKzbe0gJIb6qEdEaG3Kf3BY3EOSLkbWOLg==}
@@ -8755,8 +8749,6 @@ snapshots:
   ascii-table@0.0.9: {}
 
   ast-module-types@6.0.1: {}
-
-  astro-theme-toggle@0.8.0: {}
 
   astro@5.16.4(@netlify/blobs@10.1.0)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
