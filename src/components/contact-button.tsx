@@ -1,27 +1,28 @@
 import { LucideMail } from "lucide-react";
 import { ContactDialog } from "./contact-dialog";
-import { Button } from "./ui/button";
 import type { AcceptedLanguage } from "@/i18n";
+import { IconButton } from "./icon-button";
 
 export function ContactIconButton({
   language,
-  "aria-label": ariaLabel,
+  tooltip,
 }: {
   language: AcceptedLanguage;
-  "aria-label"?: string;
+  tooltip?: string;
 }) {
   return (
     <ContactDialog
       trigger={
-        <Button
+        <IconButton
           variant="outline"
           className="cursor-pointer"
-          aria-label={ariaLabel}
+          tooltip={tooltip}
+          aria-label={tooltip}
         >
           <span>
             <LucideMail className="size-5" />
           </span>
-        </Button>
+        </IconButton>
       }
       language={language}
     />

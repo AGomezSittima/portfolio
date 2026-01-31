@@ -1,17 +1,15 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { Button, type ButtonSize, type ButtonVariant } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import type { AnchorHTMLAttributes, AriaAttributes } from "react";
+import type { AnchorHTMLAttributes } from "react";
 
 type TooltipOptions = {
   tooltipSide?: React.ComponentProps<typeof TooltipPrimitive.Content>["side"];
   tooltipAlign?: React.ComponentProps<typeof TooltipPrimitive.Content>["align"];
 };
 
-type IconButtonProps = {
-  children: React.ReactNode;
-  className?: string;
-  "aria-label"?: AriaAttributes["aria-label"];
+type IconButtonProps = React.ComponentProps<"button"> & {
+  asChild?: boolean;
   variant?: ButtonVariant;
   size?: Extract<ButtonSize, "icon" | "icon-sm" | "icon-lg">;
   tooltip?: string;
@@ -19,22 +17,16 @@ type IconButtonProps = {
 
 export function IconButton({
   children,
-  className,
-  "aria-label": ariaLabel,
   variant = "outline",
   size = "icon",
+  asChild = false,
   tooltip,
   tooltipSide = "top",
   tooltipAlign = "center",
+  ...props
 }: IconButtonProps) {
   const button = (
-    <Button
-      className={className}
-      variant={variant}
-      size={size}
-      aria-label={ariaLabel}
-      asChild
-    >
+    <Button variant={variant} size={size} asChild={asChild} {...props}>
       {children}
     </Button>
   );
@@ -52,6 +44,7 @@ export function IconButton({
 }
 
 type LinkOptions = {
+  href: string;
   rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
   target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
 };
@@ -61,28 +54,28 @@ type LinkIconButtonProps = IconButtonProps & {
 } & LinkOptions;
 
 export function LinkIconButton({
-  href,
   children,
-  className,
-  "aria-label": ariaLabel,
   variant = "outline",
   size = "icon",
   tooltip,
   tooltipSide = "top",
   tooltipAlign = "center",
-  ...linkOptions
+  href,
+  rel,
+  target,
+  ...props
 }: LinkIconButtonProps) {
   return (
     <IconButton
-      className={className}
       variant={variant}
       size={size}
-      aria-label={ariaLabel}
       tooltip={tooltip}
       tooltipSide={tooltipSide}
       tooltipAlign={tooltipAlign}
+      asChild
+      {...props}
     >
-      <a href={href} {...linkOptions}>
+      <a href={href} rel={rel} target={target}>
         {children}
       </a>
     </IconButton>
