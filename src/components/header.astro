@@ -4,7 +4,7 @@ import type { HeaderDTO } from "@/i18n/data/header";
 import { getLangFromUrl, getPathWithoutLang } from "@/i18n/utils";
 import { LanguagePicker } from "./language-picker";
 import Navmenu from "./nav-menu.astro";
-import ThemeToggle from "./theme-toggle.astro";
+import { ThemeToggle } from "./theme-toggle";
 
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("headerData", lang) as HeaderDTO;
@@ -26,7 +26,7 @@ const currentUrl = getPathWithoutLang(Astro.url);
       label={t["button.language-picker"]}
     />
 
-    <ThemeToggle tooltip={t["button.theme-toggle"]} />
+    <ThemeToggle tooltip={t["button.theme-toggle"]} client:load />
   </div>
 </header>
 
