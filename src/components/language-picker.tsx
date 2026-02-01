@@ -63,7 +63,14 @@ export function LanguagePicker({
 
           return (
             <DropdownMenuItem key={`language-${code}`} asChild>
-              <a href={translatePath(currentUrl || "/")}>{lang}</a>
+              <a
+                href={translatePath(currentUrl || "/")}
+                onClick={() => {
+                  localStorage.setItem("scrollY", window.scrollY.toString());
+                }}
+              >
+                {lang}
+              </a>
             </DropdownMenuItem>
           );
         })}
