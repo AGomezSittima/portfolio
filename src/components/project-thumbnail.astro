@@ -18,8 +18,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
 const imagePath = `${projectImagesFolder}/Thumbnail_${project.id}${isDarkMode ? "_Dark" : ""}.webp`;
 
-console.log(images);
-
 if (!images[imagePath]) {
   throw new Error(
     `"${imagePath}" does not exist in glob: "${projectImagesPath}"`
