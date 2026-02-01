@@ -1,0 +1,33 @@
+<script is:inline>
+  function getCurrentTheme() {
+    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+
+    if (["dark", "light"].includes(localStorageTheme)) {
+      return localStorageTheme;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  }
+
+  // Initial theme setup
+  const theme = getCurrentTheme();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+
+  window.localStorage.setItem("theme", theme);
+
+  // Handle View Transition swap
+  document.addEventListener("astro:after-swap", () => {
+    const theme = getCurrentTheme();
+
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  });
+</script>
