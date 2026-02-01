@@ -1,4 +1,8 @@
 {
+  "author": "Álvaro Gómez Sittima",
+  "applicationName": "Álvaro Gómez Sittima Portfolio",
+  "description": "Portfolio of Álvaro Gómez Sittima, a full stack developer. Experienced in technologies like TypeScript, React, Astro and more.",
+  "keywords": "Álvaro Gómez Sittima, Portfolio, Software Engineer, Web Developer, Full Stack Developer, Back End Developer, Front End Developer, TypeScript, React, Astro",
   "og": {
     "title": "Álvaro Gómez Sittima - Software Engineer",
     "description": "Portfolio of Álvaro Gómez Sittima, a full stack developer. Experienced in technologies like TypeScript, React, Astro and more.",

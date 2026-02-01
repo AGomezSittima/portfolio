@@ -22,6 +22,16 @@ const ogImageUrl = getOpenGraphImageUrl("/OG_1200x630.png");
 <!-- General -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
+<meta name="color-scheme" content="dark light" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+
+<!-- Application Info -->
+<meta name="application-name" content={t.applicationName} />
+<meta name="author" content={t.author} />
+<meta name="creator" content={t.author} />
+<meta name="publisher" content={t.author} />
+<meta name="description" content={t.description} />
+<meta name="keywords" content={t.keywords} />
 
 <!-- Open Graph -->
 <meta property="og:image" content={ogImageUrl} />
