@@ -24,6 +24,9 @@ const { language } = Astro.props;
 const tCommon = getI18n("commonData", language) as CommonDTO;
 const tBasics = getI18n("basicsData", language) as BasicsDTO;
 const tHero = getI18n("heroData", language) as HeroDTO;
+
+const linkedinPathValue = linkedinPath();
+const githubPathValue = githubPath();
 ---
 
 <PortfolioSection id="hero" class="min-h-hero justify-start">
@@ -59,29 +62,37 @@ const tHero = getI18n("heroData", language) as HeroDTO;
         optionLabels={tHero["cv"]["dropdownOptions"]}
       />
     </div>
-    <div class="flex items-center gap-2">
-      <Separator orientation="vertical" className="mr-4 h-8! w-0.5!" />
+    {
+      (linkedinPathValue || githubPathValue) && (
+        <div class="flex items-center gap-2">
+          <Separator orientation="vertical" className="mr-4 h-8! w-0.5!" />
 
-      <LinkIconButton
-        className="bg-linkedin! text-linkedin-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
-        href={linkedinPath()}
-        rel="noopener noreferrer"
-        target="_blank"
-        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-        client:visible
-      >
-        <LinkedIn class="size-5" />
-      </LinkIconButton>
-      <LinkIconButton
-        className="bg-github! text-github-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
-        href={githubPath()}
-        rel="noopener noreferrer"
-        target="_blank"
-        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-        client:visible
-      >
-        <Github class="size-5" />
-      </LinkIconButton>
-    </div>
+          {linkedinPathValue && (
+            <LinkIconButton
+              className="bg-linkedin! text-linkedin-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
+              href={linkedinPathValue}
+              rel="noopener noreferrer"
+              target="_blank"
+              tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+              client:visible
+            >
+              <LinkedIn class="size-5" />
+            </LinkIconButton>
+          )}
+          {githubPathValue && (
+            <LinkIconButton
+              className="bg-github! text-github-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
+              href={githubPathValue}
+              rel="noopener noreferrer"
+              target="_blank"
+              tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+              client:visible
+            >
+              <Github class="size-5" />
+            </LinkIconButton>
+          )}
+        </div>
+      )
+    }
   </div>
 </PortfolioSection>

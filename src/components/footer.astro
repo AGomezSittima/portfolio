@@ -18,6 +18,9 @@ const { language } = Astro.props;
 const tCommon = getI18n("commonData", language) as CommonDTO;
 const tBasics = getI18n("basicsData", language) as BasicsDTO;
 const tFooter = getI18n("footerData", language) as FooterDTO;
+
+const linkedinPathValue = linkedinPath();
+const githubPathValue = githubPath();
 ---
 
 <footer class="border-border text-muted-foreground w-full border-t-2 text-sm">
@@ -34,26 +37,34 @@ const tFooter = getI18n("footerData", language) as FooterDTO;
       <span>{tFooter["footer.rights"]}</span>
     </div>
     <div class="flex items-center gap-2">
-      <LinkIconButton
-        href={linkedinPath()}
-        target="_blank"
-        rel="noopener noreferrer"
-        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-        aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-        client:visible
-      >
-        <LinkedinOutline class="size-5" />
-      </LinkIconButton>
-      <LinkIconButton
-        href={githubPath()}
-        target="_blank"
-        rel="noopener noreferrer"
-        tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-        aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-        client:visible
-      >
-        <GitHub class="size-5" />
-      </LinkIconButton>
+      {
+        linkedinPathValue && (
+          <LinkIconButton
+            href={linkedinPathValue}
+            target="_blank"
+            rel="noopener noreferrer"
+            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+            client:visible
+          >
+            <LinkedinOutline class="size-5" />
+          </LinkIconButton>
+        )
+      }
+      {
+        githubPathValue && (
+          <LinkIconButton
+            href={githubPathValue}
+            target="_blank"
+            rel="noopener noreferrer"
+            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+            client:visible
+          >
+            <GitHub class="size-5" />
+          </LinkIconButton>
+        )
+      }
       <ContactIconButton
         language={language}
         tooltip={tBasics["basics.contactMe"]}

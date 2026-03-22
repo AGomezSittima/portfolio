@@ -35,10 +35,12 @@ export default defineConfig({
       GITHUB_URL: envField.string({
         context: "client",
         access: "public",
+        optional: true,
       }),
       LINKEDIN_URL: envField.string({
         context: "client",
         access: "public",
+        optional: true,
       }),
     },
   },

@@ -21,8 +21,8 @@ export const contactFormPath = (formId: string) =>
   `https://formspree.io/f/${formId}`;
 
 // External paths
-export const githubPath = () => GITHUB_URL;
-export const linkedinPath = () => LINKEDIN_URL;
+export const githubPath = () => (GITHUB_URL ? GITHUB_URL : null);
+export const linkedinPath = () => (LINKEDIN_URL ? LINKEDIN_URL : null);
 export const astroPath = () => "https://astro.build/";
 export const tailwindcssPath = () => "https://tailwindcss.com/";
 export const reactPath = () => "https://react.dev/";
