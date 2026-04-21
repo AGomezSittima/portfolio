@@ -17,6 +17,12 @@ type LanguagePickerProps = {
   label?: string;
 };
 
+function handleLanguageChange(scrollY: number, language: AcceptedLanguage) {
+  document.cookie = `lang=${language}; path=/; max-age=31536000; SameSite=Lax; Secure`;
+
+  localStorage.setItem("scrollY", scrollY.toString());
+}
+
 export function LanguagePicker({
   currentLanguage,
   currentUrl,
@@ -59,14 +65,15 @@ export function LanguagePicker({
       </Tooltip>
       <DropdownMenuContent align="end">
         {Object.entries(languages).map(([code, lang]) => {
-          const translatePath = useTranslatedPath(code as AcceptedLanguage);
+          const acceptedCode = code as AcceptedLanguage;
+          const translatePath = useTranslatedPath(acceptedCode);
 
           return (
-            <DropdownMenuItem key={`language-${code}`} asChild>
+            <DropdownMenuItem key={`language-${acceptedCode}`} asChild>
               <a
                 href={translatePath(currentUrl || "/")}
                 onClick={() => {
-                  localStorage.setItem("scrollY", window.scrollY.toString());
+                  handleLanguageChange(window.scrollY, acceptedCode);
                 }}
               >
                 {lang}

@@ -19,7 +19,7 @@ export const languages = {
 export type AcceptedLanguage = keyof typeof languages;
 
 export const defaultLanguage: AcceptedLanguage = "es";
-export const showDefaultLang = false;
+export const showDefaultLang = true;
 
 const dataStoreMapping = {
   aboutMeData,
