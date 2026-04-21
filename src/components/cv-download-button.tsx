@@ -25,7 +25,7 @@ export function CVDownloadButton({
 }: CVDownloadButtonProps) {
   return (
     <ButtonGroup>
-      <Button variant="outline" size="sm">
+      <Button variant="outline" size="sm" asChild>
         <a
           href={resumePath(currentLanguageCode)}
           target="_blank"

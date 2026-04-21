@@ -28,6 +28,10 @@ export default defineConfig({
         context: "server",
         access: "public",
       }),
+      RESUME_URL: envField.string({
+        context: "client",
+        access: "public",
+      }),
       EMAIL: envField.string({
         context: "client",
         access: "public",

@@ -1,6 +1,6 @@
 import type { AcceptedLanguage } from "@/i18n";
 import { useTranslatedPath } from "@/i18n/utils";
-import { GITHUB_URL, LINKEDIN_URL } from "astro:env/client";
+import { RESUME_URL, GITHUB_URL, LINKEDIN_URL } from "astro:env/client";
 
 export const homePath = (lang: AcceptedLanguage) =>
   useTranslatedPath(lang)("/");
@@ -15,7 +15,7 @@ export const projectsShowcasePath = (lang: AcceptedLanguage) =>
   useTranslatedPath(lang)("/#featured-projects");
 
 export const resumePath = (lang: AcceptedLanguage) =>
-  `/pdfs/CV_AlvaroGomezSittima_${lang.toUpperCase()}.pdf`;
+  `${RESUME_URL}/CV_AlvaroGomezSittima_${lang.toUpperCase()}.pdf`;
 
 export const contactFormPath = (formId: string) =>
   `https://formspree.io/f/${formId}`;
