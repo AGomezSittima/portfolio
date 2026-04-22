@@ -213,6 +213,22 @@
     cursor: pointer;
   }
 
+  .theme-transition {
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      animation: none;
+    }
+
+    &::view-transition-new(root) {
+      clip-path: circle(0px at var(--ripple-x) var(--ripple-y));
+      animation: ripple-expand 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+    }
+
+    &::view-transition-old(root) {
+      animation: fade-out 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -220,6 +236,24 @@
       animation: none !important;
       transition: none !important;
       scroll-behavior: auto !important;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+      blur: 0px;
+    }
+
+    to {
+      opacity: 0;
+      blur: 2px;
+    }
+  }
+
+  @keyframes ripple-expand {
+    to {
+      clip-path: circle(150% at var(--ripple-x) var(--ripple-y));
     }
   }
 }
