@@ -10,6 +10,8 @@ import { languages, type AcceptedLanguage } from "@/i18n";
 import { useTranslatedPath } from "@/i18n/utils";
 import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Separator } from "./ui/separator";
 
 type LanguagePickerProps = {
   currentLanguage: AcceptedLanguage;
@@ -63,22 +65,28 @@ export function LanguagePicker({
           <p>{label}</p>
         </TooltipContent>
       </Tooltip>
-      <DropdownMenuContent align="end">
-        {Object.entries(languages).map(([code, lang]) => {
+      <DropdownMenuContent align="end" className="flex flex-col gap-1">
+        {Object.entries(languages).map(([code, lang], index) => {
           const acceptedCode = code as AcceptedLanguage;
           const translatePath = useTranslatedPath(acceptedCode);
+          const selected = acceptedCode === currentLanguage;
 
           return (
-            <DropdownMenuItem key={`language-${acceptedCode}`} asChild>
-              <a
-                href={translatePath(currentUrl || "/")}
-                onClick={() => {
-                  handleLanguageChange(window.scrollY, acceptedCode);
-                }}
-              >
-                {lang}
-              </a>
-            </DropdownMenuItem>
+            <>
+              {index > 0 && <Separator />}
+              <DropdownMenuItem key={`language-${acceptedCode}`} asChild>
+                <a
+                  href={translatePath(currentUrl || "/")}
+                  onClick={() => {
+                    handleLanguageChange(window.scrollY, acceptedCode);
+                  }}
+                  className={cn(selected && "font-medium")}
+                >
+                  {selected && <span className="font-bold">• </span>}
+                  {lang}
+                </a>
+              </DropdownMenuItem>
+            </>
           );
         })}
       </DropdownMenuContent>

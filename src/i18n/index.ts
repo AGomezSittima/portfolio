@@ -12,8 +12,8 @@ import { professionalExperienceData } from "./data/professional-experience";
 import { projectsData } from "./data/projects";
 
 export const languages = {
-  es: "Español (ES)",
-  en: "English (US)",
+  es: "Español",
+  en: "English",
 };
 
 export type AcceptedLanguage = keyof typeof languages;
