@@ -13,6 +13,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
 import { navigate } from "astro:transitions/client";
+import React from "react";
 
 type LanguagePickerProps = {
   currentLanguage: AcceptedLanguage;
@@ -75,14 +76,16 @@ export function LanguagePicker({
       <DropdownMenuContent align="end" className="flex flex-col gap-1">
         {Object.entries(languages).map(([code, lang], index) => {
           const acceptedCode = code as AcceptedLanguage;
+
           const translatePath = useTranslatedPath(acceptedCode);
           const path = translatePath(currentUrl || "/");
+
           const selected = acceptedCode === currentLanguage;
 
           return (
-            <>
+            <React.Fragment key={`language-${acceptedCode}`}>
               {index > 0 && <Separator />}
-              <DropdownMenuItem key={`language-${acceptedCode}`} asChild>
+              <DropdownMenuItem asChild>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -96,7 +99,7 @@ export function LanguagePicker({
                   <span>{lang}</span>
                 </Button>
               </DropdownMenuItem>
-            </>
+            </React.Fragment>
           );
         })}
       </DropdownMenuContent>
