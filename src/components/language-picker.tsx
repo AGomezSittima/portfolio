@@ -12,6 +12,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
+import { navigate } from "astro:transitions/client";
 
 type LanguagePickerProps = {
   currentLanguage: AcceptedLanguage;
@@ -19,10 +20,16 @@ type LanguagePickerProps = {
   label?: string;
 };
 
-function handleLanguageChange(scrollY: number, language: AcceptedLanguage) {
+function handleLanguageChange(
+  path: string,
+  scrollY: number,
+  language: AcceptedLanguage
+) {
   document.cookie = `lang=${language}; path=/; max-age=31536000; SameSite=Lax; Secure`;
 
   localStorage.setItem("scrollY", scrollY.toString());
+
+  navigate(path);
 }
 
 export function LanguagePicker({
@@ -69,22 +76,25 @@ export function LanguagePicker({
         {Object.entries(languages).map(([code, lang], index) => {
           const acceptedCode = code as AcceptedLanguage;
           const translatePath = useTranslatedPath(acceptedCode);
+          const path = translatePath(currentUrl || "/");
           const selected = acceptedCode === currentLanguage;
 
           return (
             <>
               {index > 0 && <Separator />}
               <DropdownMenuItem key={`language-${acceptedCode}`} asChild>
-                <a
-                  href={translatePath(currentUrl || "/")}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={cn(!selected && "font-normal")}
                   onClick={() => {
-                    handleLanguageChange(window.scrollY, acceptedCode);
+                    handleLanguageChange(path, window.scrollY, acceptedCode);
                   }}
-                  className={cn(selected && "font-medium")}
+                  disabled={selected}
                 >
                   {selected && <span className="font-bold">• </span>}
-                  {lang}
-                </a>
+                  <span>{lang}</span>
+                </Button>
               </DropdownMenuItem>
             </>
           );
