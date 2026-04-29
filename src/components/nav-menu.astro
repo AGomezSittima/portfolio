@@ -31,6 +31,6 @@ const links: NavItem[] = [
 ];
 ---
 
-<div class:list={["flex items-center gap-2", className]}>
+<div class:list={["flex items-center gap-2 lg:gap-6", className]}>
   {links.map(({ href, label }) => <NavLink href={href} label={label} />)}
 </div>
