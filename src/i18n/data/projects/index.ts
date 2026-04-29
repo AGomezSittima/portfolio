@@ -28,6 +28,7 @@ export type TechnologiesDTO =
   | "unity"
   | "csharp"
   | "unreal"
-  | "cpp";
+  | "cpp"
+  | "vba";
 
 export type ExternalLinkSource = "github" | "itchio" | "demo";

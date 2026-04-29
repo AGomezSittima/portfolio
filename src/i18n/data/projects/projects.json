@@ -4,15 +4,24 @@
       "id": 1,
       "company": "SKY TECNOLOGIA",
       "role": {
-        "es": "Freelance - Desarrollador Full-Stack",
-        "en": "Freelance - Full-Stack Developer"
+        "es": "Desarrollador Full-Stack (Freelance)",
+        "en": "Full-Stack Developer (Freelance)"
       },
       "startDate": "04/2025",
       "endDate": "04/2026",
       "responsibilities": {
-        "es": "Colaborador externo ofreciendo apoyo en el desarrollo de distintos productos de la empresa. Durante mi colaboración, he desarrollado interfaces de usuario, adaptado interfaces existentes para dispositivos móviles y desarrollado algunas funcionalidades de backend según las necesidades de los proyectos.",
-        "en": "External collaborator providing support in the development of various company products. During my collaboration, I have developed user interfaces, adapted existing interfaces for mobile devices, and developed some backend functionalities as per project requirements."
-      }
+        "es": [
+          "Desarrollé interfaces de usuario para varios productos, centrándome en el diseño responsive y la accesibilidad.",
+          "Adapté interfaces existentes para dispositivos móviles.",
+          "Desarrollé funcionalidades backend según los requisitos del proyecto."
+        ],
+        "en": [
+          "Built user interfaces across multiple products, focusing on responsive design and accessibility.",
+          "Adapted existing interfaces for mobile devices.",
+          "Developed backend functionalities as per project requirements."
+        ]
+      },
+      "technologies": ["react", "python", "typescript", "tailwindcss"]
     },
     {
       "id": 0,
@@ -24,9 +33,20 @@
       "startDate": "04/2023",
       "endDate": "04/2025",
       "responsibilities": {
-        "es": "Trabaje en un pequeño proyecto de migración de datos. Empecé como becario hasta acabar como ingeniero de software, liderando la parte técnica del análisis de calidad, limpieza y migración de los datos.",
-        "en": "I worked on a small data migration project. I started as an intern and ended up as a software engineer, leading the technical part of data quality analysis, cleaning, and migration."
-      }
+        "es": [
+          "Progresé de Becario a Junior y luego a Software Engineer en menos de dos años, debido a mis contribuciones técnicas.",
+          "Trabajé en un proyecto de migración de datos para UNESCO.",
+          "Asumí la responsabilidad de la calidad de los datos y los procesos de migración, liderando los aspectos técnicos.",
+          "Optimizé los procesos de migración de datos, reduciendo el tiempo de ejecución de varios días a menos de 24 horas."
+        ],
+        "en": [
+          "Progressed from Intern to Junior and then Software Engineer in less than two years, due to my technical contributions.",
+          "Worked on a data migration project for UNESCO.",
+          "Took ownership of data quality and migration processes, leading the technical aspects.",
+          "Optimized data migration processes, reducing execution time from several days to less than 24 hours."
+        ]
+      },
+      "technologies": ["python", "vba"]
     }
   ],
   "personal": [

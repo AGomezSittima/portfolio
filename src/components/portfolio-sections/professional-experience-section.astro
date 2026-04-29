@@ -2,6 +2,7 @@
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { ProfessionalExperienceDTO } from "@/i18n/data/professional-experience";
 import type { ProjectsDTO } from "@/i18n/data/projects";
+
 import ProfessionalExperience from "../professional-experience.astro";
 import PortfolioSection from "./portfolio-section.astro";
 import SectionSeparator from "./section-separator.astro";
@@ -26,9 +27,15 @@ const tProjects = (getI18n("projectsData", language) as ProjectsDTO)["work"];
 
   <SectionSeparator />
 
-  {
-    tProjects.map((project) => (
-      <ProfessionalExperience project={project} language={language} />
-    ))
-  }
+  <div class="relative space-y-8 pl-6">
+    <div
+      class="absolute top-0 left-0 h-full w-px bg-linear-to-b from-primary to-transparent from-60% to-95%"
+    >
+    </div>
+    {
+      tProjects.map((project) => (
+        <ProfessionalExperience project={project} language={language} />
+      ))
+    }
+  </div>
 </PortfolioSection>
