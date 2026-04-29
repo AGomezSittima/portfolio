@@ -3,12 +3,10 @@ import type { AcceptedLanguage } from "@/i18n";
 import type {
   ExternalLinkSource,
   PersonalProjectDTO,
-  TechnologiesDTO,
 } from "@/i18n/data/projects";
 import { ExternalSourceButton } from "./external-source-button";
 import ProjectThumbnail from "./project-thumbnail.astro";
-import { TechnologiesMore } from "./technologies-more";
-import { TechnologyBadge } from "./technology-badge";
+import TechList from "./tech-list.astro";
 import {
   Card,
   CardContent,
@@ -22,8 +20,6 @@ interface Props {
   project: PersonalProjectDTO;
   language: AcceptedLanguage;
 }
-
-const MAX_TECH_BADGES_DISPLAYED = 3;
 
 const { project, language } = Astro.props;
 ---
@@ -56,22 +52,11 @@ const { project, language } = Astro.props;
       </div>
     </CardTitle>
     <CardDescription className="px-6">
-      <div class="flex flex-wrap gap-2">
-        {
-          project.technologies
-            .slice(0, MAX_TECH_BADGES_DISPLAYED)
-            .map((tech) => (
-              <TechnologyBadge technology={tech as TechnologiesDTO} />
-            ))
-        }
-        <TechnologiesMore
-          client:load
-          projectId={project.id}
-          technologies={project.technologies.slice(
-            MAX_TECH_BADGES_DISPLAYED
-          ) as TechnologiesDTO[]}
-        />
-      </div>
+      <TechList
+        projectId={project.id}
+        technologies={project.technologies}
+        maxTechBadgesDisplayed={3}
+      />
     </CardDescription>
   </CardHeader>
   <CardContent>

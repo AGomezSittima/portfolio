@@ -1,0 +1,37 @@
+---
+import type { TechnologiesDTO } from "@/i18n/data/projects";
+import { TechnologiesMore } from "./technologies-more";
+import { TechnologyBadge } from "./technology-badge";
+
+interface Props {
+  projectId: number;
+  technologies: string[];
+  maxTechBadgesDisplayed?: number;
+}
+
+const { projectId, technologies, maxTechBadgesDisplayed } = Astro.props;
+
+const totalProjects = technologies.length;
+const shouldShowMoreButton =
+  (maxTechBadgesDisplayed ?? 0) > 0 &&
+  totalProjects > (maxTechBadgesDisplayed ?? 0);
+---
+
+<div class="flex flex-wrap gap-2">
+  {
+    technologies
+      .slice(0, maxTechBadgesDisplayed)
+      .map((tech) => <TechnologyBadge technology={tech as TechnologiesDTO} />)
+  }
+  {
+    shouldShowMoreButton && (
+      <TechnologiesMore
+        client:load
+        projectId={projectId}
+        technologies={
+          technologies.slice(maxTechBadgesDisplayed) as TechnologiesDTO[]
+        }
+      />
+    )
+  }
+</div>
