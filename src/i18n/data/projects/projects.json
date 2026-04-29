@@ -4,11 +4,11 @@
       "id": 1,
       "company": "SKY TECNOLOGIA",
       "role": {
-        "es": "Freelance - Desarrollador Front End",
-        "en": "Freelance - Front End Developer"
+        "es": "Freelance - Desarrollador Full-Stack",
+        "en": "Freelance - Full-Stack Developer"
       },
       "startDate": "04/2025",
-      "endDate": null,
+      "endDate": "04/2026",
       "responsibilities": {
         "es": "Colaborador externo ofreciendo apoyo en el desarrollo de distintos productos de la empresa. Durante mi colaboración, he desarrollado interfaces de usuario, adaptado interfaces existentes para dispositivos móviles y desarrollado algunas funcionalidades de backend según las necesidades de los proyectos.",
         "en": "External collaborator providing support in the development of various company products. During my collaboration, I have developed user interfaces, adapted existing interfaces for mobile devices, and developed some backend functionalities as per project requirements."
