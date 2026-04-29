@@ -49,6 +49,7 @@ export function CVDownloadButton({
               <DropdownMenuItem
                 key={`cv-${acceptedCode}`}
                 className={cn(isCurrentLanguage && "text-primary")}
+                asChild
               >
                 <a
                   href={resumePath(acceptedCode)}
