@@ -24,7 +24,9 @@ interface Props {
 const { project, language } = Astro.props;
 ---
 
-<Card>
+<Card
+  className="hover:border-primary/40 group h-full flex-1 transition hover:-translate-y-0.5"
+>
   <CardHeader className="p-0">
     <CardTitle>
       <div class="relative">
@@ -43,7 +45,7 @@ const { project, language } = Astro.props;
           )
         }
         <div
-          class="to-card absolute top-0 left-0 h-full w-full bg-linear-to-b from-transparent to-85%"
+          class="to-card absolute top-0 left-0 h-full w-full bg-linear-to-b from-transparent from-40% to-85%"
         >
         </div>
         <h3 class="absolute bottom-3 left-6 text-2xl font-semibold">

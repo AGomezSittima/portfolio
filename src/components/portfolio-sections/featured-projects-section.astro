@@ -28,7 +28,9 @@ const tProjects = (getI18n("projectsData", language) as ProjectsDTO)[
 
   <SectionSeparator />
 
-  <div class="space-y-8">
+  <div
+    class="space-y-8 grid gap-6 grid-cols-[repeat(auto-fit,minmax(420px,1fr))] items-stretch"
+  >
     {
       tProjects
         .filter((project) => project.featured)
