@@ -49,7 +49,7 @@ export function ExternalSourceButton({
   url: string;
 }) {
   return (
-    <Button variant="outline" asChild>
+    <Button variant={source === "demo" ? "default" : "outline"} asChild>
       <a href={url} target="_blank" rel="noopener noreferrer">
         {sourceVisualMap[source].icon}
         <span>{sourceVisualMap[source].label}</span>

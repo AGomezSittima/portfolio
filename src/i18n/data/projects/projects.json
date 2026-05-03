@@ -58,8 +58,8 @@
         "en": "My personal portfolio developed with Astro, showcasing my skills and projects."
       },
       "externalLinks": {
-        "github": "https://github.com/AGomezSittima/portfolio/",
-        "demo": "https://agomezsittima.dev/"
+        "demo": "https://agomezsittima.dev/",
+        "github": "https://github.com/AGomezSittima/portfolio/"
       },
       "technologies": ["astro", "typescript", "tailwindcss", "react"],
       "featured": true,
@@ -77,8 +77,8 @@
         "en": "Interactive web tool designed to facilitate the customization and adaptation of school materials in diverse educational contexts. Developed as a final degree project at the Complutense University of Madrid (UCM)."
       },
       "externalLinks": {
-        "github": "https://github.com/AGomezSittima/TFG-22-23-AdaptaMaterialEscolar2.0/",
-        "demo": "https://adme2.netlify.app/"
+        "demo": "https://adme2.netlify.app/",
+        "github": "https://github.com/AGomezSittima/TFG-22-23-AdaptaMaterialEscolar2.0/"
       },
       "technologies": [
         "react",

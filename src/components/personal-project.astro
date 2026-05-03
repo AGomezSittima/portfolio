@@ -25,32 +25,41 @@ const { project, language } = Astro.props;
 ---
 
 <Card
-  className="hover:border-primary/40 group h-full flex-1 transition hover:-translate-y-0.5"
+  className="hover:border-primary/40 group z-10 h-full flex-1 overflow-hidden transition-all hover:-translate-y-2"
 >
   <CardHeader className="p-0">
-    <CardTitle>
-      <div class="relative">
-        {
-          project.thumbnail.hasDarkMode ? (
-            <div>
-              <ProjectThumbnail class="dark:hidden" project={project} />
-              <ProjectThumbnail
-                class="hidden dark:block"
-                project={project}
-                isDarkMode
-              />
-            </div>
-          ) : (
-            <ProjectThumbnail project={project} />
-          )
-        }
-        <div
-          class="to-card absolute top-0 left-0 h-full w-full bg-linear-to-b from-transparent from-40% to-85%"
-        >
+    <CardTitle className="overflow-hidden">
+      <div class="relative rounded-xl">
+        <!-- Thumbnail -->
+        <div class="transition-transform duration-250 group-hover:scale-110">
+          {
+            project.thumbnail.hasDarkMode ? (
+              <>
+                <ProjectThumbnail class="dark:hidden" project={project} />
+                <ProjectThumbnail
+                  class="hidden dark:block"
+                  project={project}
+                  isDarkMode
+                />
+              </>
+            ) : (
+              <ProjectThumbnail project={project} />
+            )
+          }
+
+          <!-- Bottom gradient -->
+          <div
+            class="to-card pointer-events-none absolute inset-0 left-0 h-full w-full bg-linear-to-b from-transparent from-40% to-85%"
+          >
+          </div>
         </div>
-        <h3 class="absolute bottom-3 left-6 text-2xl font-semibold">
-          {project.name}
-        </h3>
+
+        <!-- Title -->
+        <div class="absolute bottom-0 left-0 w-full px-6">
+          <h3 class="text-2xl font-semibold">
+            {project.name}
+          </h3>
+        </div>
       </div>
     </CardTitle>
     <CardDescription className="px-6">
@@ -62,7 +71,7 @@ const { project, language } = Astro.props;
     </CardDescription>
   </CardHeader>
   <CardContent>
-    <p class="text-foreground prose md:prose-lg">
+    <p class="text-foreground prose">
       {project.description[language]}
     </p>
   </CardContent>
