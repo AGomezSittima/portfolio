@@ -1,4 +1,6 @@
 ---
+import { OPEN_TO_WORK } from "astro:env/server";
+
 import Github from "@/assets/brand-logos/github.svg";
 import LinkedIn from "@/assets/brand-logos/linkedin.svg";
 import { type AcceptedLanguage, getI18n } from "@/i18n";
@@ -6,10 +8,11 @@ import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
 import type { HeroDTO } from "@/i18n/data/hero";
 import { githubPath, linkedinPath } from "@/lib/paths";
-import { OPEN_TO_WORK } from "astro:env/server";
+
 import { CVDownloadButton } from "../cv-download-button";
 import { HeroContactButton } from "../hero-contact-button";
 import { LinkIconButton } from "../icon-button";
+import { Markdown } from "../markdown";
 import OpenToWork from "../open-to-work.astro";
 import { Separator } from "../ui/separator";
 import PortfolioSection from "./portfolio-section.astro";
@@ -44,7 +47,7 @@ const githubPathValue = githubPath();
 
   <div class="text-foreground prose">
     <p class="mt-4 text-lg">
-      {tHero["hero.summary"]}
+      <Markdown content={tHero["summary"]} />
     </p>
   </div>
 

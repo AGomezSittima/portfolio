@@ -10,7 +10,7 @@ export function Markdown({ content, className }: Props) {
   return (
     <div
       className={cn(
-        "prose md:prose-lg prose-strong:font-bold prose-strong:text-secondary-foreground",
+        "text-foreground prose md:prose-lg prose-strong:font-bold prose-strong:text-secondary-foreground",
         className
       )}
     >
