@@ -73,8 +73,8 @@
       "name": "Adapta Material Escolar 2.0",
       "endDate": "05/2023",
       "description": {
-        "es": "Herramienta web interactiva diseñada para facilitar la personalización y adaptación del material escolar en contextos educativos diversos. Desarrollada como proyecto de fin de grado en la Universidad Complutense de Madrid (UCM).",
-        "en": "Interactive web tool designed to facilitate the customization and adaptation of school materials in diverse educational contexts. Developed as a final degree project at the Complutense University of Madrid (UCM)."
+        "es": "Herramienta web interactiva para la adaptación de materiales escolares en contextos educativos diversos. Proyecto de fin de grado en la Universidad Complutense de Madrid (UCM).",
+        "en": "Interactive web tool for adapting school materials in diverse educational contexts. Final degree project at the Complutense University of Madrid (UCM)."
       },
       "externalLinks": {
         "demo": "https://adme2.netlify.app/",

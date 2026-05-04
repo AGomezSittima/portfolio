@@ -5,6 +5,7 @@ import type {
   PersonalProjectDTO,
 } from "@/i18n/data/projects";
 import { ExternalSourceButton } from "./external-source-button";
+import { Markdown } from "./markdown";
 import ProjectThumbnail from "./project-thumbnail.astro";
 import TechList from "./tech-list.astro";
 import {
@@ -71,9 +72,7 @@ const { project, language } = Astro.props;
     </CardDescription>
   </CardHeader>
   <CardContent>
-    <p class="text-foreground prose">
-      {project.description[language]}
-    </p>
+    <Markdown className="text-muted-foreground" content={project.description[language]} />
   </CardContent>
   <CardFooter className="mt-auto space-x-2 pb-6">
     {
