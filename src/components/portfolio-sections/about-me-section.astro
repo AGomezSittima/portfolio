@@ -1,6 +1,8 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { AboutMeDTO } from "@/i18n/data/about-me";
+
+import { Markdown } from "../markdown";
 import PortfolioSection from "./portfolio-section.astro";
 import SectionSeparator from "./section-separator.astro";
 
@@ -15,20 +17,16 @@ const tAboutMe = getI18n("aboutMeData", language) as AboutMeDTO;
 
 <PortfolioSection id="about-me">
   <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
-    <span>{tAboutMe["section.title"]}</span>
+    <span>{tAboutMe["title"]}</span>
   </h2>
 
   <SectionSeparator />
 
-  <div class="text-foreground prose">
-    <p>
-      {tAboutMe["about.summary"]}
-    </p>
-    <p>
-      {tAboutMe["about.initiation"]}
-    </p>
-    <p>
-      {tAboutMe["about.current-occupation"]}
-    </p>
+  <div class="space-y-6">
+    {
+      tAboutMe.sections.map(({ content }) => (
+        <Markdown className="text-foreground" content={content} />
+      ))
+    }
   </div>
 </PortfolioSection>

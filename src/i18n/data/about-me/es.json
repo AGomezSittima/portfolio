@@ -1,6 +1,17 @@
 {
-  "section.title": "Sobre mí",
-  "about.summary": "Soy Álvaro, un desarrollador de software apasionado por crear soluciones innovadoras y eficientes. Siempre estoy buscando aprender y crecer en mi carrera, enfrentando nuevos desafíos con entusiasmo y dedicación.",
-  "about.initiation": "Empecé en el mundo de la programación con 13 años, programando videojuegos en Unity con C#. Desde entonces, he explorado múltiples lenguajes y tecnologías, desarrollando una sólida base en desarrollo de aplicaciones y web.",
-  "about.current-occupation": "Actualmente, trabajo como desarrollador freelance, colaborando con clientes para crear soluciones personalizadas que satisfagan sus necesidades específicas. Además, dedico tiempo a proyectos personales que me permiten experimentar con nuevas tecnologías y mejorar mis habilidades."
+  "title": "Sobre mí",
+  "sections": [
+    {
+      "id": "summary",
+      "content": "Soy **Álvaro**, un desarrollador de software enfocado en construir soluciones prácticas y eficientes. Siempre busco seguir aprendiendo y mejorar mis habilidades a través de nuevos retos."
+    },
+    {
+      "id": "initiation",
+      "content": "Mi camino comenzó a los 13 años, **programando videojuegos** en Unity con **C#**. Más tarde estudié Ingeniería de Software en la **Universidad Complutense de Madrid (UCM)**, donde reforcé mis fundamentos en informática."
+    },
+    {
+      "id": "current-occupation",
+      "content": "Actualmente trabajo como **desarrollador freelance**, creando software para clientes con distintas necesidades. También desarrollo proyectos personales para probar nuevas tecnologías y seguir mejorando."
+    }
+  ]
 }

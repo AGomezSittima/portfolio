@@ -1,6 +1,17 @@
 {
-  "section.title": "About me",
-  "about.summary": "I am Álvaro, a software developer passionate about creating innovative and efficient solutions. I am always looking to learn and grow in my career, facing new challenges with enthusiasm and dedication.",
-  "about.initiation": "I started in the world of programming at 13 years old, programming video games in Unity with C#. Since then, I have explored multiple languages and technologies, developing a solid foundation in application and web development.",
-  "about.current-occupation": "Currently, I work as a freelance developer, collaborating with clients to create customized solutions that meet their specific needs. Additionally, I dedicate time to personal projects that allow me to experiment with new technologies and improve my skills."
+  "title": "About me",
+  "sections": [
+    {
+      "id": "summary",
+      "content": "I am **Álvaro**, a software developer focused on building practical and efficient solutions. I'm always looking to keep learning and improve my skills through new challenges."
+    },
+    {
+      "id": "initiation",
+      "content": "My journey started at the age of 13, **programming video games** in Unity with **C#**. I later studied Software Engineering at the Complutense University of Madrid (UCM), where I strengthened my computer science fundamentals."
+    },
+    {
+      "id": "current-occupation",
+      "content": "Currently, I work as a **freelance developer**, building software for clients with different needs. I also work on personal projects to try out new technologies and keep improving."
+    }
+  ]
 }
