@@ -207,7 +207,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
             y2="106.875"
           >
             <stop stopColor="white" />
-            <stop offset="1" stopColor="white" stop-opacity="0" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -365,57 +365,57 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
         <path
           fill="#3d87cf"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m340.5 118.438-99.635 51.302-99.688-51.302V51.303L240.865 0 340.5 51.303z"
         />
         <path
           fill="none"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m342.2 49.589-101.46 50.937-100.21-50.521"
         />
         <path
           fill="#f3632e"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m200 200.528-99.687 51.302L.625 200.528v-67.083l99.688-51.354L200 133.393z"
         />
         <path
           fill="none"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="M100 174.278v80.834m101.72-123.44-101.51 50.99L0 132.089"
         />
         <path
           fill="#912697"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m478.6 200.938-99.74 51.25-99.635-51.25V133.75L378.86 82.5l99.687 51.25z"
         />
         <path
           fill="none"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="M378.6 174.638v76.146m101.67-118.75-101.51 50.989L278.6 132.45"
         />
         <path
           fill="#fac705"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m340.5 202.458-99.635 51.302-99.688-51.302v-67.135l99.688-51.302 99.635 51.302z"
         />
         <path
           fill="none"
           stroke="#000"
-          stroke-miterlimit="3.864"
-          stroke-width="16.067"
+          strokeMiterlimit="3.864"
+          strokeWidth="16.067"
           d="m342.2 133.598-101.46 50.99-100.21-50.573m100 42.187v78.49"
         />
       </svg>
