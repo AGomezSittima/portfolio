@@ -1,14 +1,14 @@
 ---
-import type { PersonalProjectDTO } from "@/i18n/data/projects";
 import { Image } from "astro:assets";
 
 interface Props {
-  project: PersonalProjectDTO;
+  projectId: number;
+  alt: string;
   class?: string;
   isDarkMode?: boolean;
 }
 
-const { project, class: className, isDarkMode } = Astro.props;
+const { projectId, alt, class: className, isDarkMode } = Astro.props;
 
 const projectImagesFolder = "/src/assets/projects";
 const projectImagesPath = `${projectImagesFolder}/*.webp`;
@@ -16,7 +16,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/*.webp"
 );
 
-const imagePath = `${projectImagesFolder}/Thumbnail_${project.id}${isDarkMode ? "_Dark" : ""}.webp`;
+const imagePath = `${projectImagesFolder}/Thumbnail_${projectId}${isDarkMode ? "_Dark" : ""}.webp`;
 
 if (!images[imagePath]) {
   throw new Error(
@@ -27,6 +27,6 @@ if (!images[imagePath]) {
 
 <Image
   src={images[imagePath]()}
-  alt={project.thumbnail.altText}
+  alt={alt}
   class:list={["size-full object-cover", className]}
 />

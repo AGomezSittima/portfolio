@@ -64,7 +64,10 @@
       "technologies": ["astro", "typescript", "tailwindcss", "react"],
       "featured": true,
       "thumbnail": {
-        "altText": "Captura de pantalla del porfolio personal de Álvaro Gómez Sittima",
+        "altText": {
+          "es": "Captura de pantalla del portfolio personal de Álvaro Gómez Sittima",
+          "en": "Screenshot of Álvaro Gómez Sittima's personal portfolio"
+        },
         "hasDarkMode": true
       }
     },
@@ -89,8 +92,32 @@
       ],
       "featured": true,
       "thumbnail": {
-        "altText": "Captura de pantalla de Adapta Material Escolar 2.0",
+        "altText": {
+          "es": "Captura de pantalla de Adapta Material Escolar 2.0",
+          "en": "Screenshot of Adapta Material Escolar 2.0"
+        },
         "hasDarkMode": false
+      }
+    },
+    {
+      "id": 4,
+      "name": "Ticket Bounty",
+      "description": {
+        "es": "Aplicación web desarrollada con Next.js basada en el curso [The Road to Next](https://www.road-to-next.com/), explorando el App Router y patrones modernos de desarrollo.",
+        "en": "Web application built with Next.js based on [The Road to Next](https://www.road-to-next.com/) course, exploring the App Router and modern development patterns."
+      },
+      "externalLinks": {
+        "demo": "https://ticketbounty.agomezsittima.dev/",
+        "github": "https://github.com/AGomezSittima/the-road-to-next-app/"
+      },
+      "technologies": ["nextjs", "typescript", "tailwindcss"],
+      "featured": true,
+      "thumbnail": {
+        "altText": {
+          "es": "Captura de pantalla de Ticket Bounty",
+          "en": "Screenshot of Ticket Bounty"
+        },
+        "hasDarkMode": true
       }
     }
   ]

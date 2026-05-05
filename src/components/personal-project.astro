@@ -36,15 +36,23 @@ const { project, language } = Astro.props;
           {
             project.thumbnail.hasDarkMode ? (
               <>
-                <ProjectThumbnail class="dark:hidden" project={project} />
+                <ProjectThumbnail
+                  class="dark:hidden"
+                  projectId={project.id}
+                  alt={project.thumbnail.altText[language]}
+                />
                 <ProjectThumbnail
                   class="hidden dark:block"
-                  project={project}
+                  projectId={project.id}
+                  alt={project.thumbnail.altText[language]}
                   isDarkMode
                 />
               </>
             ) : (
-              <ProjectThumbnail project={project} />
+              <ProjectThumbnail
+                projectId={project.id}
+                alt={project.thumbnail.altText[language]}
+              />
             )
           }
 
@@ -72,7 +80,10 @@ const { project, language } = Astro.props;
     </CardDescription>
   </CardHeader>
   <CardContent>
-    <Markdown className="text-muted-foreground" content={project.description[language]} />
+    <Markdown
+      className="text-muted-foreground"
+      content={project.description[language]}
+    />
   </CardContent>
   <CardFooter className="mt-auto space-x-2 pb-6">
     {
