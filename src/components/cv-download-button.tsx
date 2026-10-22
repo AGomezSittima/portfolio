@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { languages, type AcceptedLanguage } from "@/i18n";
+import { type AcceptedLanguage } from "@/i18n";
 import { resumePath } from "@/lib/paths";
 import { toAcceptedLanguage } from "@/i18n/utils";
 import { cn } from "@/lib/utils";
