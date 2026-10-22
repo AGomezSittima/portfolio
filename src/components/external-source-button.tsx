@@ -41,13 +41,15 @@ const sourceVisualMap: Record<ExternalLinkSource, SourceVisual> = {
   },
 };
 
+type ExternalSourceButtonProps = {
+  source: ExternalLinkSource;
+  url: string;
+};
+
 export function ExternalSourceButton({
   source,
   url,
-}: {
-  source: ExternalLinkSource;
-  url: string;
-}) {
+}: ExternalSourceButtonProps) {
   return (
     <Button variant={source === "demo" ? "default" : "outline"} asChild>
       <a href={url} target="_blank" rel="noopener noreferrer">

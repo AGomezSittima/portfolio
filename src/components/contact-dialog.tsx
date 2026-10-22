@@ -16,13 +16,12 @@ import type { ContactFormDTO } from "@/i18n/data/contact-form";
 import { Separator } from "./ui/separator";
 import { EMAIL } from "astro:env/client";
 
-export function ContactDialog({
-  trigger,
-  language,
-}: {
+type ContactDialogProps = {
   trigger: React.ReactNode;
   language: AcceptedLanguage;
-}) {
+};
+
+export function ContactDialog({ trigger, language }: ContactDialogProps) {
   const [open, setOpen] = useState(false);
 
   const t = getI18n("contactFormData", language) as ContactFormDTO;

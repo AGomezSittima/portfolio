@@ -423,11 +423,11 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
 };
 
-export function TechnologyBadge({
-  technology,
-}: {
+type TechnologyBadgeProps = {
   technology: TechnologiesDTO;
-}) {
+};
+
+export function TechnologyBadge({ technology }: TechnologyBadgeProps) {
   const { label, url, icon } = technologyVisualMap[technology];
 
   const visualElement = (

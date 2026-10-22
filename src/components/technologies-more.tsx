@@ -4,13 +4,15 @@ import { Button } from "./ui/button";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 import { TechnologyBadge } from "./technology-badge";
 
+type TechnologiesMoreProps = {
+  projectId: number;
+  technologies: TechnologiesDTO[];
+};
+
 export function TechnologiesMore({
   projectId,
   technologies,
-}: {
-  projectId: number;
-  technologies: TechnologiesDTO[];
-}) {
+}: TechnologiesMoreProps) {
   return (
     <HoverCard openDelay={150} closeDelay={100}>
       <HoverCardTrigger asChild>

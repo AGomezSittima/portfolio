@@ -3,13 +3,15 @@ import { ContactDialog } from "./contact-dialog";
 import type { AcceptedLanguage } from "@/i18n";
 import { IconButton } from "./icon-button";
 
+type ContactIconButtonProps = {
+  language: AcceptedLanguage;
+  tooltip?: string;
+};
+
 export function ContactIconButton({
   language,
   tooltip,
-}: {
-  language: AcceptedLanguage;
-  tooltip?: string;
-}) {
+}: ContactIconButtonProps) {
   return (
     <ContactDialog
       trigger={
