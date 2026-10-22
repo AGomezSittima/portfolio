@@ -23,10 +23,8 @@ const tAboutMe = getI18n("aboutMeData", language) as AboutMeDTO;
   <SectionSeparator />
 
   <div class="space-y-6">
-    {
-      tAboutMe.sections.map(({ content }) => (
-        <Markdown className="text-foreground" content={content} />
-      ))
-    }
+    {tAboutMe.sections.map(({ content }) => (
+      <Markdown className="text-foreground" content={content} />
+    ))}
   </div>
 </PortfolioSection>

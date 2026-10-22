@@ -28,15 +28,11 @@ const tProjects = (getI18n("projectsData", language) as ProjectsDTO)[
 
   <SectionSeparator />
 
-  <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] items-stretch gap-6"
-  >
-    {
-      tProjects
-        .filter((project) => project.featured)
-        .map((project) => (
-          <PersonalProject project={project} language={language} />
-        ))
-    }
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] items-stretch gap-6">
+    {tProjects
+      .filter((project) => project.featured)
+      .map((project) => (
+        <PersonalProject project={project} language={language} />
+      ))}
   </div>
 </PortfolioSection>

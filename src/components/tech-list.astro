@@ -18,20 +18,16 @@ const shouldShowMoreButton =
 ---
 
 <div class="flex flex-wrap gap-2">
-  {
-    technologies
-      .slice(0, maxTechBadgesDisplayed)
-      .map((tech) => <TechnologyBadge technology={tech as TechnologiesDTO} />)
-  }
-  {
-    shouldShowMoreButton && (
-      <TechnologiesMore
-        client:load
-        projectId={projectId}
-        technologies={
-          technologies.slice(maxTechBadgesDisplayed) as TechnologiesDTO[]
-        }
-      />
-    )
-  }
+  {technologies.slice(0, maxTechBadgesDisplayed).map((tech) => (
+    <TechnologyBadge technology={tech as TechnologiesDTO} />
+  ))}
+  {shouldShowMoreButton && (
+    <TechnologiesMore
+      client:load
+      projectId={projectId}
+      technologies={
+        technologies.slice(maxTechBadgesDisplayed) as TechnologiesDTO[]
+      }
+    />
+  )}
 </div>
