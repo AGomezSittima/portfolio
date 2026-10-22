@@ -40,9 +40,13 @@ const { project, language } = Astro.props;
           <strong class="text-primary font-medium">
             {project["role"][language]}
           </strong>
+          {" "}
           &bull;
+          {" "}
           {formatDate(project["startDate"], language)}
+          {" "}
           -
+          {" "}
           {formatDate(project["endDate"], language)}
         </p>
       </CardDescription>
