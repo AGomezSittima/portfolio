@@ -60,6 +60,7 @@ export function ContactForm({
         onSuccess?.(t.contactDialog.form.onSuccess);
       } catch (error) {
         console.error(error);
+        onError?.(t.contactDialog.form.onError);
       } finally {
         setIsPending(false);
       }
