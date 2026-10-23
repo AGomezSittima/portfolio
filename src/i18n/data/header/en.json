@@ -1,8 +1,9 @@
 {
-  "nav.home": "Home",
+  "nav.label": "Main",
   "nav.about": "About",
   "nav.professional-experience": "Experience",
   "nav.projects": "Projects",
+  "nav.contact": "Contact",
   "button.language-picker": "Select language",
   "button.theme-toggle": "Toggle theme"
 }

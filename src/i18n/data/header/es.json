@@ -1,8 +1,9 @@
 {
-  "nav.home": "Inicio",
+  "nav.label": "Principal",
   "nav.about": "Sobre mí",
   "nav.professional-experience": "Experiencia",
   "nav.projects": "Proyectos",
+  "nav.contact": "Contacto",
   "button.language-picker": "Seleccionar idioma",
   "button.theme-toggle": "Cambiar tema"
 }

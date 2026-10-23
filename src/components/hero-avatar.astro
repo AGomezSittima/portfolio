@@ -1,0 +1,43 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+
+const initials = name
+  .split(" ")
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join("");
+---
+
+<div class="relative">
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 600 600"
+    class="text-foreground pointer-events-none absolute top-1/2 left-1/2 -z-10 size-150 max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.06] mask-[radial-gradient(closest-side,black_30%,transparent)]"
+  >
+    {[64, 112, 166, 226, 290].map((r) => (
+      <circle
+        cx="300"
+        cy="300"
+        r={r}
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        vector-effect="non-scaling-stroke"
+      />
+    ))}
+  </svg>
+
+  <div class="glass rounded-full p-0.5">
+    <div
+      role="img"
+      aria-label={name}
+      class="from-primary/20 text-body grid size-18 place-items-center rounded-full bg-linear-to-br to-white/60 text-lg font-medium tracking-[-0.01em] dark:to-white/5"
+    >
+      {initials}
+    </div>
+  </div>
+</div>

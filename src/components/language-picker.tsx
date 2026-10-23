@@ -1,4 +1,10 @@
-import { LucideLanguages } from "lucide-react";
+import { LucideCheck, LucideChevronDown } from "lucide-react";
+import { useState } from "react";
+import { navigate } from "astro:transitions/client";
+import { languages, type AcceptedLanguage } from "@/i18n";
+import { useTranslatedPath } from "@/i18n/utils";
+import { glassButtonClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -6,14 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { languages, type AcceptedLanguage } from "@/i18n";
-import { useTranslatedPath } from "@/i18n/utils";
-import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { Separator } from "./ui/separator";
-import { navigate } from "astro:transitions/client";
-import React from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 type LanguagePickerProps = {
   currentLanguage: AcceptedLanguage;
@@ -21,14 +20,10 @@ type LanguagePickerProps = {
   label?: string;
 };
 
-function handleLanguageChange(
-  path: string,
-  scrollY: number,
-  language: AcceptedLanguage
-) {
+function handleLanguageChange(path: string, language: AcceptedLanguage) {
   document.cookie = `lang=${language}; path=/; max-age=31536000; SameSite=Lax; Secure`;
 
-  localStorage.setItem("scrollY", scrollY.toString());
+  localStorage.setItem("scrollY", window.scrollY.toString());
 
   navigate(path);
 }
@@ -57,15 +52,18 @@ export function LanguagePicker({
         <TooltipTrigger asChild>
           <DropdownMenuTrigger asChild>
             <Button
-              variant="ghost"
-              size="icon"
+              variant={null}
               aria-label={label}
-              className="relative"
+              className={cn(
+                glassButtonClass,
+                "tag h-10 gap-1 pr-2.5 pl-3.5 font-medium has-[>svg]:pr-2.5 has-[>svg]:pl-3.5 [&[data-state=open]>svg]:rotate-180"
+              )}
             >
-              <span className="bg-secondary text-secondary-foreground text-2xs absolute -top-0.5 -right-0.5 rounded-4xl px-1 py-0.5">
-                {currentLanguage.toUpperCase()}
-              </span>
-              <LucideLanguages />
+              {currentLanguage.toUpperCase()}
+              <LucideChevronDown
+                aria-hidden
+                className="text-subtle size-3.5! transition-transform duration-200"
+              />
             </Button>
           </DropdownMenuTrigger>
         </TooltipTrigger>
@@ -73,33 +71,30 @@ export function LanguagePicker({
           <p>{label}</p>
         </TooltipContent>
       </Tooltip>
-      <DropdownMenuContent align="end" className="flex flex-col gap-1">
-        {Object.entries(languages).map(([code, lang], index) => {
-          const acceptedCode = code as AcceptedLanguage;
-
-          const translatePath = useTranslatedPath(acceptedCode);
-          const path = translatePath(currentUrl || "/");
-
-          const selected = acceptedCode === currentLanguage;
+      <DropdownMenuContent
+        align="end"
+        sideOffset={8}
+        className="glass-raised min-w-40 rounded-2xl p-1.5"
+      >
+        {(Object.keys(languages) as AcceptedLanguage[]).map((code) => {
+          const path = useTranslatedPath(code)(currentUrl || "/");
+          const selected = code === currentLanguage;
 
           return (
-            <React.Fragment key={`language-${acceptedCode}`}>
-              {index > 0 && <Separator />}
-              <DropdownMenuItem asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn(!selected && "font-normal")}
-                  onClick={() => {
-                    handleLanguageChange(path, window.scrollY, acceptedCode);
-                  }}
-                  disabled={selected}
-                >
-                  {selected && <span className="font-bold">• </span>}
-                  <span>{lang}</span>
-                </Button>
-              </DropdownMenuItem>
-            </React.Fragment>
+            <DropdownMenuItem
+              key={`language-${code}`}
+              disabled={selected}
+              aria-current={selected ? "true" : undefined}
+              onSelect={() => handleLanguageChange(path, code)}
+              className={cn(
+                "text-body focus:text-foreground cursor-pointer gap-3 rounded-full px-3 py-2 focus:bg-(--glass-capsule)",
+                selected && "text-foreground opacity-100!"
+              )}
+            >
+              <span className="tag text-subtle w-5">{code.toUpperCase()}</span>
+              <span className="flex-1">{languages[code]}</span>
+              {selected && <LucideCheck className="text-primary" />}
+            </DropdownMenuItem>
           );
         })}
       </DropdownMenuContent>

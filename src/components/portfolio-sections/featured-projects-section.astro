@@ -1,10 +1,10 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { FeaturedProjectsDTO } from "@/i18n/data/featured-projects";
+import type { HeaderDTO } from "@/i18n/data/header";
 import type { ProjectsDTO } from "@/i18n/data/projects";
 import PersonalProject from "../personal-project.astro";
 import PortfolioSection from "./portfolio-section.astro";
-import SectionSeparator from "./section-separator.astro";
 
 interface Props {
   language: AcceptedLanguage;
@@ -19,15 +19,14 @@ const tProjectsPage = getI18n(
 const tProjects = (getI18n("projectsData", language) as ProjectsDTO)[
   "personal"
 ];
+const tHeader = getI18n("headerData", language) as HeaderDTO;
 ---
 
-<PortfolioSection id="featured-projects">
-  <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
-    <span>{tProjectsPage["section.title"]}</span>
-  </h2>
-
-  <SectionSeparator />
-
+<PortfolioSection
+  id="featured-projects"
+  eyebrow={`02 / ${tHeader["nav.projects"]}`}
+  title={tProjectsPage["section.title"]}
+>
   <div class="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] items-stretch gap-6">
     {tProjects
       .filter((project) => project.featured)

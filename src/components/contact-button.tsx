@@ -6,24 +6,19 @@ import { IconButton } from "./icon-button";
 type ContactIconButtonProps = {
   language: AcceptedLanguage;
   tooltip?: string;
+  size?: React.ComponentProps<typeof IconButton>["size"];
 };
 
 export function ContactIconButton({
   language,
   tooltip,
+  size,
 }: ContactIconButtonProps) {
   return (
     <ContactDialog
       trigger={
-        <IconButton
-          variant="outline"
-          className="cursor-pointer"
-          tooltip={tooltip}
-          aria-label={tooltip}
-        >
-          <span>
-            <LucideMail className="size-5" />
-          </span>
+        <IconButton size={size} tooltip={tooltip} aria-label={tooltip}>
+          <LucideMail />
         </IconButton>
       }
       language={language}

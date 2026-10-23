@@ -2,12 +2,15 @@
 import Footer from "@/components/footer.astro";
 import Header from "@/components/header.astro";
 import Metadata from "@/components/metadata.astro";
+import PageBackground from "@/components/page-background.astro";
+import RevealScript from "@/components/reveal-script.astro";
 import ThemeSetupScript from "@/components/theme-setup-script.astro";
 import { Toaster } from "@/components/ui/sonner";
 import { getI18n } from "@/i18n";
 import type { CommonDTO } from "@/i18n/data/common";
 import { getLangFromUrl } from "@/i18n/utils";
 import "@/styles/global.css";
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 const lang = getLangFromUrl(Astro.url);
@@ -32,7 +35,11 @@ const { title, mainClass } = Astro.props;
       {t["me.last-name"]}{title ? ` - ${title}` : ""}
     </title>
 
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-geist-mono" />
+
     <ThemeSetupScript />
+    <RevealScript />
 
     <!-- Astro View Transitions -->
     <ClientRouter />
@@ -54,10 +61,13 @@ const { title, mainClass } = Astro.props;
       });
     </script>
   </head>
-  <body class="bg-background text-foreground flex min-h-screen flex-col gap-y-8 lg:gap-y-24">
+  <body class="bg-background text-foreground relative isolate flex min-h-screen flex-col overflow-x-clip">
+    <PageBackground />
     <Toaster client:idle />
     <Header />
-    <main class:list={["container mx-auto flex-1 px-8", mainClass]}>
+    <main
+      class:list={["mx-auto w-full max-w-180 flex-1 px-4 sm:px-6", mainClass]}
+    >
       <slot />
     </main>
     <Footer language={lang} />

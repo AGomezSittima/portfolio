@@ -1,11 +1,11 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { HeaderDTO } from "@/i18n/data/header";
 import type { ProfessionalExperienceDTO } from "@/i18n/data/professional-experience";
 import type { ProjectsDTO } from "@/i18n/data/projects";
 
 import ProfessionalExperience from "../professional-experience.astro";
 import PortfolioSection from "./portfolio-section.astro";
-import SectionSeparator from "./section-separator.astro";
 
 interface Props {
   language: AcceptedLanguage;
@@ -18,15 +18,14 @@ const tProfessionalExperience = getI18n(
   language
 ) as ProfessionalExperienceDTO;
 const tProjects = (getI18n("projectsData", language) as ProjectsDTO)["work"];
+const tHeader = getI18n("headerData", language) as HeaderDTO;
 ---
 
-<PortfolioSection id="professional-experience">
-  <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
-    <span>{tProfessionalExperience["section.title"]}</span>
-  </h2>
-
-  <SectionSeparator />
-
+<PortfolioSection
+  id="professional-experience"
+  eyebrow={`01 / ${tHeader["nav.professional-experience"]}`}
+  title={tProfessionalExperience["section.title"]}
+>
   <div class="relative space-y-8 pl-6">
     <div class="absolute top-0 left-0 h-full w-px bg-linear-to-b from-primary to-transparent from-60% to-95%"></div>
     {tProjects.map((project) => (

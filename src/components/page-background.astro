@@ -1,0 +1,89 @@
+---
+const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
+---
+
+<div
+  aria-hidden="true"
+  class="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+>
+  <div class="glow glow-blue"></div>
+  <div class="glow glow-warm"></div>
+</div>
+
+<div
+  aria-hidden="true"
+  class="pointer-events-none fixed inset-0 -z-10 opacity-[0.025] dark:opacity-[0.035]"
+  style={{ backgroundImage: noise }}
+></div>
+
+<style>
+  .glow {
+    position: absolute;
+    width: var(--size);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    background: radial-gradient(closest-side, var(--color), transparent);
+  }
+
+  .glow-blue {
+    --size: min(760px, 120vw);
+    --color: var(--glow-blue);
+    top: 300px;
+    left: 60%;
+  }
+
+  .glow-warm {
+    --size: min(680px, 110vw);
+    --color: var(--glow-warm);
+    top: 420px;
+    left: 40%;
+  }
+
+  :global(.dark) .glow-blue {
+    --size: min(700px, 120vw);
+    left: 50%;
+  }
+
+  :global(.dark) .glow-warm {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-blue {
+      animation: drift-a 26s ease-in-out infinite alternate;
+    }
+
+    .glow-warm {
+      animation: drift-b 32s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes drift-a {
+    0% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: 60px 30px;
+    }
+
+    100% {
+      translate: -40px -20px;
+    }
+  }
+
+  @keyframes drift-b {
+    0% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: -50px -35px;
+    }
+
+    100% {
+      translate: 45px 20px;
+    }
+  }
+</style>

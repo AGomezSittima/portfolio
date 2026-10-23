@@ -1,4 +1,6 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { glassButtonClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import { Button, type ButtonSize, type ButtonVariant } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import type { AnchorHTMLAttributes } from "react";
@@ -8,16 +10,19 @@ type TooltipOptions = {
   tooltipAlign?: React.ComponentProps<typeof TooltipPrimitive.Content>["align"];
 };
 
+type IconButtonVariant = ButtonVariant | "glass";
+
 type IconButtonProps = React.ComponentProps<"button"> & {
   asChild?: boolean;
-  variant?: ButtonVariant;
+  variant?: IconButtonVariant;
   size?: Extract<ButtonSize, "icon" | "icon-sm" | "icon-lg">;
   tooltip?: string;
 } & TooltipOptions;
 
 export function IconButton({
   children,
-  variant = "outline",
+  className,
+  variant = "glass",
   size = "icon",
   asChild = false,
   tooltip,
@@ -25,8 +30,16 @@ export function IconButton({
   tooltipAlign = "center",
   ...props
 }: IconButtonProps) {
+  const isGlass = variant === "glass";
+
   const button = (
-    <Button variant={variant} size={size} asChild={asChild} {...props}>
+    <Button
+      variant={isGlass ? null : variant}
+      size={size}
+      asChild={asChild}
+      className={cn(isGlass && glassButtonClass, className)}
+      {...props}
+    >
       {children}
     </Button>
   );
@@ -55,7 +68,7 @@ type LinkIconButtonProps = IconButtonProps & {
 
 export function LinkIconButton({
   children,
-  variant = "outline",
+  variant = "glass",
   size = "icon",
   tooltip,
   tooltipSide = "top",

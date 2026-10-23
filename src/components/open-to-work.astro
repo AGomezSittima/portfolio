@@ -1,10 +1,20 @@
 ---
 import { Badge } from "./ui/badge";
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
 ---
 
 <Badge
-  variant="secondary"
-  className="border-border mb-4 border px-2 py-1 text-xs backdrop-blur-lg"
+  variant="outline"
+  className="glass tag text-body h-7 gap-2 overflow-visible px-3 font-medium tracking-[0.12em] uppercase"
 >
-  #OpenToWork
+  <span class="relative flex size-1.5" aria-hidden="true">
+    <span class="bg-primary absolute inset-0 rounded-full opacity-60 motion-safe:animate-ping motion-safe:animation-duration-[2s]"></span>
+    <span class="bg-primary relative size-1.5 rounded-full shadow-[0_0_12px_var(--primary)]"></span>
+  </span>
+  {label}
 </Badge>

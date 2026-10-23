@@ -1,38 +1,85 @@
 ---
+import { BriefcaseBusiness, FolderOpen, UserRound } from "@lucide/astro";
+
 import { getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
 import { getLangFromUrl } from "@/i18n/utils";
 import {
   aboutPath,
-  homePath,
   professionalExperiencePath,
   projectsShowcasePath,
 } from "@/lib/paths";
-import type { NavItem } from "@/lib/types";
+import { NavContactButton } from "./nav-contact-button";
 import NavLink from "./nav-link.astro";
-
-interface Props {
-  class?: string;
-}
-
-const { class: className } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("headerData", lang) as HeaderDTO;
 
-const links: NavItem[] = [
-  { href: homePath(lang), label: t["nav.home"] },
+const links = [
   {
     href: professionalExperiencePath(lang),
     label: t["nav.professional-experience"],
+    icon: BriefcaseBusiness,
   },
-  { href: projectsShowcasePath(lang), label: t["nav.projects"] },
-  { href: aboutPath(lang), label: t["nav.about"] },
+  {
+    href: projectsShowcasePath(lang),
+    label: t["nav.projects"],
+    icon: FolderOpen,
+  },
+  { href: aboutPath(lang), label: t["nav.about"], icon: UserRound },
 ];
 ---
 
-<div class:list={["flex items-center gap-2 lg:gap-6", className]}>
-  {links.map(({ href, label }) => (
-    <NavLink href={href} label={label} />
+<nav
+  aria-label={t["nav.label"]}
+  class="glass-raised flex h-12 items-center gap-0.5 rounded-full px-1.5"
+>
+  {links.map(({ href, label, icon: Icon }) => (
+    <NavLink href={href} label={label}>
+      <Icon aria-hidden="true" />
+    </NavLink>
   ))}
-</div>
+  <span aria-hidden="true" class="bg-foreground/10 mx-1 h-5 w-px"></span>
+  <NavContactButton client:idle label={t["nav.contact"]} language={lang} />
+</nav>
+
+<script>
+  let observer: IntersectionObserver | undefined;
+
+  function trackActiveSection() {
+    observer?.disconnect();
+
+    const links = [
+      ...document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"),
+    ];
+    const linksById = new Map(
+      links.map((link) => [new URL(link.href).hash.slice(1), link])
+    );
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const link = linksById.get(entry.target.id);
+
+          if (!link) continue;
+
+          if (entry.isIntersecting) {
+            links.forEach((other) => other.removeAttribute("aria-current"));
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -54% 0px" }
+    );
+
+    for (const id of linksById.keys()) {
+      const section = document.getElementById(id);
+
+      if (section) observer.observe(section);
+    }
+  }
+
+  document.addEventListener("astro:page-load", trackActiveSection);
+</script>

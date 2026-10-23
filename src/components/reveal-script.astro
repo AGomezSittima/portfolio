@@ -1,0 +1,45 @@
+---
+// REVIEW: hand-rolled IntersectionObserver reveal. Alternatives to weigh:
+// - CSS only: `animation-timeline: view()` (no JS, but scroll-linked rather
+//   than time-based, and not yet in Firefox).
+// - Motion (`motion` package, `inView` + `animate`): small, handles
+//   reduced motion, but adds a dependency for one effect.
+---
+
+<!-- Hide [data-reveal] elements before first paint (only when JS runs) -->
+<script is:inline>
+  document.documentElement.classList.add("reveal-ready");
+
+  document.addEventListener("astro:after-swap", () => {
+    document.documentElement.classList.add("reveal-ready");
+  });
+</script>
+
+<script>
+  function setupReveal() {
+    const elements = document.querySelectorAll<HTMLElement>(
+      "[data-reveal]:not(.revealed)"
+    );
+
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px" }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+  }
+
+  document.addEventListener("astro:page-load", setupReveal);
+</script>

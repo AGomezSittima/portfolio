@@ -10,13 +10,12 @@ import type { HeroDTO } from "@/i18n/data/hero";
 import { githubPath, linkedinPath } from "@/lib/paths";
 
 import { CVDownloadButton } from "../cv-download-button";
+import HeroAvatar from "../hero-avatar.astro";
 import { HeroContactButton } from "../hero-contact-button";
 import { LinkIconButton } from "../icon-button";
 import { Markdown } from "../markdown";
 import OpenToWork from "../open-to-work.astro";
-import { Separator } from "../ui/separator";
 import PortfolioSection from "./portfolio-section.astro";
-import SectionSeparator from "./section-separator.astro";
 
 interface Props {
   language: AcceptedLanguage;
@@ -32,57 +31,67 @@ const linkedinPathValue = linkedinPath();
 const githubPathValue = githubPath();
 ---
 
-<PortfolioSection id="hero" class="min-h-hero justify-start">
-  {OPEN_TO_WORK && <OpenToWork />}
-  <h1 class="text-5xl leading-14 font-bold uppercase">
-    <p>{tCommon["me.name"]}</p>
-    <p>{tCommon["me.last-name"]}</p>
+<PortfolioSection
+  id="hero"
+  reveal={false}
+  class="flex flex-col items-center pt-20 pb-8 text-center md:pt-28 md:pb-12"
+>
+  <HeroAvatar name={tCommon["me.full-name"]} />
+
+  {OPEN_TO_WORK && (
+    <div class="mt-6">
+      <OpenToWork label={tHero["openToWork"]} />
+    </div>
+  )}
+
+  <h1 class="mt-5 text-[clamp(40px,6vw,64px)] leading-[1.1] font-semibold tracking-[-0.02em] text-balance">
+    {tCommon["me.full-name"]}
   </h1>
 
-  <SectionSeparator />
+  <Markdown
+    className="mx-auto mt-5 max-w-140 text-pretty"
+    content={tHero["summary"]}
+  />
 
-  <Markdown className="mt-4" content={tHero["summary"]} />
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+    <HeroContactButton
+      client:load
+      label={tHero["contactButton"]}
+      language={language}
+    />
+    <CVDownloadButton
+      client:load
+      label={tHero["cv"]["button"]}
+      currentLanguageCode={language}
+      optionLabels={tHero["cv"]["dropdownOptions"]}
+    />
 
-  <div class="flex w-full items-center justify-between">
-    <div class="my-5 flex w-full flex-col items-center gap-4 md:flex-row">
-      <HeroContactButton
-        client:load
-        label={tHero["contactButton"]}
-        language={language}
-      />
-      <CVDownloadButton
-        client:load
-        label={tHero["cv"]["button"]}
-        currentLanguageCode={language}
-        optionLabels={tHero["cv"]["dropdownOptions"]}
-      />
-    </div>
-    {(linkedinPathValue || githubPathValue) && (
+    {(githubPathValue || linkedinPathValue) && (
       <div class="flex items-center gap-2">
-        <Separator orientation="vertical" className="mr-4 h-8! w-0.5!" />
-
-        {linkedinPathValue && (
-          <LinkIconButton
-            className="bg-linkedin! text-linkedin-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
-            href={linkedinPathValue}
-            rel="noopener noreferrer"
-            target="_blank"
-            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-            client:visible
-          >
-            <LinkedIn class="size-5" />
-          </LinkIconButton>
-        )}
         {githubPathValue && (
           <LinkIconButton
-            className="bg-github! text-github-foreground! opacity-90 transition-all duration-150 hover:scale-105 hover:opacity-100"
+            className="size-11"
             href={githubPathValue}
             rel="noopener noreferrer"
             target="_blank"
             tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
             client:visible
           >
-            <Github class="size-5" />
+            <Github class="size-[18px]" />
+          </LinkIconButton>
+        )}
+        {linkedinPathValue && (
+          <LinkIconButton
+            className="size-11"
+            href={linkedinPathValue}
+            rel="noopener noreferrer"
+            target="_blank"
+            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+            client:visible
+          >
+            <LinkedIn class="size-4" />
           </LinkIconButton>
         )}
       </div>

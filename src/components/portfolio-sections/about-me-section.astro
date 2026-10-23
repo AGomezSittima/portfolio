@@ -1,10 +1,10 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { AboutMeDTO } from "@/i18n/data/about-me";
+import type { HeaderDTO } from "@/i18n/data/header";
 
 import { Markdown } from "../markdown";
 import PortfolioSection from "./portfolio-section.astro";
-import SectionSeparator from "./section-separator.astro";
 
 interface Props {
   language: AcceptedLanguage;
@@ -13,15 +13,14 @@ interface Props {
 const { language } = Astro.props;
 
 const tAboutMe = getI18n("aboutMeData", language) as AboutMeDTO;
+const tHeader = getI18n("headerData", language) as HeaderDTO;
 ---
 
-<PortfolioSection id="about-me">
-  <h2 class="flex items-center gap-3 text-3xl leading-14 font-semibold">
-    <span>{tAboutMe["title"]}</span>
-  </h2>
-
-  <SectionSeparator />
-
+<PortfolioSection
+  id="about-me"
+  eyebrow={`03 / ${tHeader["nav.about"]}`}
+  title={tAboutMe["title"]}
+>
   <div class="space-y-6">
     {tAboutMe.sections.map(({ content }) => (
       <Markdown className="text-foreground" content={content} />

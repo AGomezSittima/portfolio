@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
@@ -13,6 +13,22 @@ export default defineConfig({
   },
   integrations: [react()],
   adapter: netlify(),
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Geist",
+      cssVariable: "--font-geist",
+      weights: [400, 500, 600],
+      fallbacks: ["ui-sans-serif", "system-ui", "sans-serif"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Geist Mono",
+      cssVariable: "--font-geist-mono",
+      weights: [400, 500],
+      fallbacks: ["ui-monospace", "monospace"],
+    },
+  ],
   env: {
     schema: {
       FORMSPREE_FORM_ID: envField.string({
