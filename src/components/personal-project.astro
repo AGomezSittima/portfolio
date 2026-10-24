@@ -42,7 +42,11 @@ const alt = project.thumbnail.altText[language];
         />
       </>
     ) : (
-      <ProjectThumbnail projectId={project.id} alt={alt} />
+      <ProjectThumbnail
+        class="dark:brightness-80"
+        projectId={project.id}
+        alt={alt}
+      />
     )}
   </div>
 

@@ -17,6 +17,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-on-glass: var(--primary-on-glass);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -67,6 +68,7 @@
   --primary: #2563eb;
   --primary-foreground: #ffffff;
   --primary-hover: #1d4fd8;
+  --primary-on-glass: #1d4fd8;
   --secondary: #edf1f7;
   --secondary-foreground: #0b1220;
   --muted: #edf1f7;
@@ -109,6 +111,7 @@
   --primary: #5b93ff;
   --primary-foreground: #0a0e14;
   --primary-hover: #82aeff;
+  --primary-on-glass: #a9c6ff;
   --secondary: #1a212c;
   --secondary-foreground: #e6eaf2;
   --muted: #1a212c;
@@ -208,6 +211,15 @@
   }
 }
 
+/* Header halos (glassHaloClass): hidden at the top of the page, fade in on scroll */
+@utility scroll-edge {
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-edge-in linear both;
+    animation-timeline: scroll();
+    animation-range: 0 80px;
+  }
+}
+
 /* Typography roles */
 
 @utility eyebrow {
@@ -303,6 +315,12 @@
     }
 
     to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scroll-edge-in {
+    from {
       opacity: 0;
     }
   }

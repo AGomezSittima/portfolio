@@ -71,7 +71,7 @@ export function LanguagePicker({
                 {currentLanguage.toUpperCase()}
                 <LucideChevronDown
                   aria-hidden
-                  className="text-subtle size-3.5! transition-transform duration-200"
+                  className="text-subtle dark:text-foreground/80 size-3.5! transition-transform duration-200"
                 />
               </Button>
             </DropdownMenuTrigger>
