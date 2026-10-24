@@ -14,6 +14,10 @@ import { SubmitButton } from "./submit-button";
 import { Spinner } from "./ui/spinner";
 import { getI18n, type AcceptedLanguage } from "@/i18n";
 import type { ContactFormDTO } from "@/i18n/data/contact-form";
+import { glassButtonClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
+
+const fieldControlClass = "rounded-xl bg-white/70 dark:bg-white/5";
 
 const defaultValues: z.input<typeof contactMeSchema> = {
   fullName: "",
@@ -71,7 +75,9 @@ export function ContactForm({
 
   return (
     <div>
-      <h4 className="mb-4 text-lg font-bold">{t.contactDialog.form.title}</h4>
+      <h4 className="mb-4 text-base font-semibold">
+        {t.contactDialog.form.title}
+      </h4>
       <form
         id="contact-form"
         onSubmit={(e) => {
@@ -99,6 +105,7 @@ export function ContactForm({
                     aria-invalid={isInvalid}
                     placeholder={tField.placeholder}
                     autoComplete="off"
+                    className={cn(fieldControlClass, "h-10")}
                   />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
@@ -123,6 +130,7 @@ export function ContactForm({
                     aria-invalid={isInvalid}
                     placeholder={tField.placeholder}
                     autoComplete="off"
+                    className={cn(fieldControlClass, "h-10")}
                   />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
@@ -147,6 +155,7 @@ export function ContactForm({
                     aria-invalid={isInvalid}
                     placeholder={tField.placeholder}
                     autoComplete="off"
+                    className={cn(fieldControlClass, "h-10")}
                   />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
@@ -171,7 +180,10 @@ export function ContactForm({
                     aria-invalid={isInvalid}
                     placeholder={tField.placeholder}
                     autoComplete="off"
-                    className="max-h-44 min-h-24 resize-none overflow-y-auto"
+                    className={cn(
+                      fieldControlClass,
+                      "max-h-44 min-h-24 resize-none overflow-y-auto"
+                    )}
                   />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
@@ -179,7 +191,10 @@ export function ContactForm({
             }}
           />
           <Field orientation="horizontal">
-            <SubmitButton className="flex-1" isPending={isPending}>
+            <SubmitButton
+              className="hover:bg-primary-hover h-10 flex-1 rounded-full font-semibold"
+              isPending={isPending}
+            >
               {isPending && <Spinner />}
               <span>
                 {isPending
@@ -189,7 +204,8 @@ export function ContactForm({
             </SubmitButton>
             <Button
               type="button"
-              variant="outline"
+              variant={null}
+              className={cn(glassButtonClass, "h-10 px-5")}
               onClick={() => onCancel?.()}
             >
               {t.contactDialog.form.cancel}
