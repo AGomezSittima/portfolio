@@ -1,8 +1,9 @@
-import { LucideMoreHorizontal } from "lucide-react";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 import { TechnologyBadge } from "./technology-badge";
+import { tagPillClass, tagPillHoverClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 type TechnologiesMoreProps = {
   projectId: number;
@@ -14,19 +15,31 @@ export function TechnologiesMore({
   technologies,
 }: TechnologiesMoreProps) {
   return (
-    <HoverCard openDelay={150} closeDelay={100}>
-      <HoverCardTrigger asChild>
-        <Button variant="outline" size="icon" className="rounded-full">
-          <LucideMoreHorizontal />
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant={null}
+          className={cn(
+            tagPillClass,
+            tagPillHoverClass,
+            "data-[state=open]:text-foreground data-[state=open]:bg-(--glass-fill-hover)"
+          )}
+        >
+          +{technologies.length}
         </Button>
-      </HoverCardTrigger>
-      <HoverCardContent className="w-fit max-w-80" side="top" align="start">
-        <div className="flex flex-wrap items-center gap-4 md:justify-between">
+      </PopoverTrigger>
+      <PopoverContent
+        side="top"
+        align="start"
+        sideOffset={8}
+        className="glass-raised w-fit max-w-80 rounded-2xl p-3"
+      >
+        <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
             <TechnologyBadge key={`${projectId}-${tech}`} technology={tech} />
           ))}
         </div>
-      </HoverCardContent>
-    </HoverCard>
+      </PopoverContent>
+    </Popover>
   );
 }

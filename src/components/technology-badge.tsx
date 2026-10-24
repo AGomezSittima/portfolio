@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { Badge } from "./ui/badge";
 import { astroPath, reactPath } from "@/lib/paths";
+import { tagPillClass, tagPillHoverClass } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 
@@ -425,26 +426,26 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
 
 type TechnologyBadgeProps = {
   technology: TechnologiesDTO;
+  showIcon?: boolean;
 };
 
-export function TechnologyBadge({ technology }: TechnologyBadgeProps) {
+export function TechnologyBadge({
+  technology,
+  showIcon = false,
+}: TechnologyBadgeProps) {
   const { label, url, icon } = technologyVisualMap[technology];
 
   const visualElement = (
     <>
-      {icon}
-      <span className="hidden md:inline">{label}</span>
+      {showIcon && icon}
+      {label}
     </>
   );
 
   return (
     <Badge
-      variant="outline"
-      className={cn(
-        "px-3 py-1.5",
-        url &&
-          "hover:border-primary transition-transform duration-150 hover:scale-105"
-      )}
+      variant={null}
+      className={cn(tagPillClass, url && tagPillHoverClass)}
       asChild={!!url}
     >
       {url ? (
