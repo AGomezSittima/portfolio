@@ -13,16 +13,23 @@ import TechList from "./tech-list.astro";
 interface Props {
   project: PersonalProjectDTO;
   language: AcceptedLanguage;
+  featured?: boolean;
   class?: string;
 }
 
-const { project, language, class: className } = Astro.props;
+const { project, language, featured, class: className } = Astro.props;
 const alt = project.thumbnail.altText[language];
+
+// Screenshot is 86% of the card; the grid is min(880px, 100vw - 2rem)
+const sizes = featured
+  ? "(min-width: 912px) 755px, calc(86vw - 29px)"
+  : "(min-width: 912px) 368px, (min-width: 768px) calc(43vw - 24px), calc(86vw - 29px)";
 ---
 
 <article
   class={cn(
     "glass glass-interactive flex flex-col overflow-hidden rounded-3xl",
+    featured && "md:col-span-2",
     className
   )}
 >
@@ -34,11 +41,13 @@ const alt = project.thumbnail.altText[language];
             class="dark:hidden"
             projectId={project.id}
             alt={alt}
+            sizes={sizes}
           />
           <ProjectThumbnail
             class="hidden dark:block"
             projectId={project.id}
             alt={alt}
+            sizes={sizes}
             isDarkMode
           />
         </>
@@ -47,6 +56,7 @@ const alt = project.thumbnail.altText[language];
           class="dark:brightness-90"
           projectId={project.id}
           alt={alt}
+          sizes={sizes}
         />
       )}
     </div>

@@ -4,11 +4,12 @@ import { Image } from "astro:assets";
 interface Props {
   projectId: number;
   alt: string;
+  sizes: string;
   class?: string;
   isDarkMode?: boolean;
 }
 
-const { projectId, alt, class: className, isDarkMode } = Astro.props;
+const { projectId, alt, sizes, class: className, isDarkMode } = Astro.props;
 
 const projectImagesFolder = "/src/assets/projects";
 const projectImagesPath = `${projectImagesFolder}/*.webp`;
@@ -28,5 +29,7 @@ if (!images[imagePath]) {
 <Image
   src={images[imagePath]()}
   alt={alt}
+  widths={[400, 640, 800, 1080, 1520]}
+  sizes={sizes}
   class:list={["size-full object-cover", className]}
 />

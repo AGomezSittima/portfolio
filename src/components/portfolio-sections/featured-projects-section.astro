@@ -34,7 +34,7 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
         <PersonalProject
           project={project}
           language={language}
-          class={index === 0 ? "md:col-span-2" : undefined}
+          featured={index === 0}
         />
       ))}
   </div>
