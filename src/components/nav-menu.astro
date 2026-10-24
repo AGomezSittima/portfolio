@@ -1,5 +1,9 @@
 ---
-import { BriefcaseBusiness, FolderOpen, UserRound } from "@lucide/astro";
+import {
+  LucideBriefcaseBusiness,
+  LucideFolderOpen,
+  LucideUserRound,
+} from "@lucide/astro";
 
 import { getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
@@ -19,14 +23,14 @@ const links = [
   {
     href: professionalExperiencePath(lang),
     label: t["nav.professional-experience"],
-    icon: BriefcaseBusiness,
+    icon: LucideBriefcaseBusiness,
   },
   {
     href: projectsShowcasePath(lang),
     label: t["nav.projects"],
-    icon: FolderOpen,
+    icon: LucideFolderOpen,
   },
-  { href: aboutPath(lang), label: t["nav.about"], icon: UserRound },
+  { href: aboutPath(lang), label: t["nav.about"], icon: LucideUserRound },
 ];
 ---
 
