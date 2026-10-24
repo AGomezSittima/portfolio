@@ -192,7 +192,7 @@ export function ContactForm({
           />
           <Field orientation="horizontal">
             <SubmitButton
-              className="hover:bg-primary-hover h-10 flex-1 rounded-full font-semibold"
+              className="h-10 flex-1 font-semibold"
               isPending={isPending}
             >
               {isPending && <Spinner />}
