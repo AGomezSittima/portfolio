@@ -1,11 +1,14 @@
 import { cn } from "@/lib/utils";
-import { Button, type ButtonSize, type ButtonVariant } from "./ui/button";
+import { Button } from "./ui/button";
+import type { ComponentProps } from "react";
+
+type ButtonProps = ComponentProps<typeof Button>;
 
 type SubmitButtonProps = {
   children: React.ReactNode;
   isPending?: boolean;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
   className?: string;
 };
 

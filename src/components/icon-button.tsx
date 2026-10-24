@@ -1,21 +1,28 @@
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { glassButtonClass } from "@/lib/styles";
 import { cn } from "@/lib/utils";
-import { Button, type ButtonSize, type ButtonVariant } from "./ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import type { AnchorHTMLAttributes } from "react";
+import { Button } from "./ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import type { AnchorHTMLAttributes, ComponentProps } from "react";
+
+type ButtonProps = ComponentProps<typeof Button>;
+type TooltipContentProps = ComponentProps<typeof TooltipContent>;
 
 type TooltipOptions = {
-  tooltipSide?: React.ComponentProps<typeof TooltipPrimitive.Content>["side"];
-  tooltipAlign?: React.ComponentProps<typeof TooltipPrimitive.Content>["align"];
+  tooltipSide?: TooltipContentProps["side"];
+  tooltipAlign?: TooltipContentProps["align"];
 };
 
-type IconButtonVariant = ButtonVariant | "glass";
+type IconButtonVariant = ButtonProps["variant"] | "glass";
 
-type IconButtonProps = React.ComponentProps<"button"> & {
+type IconButtonProps = ComponentProps<"button"> & {
   asChild?: boolean;
   variant?: IconButtonVariant;
-  size?: Extract<ButtonSize, "icon" | "icon-sm" | "icon-lg">;
+  size?: Extract<ButtonProps["size"], "icon" | "icon-sm" | "icon-lg">;
   tooltip?: string;
 } & TooltipOptions;
 
@@ -45,12 +52,14 @@ export function IconButton({
   );
 
   return tooltip ? (
-    <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
-      <TooltipContent side={tooltipSide} align={tooltipAlign}>
-        <p>{tooltip}</p>
-      </TooltipContent>
-    </Tooltip>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>{button}</TooltipTrigger>
+        <TooltipContent side={tooltipSide} align={tooltipAlign}>
+          <p>{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   ) : (
     button
   );
