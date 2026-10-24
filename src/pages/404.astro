@@ -5,6 +5,8 @@ import type { NotFoundDTO } from "@/i18n/data/404";
 import { getLangFromUrl } from "@/i18n/utils";
 import Layout from "@/layouts/layout.astro";
 import { homePath } from "@/lib/paths";
+import { glassButtonClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 export const prerender = false;
 
@@ -13,11 +15,18 @@ const t = getI18n("notFoundData", lang) as NotFoundDTO;
 ---
 
 <Layout title={t["title"]} mainClass="flex flex-col">
-  <div class="flex flex-1 flex-col items-center justify-center gap-8 text-center">
-    <h1 class="text-5xl font-bold">404</h1>
-    <p class="text-muted-foreground">{t["description"]}</p>
+  <div class="flex flex-1 flex-col items-center justify-center py-24 text-center">
+    <p class="eyebrow">{t["title"]}</p>
+    <h1 class="mt-4 text-[clamp(72px,14vw,128px)] leading-none font-semibold tracking-[-0.04em]">
+      404
+    </h1>
+    <p class="text-body mt-5 max-w-[420px] text-pretty">{t["description"]}</p>
     <a
-      class={buttonVariants({ variant: "outline", size: "sm" })}
+      class={cn(
+        buttonVariants({ variant: null }),
+        glassButtonClass,
+        "mt-8 h-10 px-5 font-medium"
+      )}
       href={homePath(lang)}
     >
       {t["button.home"]}
