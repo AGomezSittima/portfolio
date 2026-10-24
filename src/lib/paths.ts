@@ -23,7 +23,13 @@ export const contactFormPath = (formId: string) =>
 // External paths
 export const githubPath = () => (GITHUB_URL ? GITHUB_URL : null);
 export const linkedinPath = () => (LINKEDIN_URL ? LINKEDIN_URL : null);
+
+//  Technology paths
 export const astroPath = () => "https://astro.build/";
 export const tailwindcssPath = () => "https://tailwindcss.com/";
 export const reactPath = () => "https://react.dev/";
 export const nextjsPath = () => "https://nextjs.org/";
+export const expressPath = () => "https://expressjs.com/";
+export const openaiPath = () => "https://openai.com/api/";
+export const unityPath = () => "https://unity.com/";
+export const unrealPath = () => "https://www.unrealengine.com/";

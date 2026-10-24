@@ -1,6 +1,15 @@
 import type { JSX } from "react";
 import { Badge } from "./ui/badge";
-import { astroPath, reactPath } from "@/lib/paths";
+import {
+  astroPath,
+  expressPath,
+  nextjsPath,
+  openaiPath,
+  reactPath,
+  tailwindcssPath,
+  unityPath,
+  unrealPath,
+} from "@/lib/paths";
 import { tagPillClass, tagPillHoverClass } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
@@ -138,7 +147,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   tailwindcss: {
     label: "Tailwind CSS",
-    url: "https://tailwindcss.com/",
+    url: tailwindcssPath(),
     icon: (
       <svg fill="none" viewBox="0 0 54 33">
         <g clipPath="url(#tailwindcss__a)">
@@ -159,7 +168,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   nextjs: {
     label: "Next.js",
-    url: "https://nextjs.org/",
+    url: nextjsPath(),
     icon: (
       <svg viewBox="0 0 180 180">
         <mask
@@ -216,7 +225,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   express: {
     label: "Express.js",
-    url: "https://expressjs.com/",
+    url: expressPath(),
     icon: (
       <svg viewBox="0 0 32 32">
         <path
@@ -228,7 +237,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   openai: {
     label: "OpenAI API",
-    url: "https://openai.com/api/",
+    url: openaiPath(),
     icon: (
       <svg preserveAspectRatio="xMidYMid" viewBox="0 0 256 260">
         <path
@@ -279,7 +288,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   unity: {
     label: "Unity",
-    url: "https://unity.com/",
+    url: unityPath(),
     icon: (
       <svg preserveAspectRatio="xMidYMid" viewBox="0 0 256 263">
         <path
@@ -314,7 +323,7 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
   },
   unreal: {
     label: "Unreal Engine",
-    url: "https://www.unrealengine.com/",
+    url: unrealPath(),
     icon: (
       <svg fill="none" viewBox="0 0 256 256">
         <path
