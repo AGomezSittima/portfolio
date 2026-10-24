@@ -2,6 +2,8 @@ import { Button } from "./ui/button";
 import type { JSX } from "react";
 import { LucideExternalLink } from "lucide-react";
 import type { ExternalLinkSource } from "@/i18n/data/projects";
+import { glassButtonClass } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 type SourceVisual = {
   label: string;
@@ -13,7 +15,7 @@ const sourceVisualMap: Record<ExternalLinkSource, SourceVisual> = {
     label: "GitHub",
     icon: (
       <svg
-        className="fill-foreground"
+        fill="currentColor"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -51,7 +53,14 @@ export function ExternalSourceButton({
   url,
 }: ExternalSourceButtonProps) {
   return (
-    <Button variant={source === "demo" ? "default" : "outline"} asChild>
+    <Button
+      variant={null}
+      asChild
+      className={cn(
+        glassButtonClass,
+        "h-8 gap-1.5 px-3 text-[13px] font-medium has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-3.5"
+      )}
+    >
       <a href={url} target="_blank" rel="noopener noreferrer">
         {sourceVisualMap[source].icon}
         <span>{sourceVisualMap[source].label}</span>

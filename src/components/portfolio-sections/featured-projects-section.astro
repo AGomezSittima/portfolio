@@ -27,11 +27,15 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
   eyebrow={`02 / ${tHeader["nav.projects"]}`}
   title={tProjectsPage["section.title"]}
 >
-  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] items-stretch gap-6">
+  <div class="relative left-1/2 grid w-[min(880px,calc(100vw-2rem))] -translate-x-1/2 gap-5 md:grid-cols-2">
     {tProjects
       .filter((project) => project.featured)
-      .map((project) => (
-        <PersonalProject project={project} language={language} />
+      .map((project, index) => (
+        <PersonalProject
+          project={project}
+          language={language}
+          class={index === 0 ? "md:col-span-2" : undefined}
+        />
       ))}
   </div>
 </PortfolioSection>

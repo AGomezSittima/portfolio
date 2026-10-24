@@ -4,81 +4,70 @@ import type {
   ExternalLinkSource,
   PersonalProjectDTO,
 } from "@/i18n/data/projects";
+import { cn } from "@/lib/utils";
 import { ExternalSourceButton } from "./external-source-button";
 import { Markdown } from "./markdown";
 import ProjectThumbnail from "./project-thumbnail.astro";
 import TechList from "./tech-list.astro";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 
 interface Props {
   project: PersonalProjectDTO;
   language: AcceptedLanguage;
+  class?: string;
 }
 
-const { project, language } = Astro.props;
+const { project, language, class: className } = Astro.props;
+const alt = project.thumbnail.altText[language];
 ---
 
-<Card className="hover:border-primary/40 group h-full flex-1 overflow-hidden transition-all hover:-translate-y-2">
-  <CardHeader className="p-0">
-    <CardTitle className="overflow-hidden">
-      <div class="relative rounded-xl">
-        <!-- Thumbnail -->
-        <div class="transition-transform duration-250 group-hover:scale-110">
-          {project.thumbnail.hasDarkMode ? (
-            <>
-              <ProjectThumbnail
-                class="dark:hidden"
-                projectId={project.id}
-                alt={project.thumbnail.altText[language]}
-              />
-              <ProjectThumbnail
-                class="hidden dark:block"
-                projectId={project.id}
-                alt={project.thumbnail.altText[language]}
-                isDarkMode
-              />
-            </>
-          ) : (
-            <ProjectThumbnail
-              projectId={project.id}
-              alt={project.thumbnail.altText[language]}
-            />
-          )}
+<article
+  class={cn(
+    "glass glass-interactive flex flex-col rounded-3xl p-4 md:p-5",
+    className
+  )}
+>
+  <div class="relative aspect-video overflow-hidden rounded-2xl after:pointer-events-none after:absolute after:inset-0 after:rounded-2xl after:shadow-[inset_0_0_0_1px_rgba(11,18,32,0.06)] dark:after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+    {project.thumbnail.hasDarkMode ? (
+      <>
+        <ProjectThumbnail
+          class="dark:hidden"
+          projectId={project.id}
+          alt={alt}
+        />
+        <ProjectThumbnail
+          class="hidden dark:block"
+          projectId={project.id}
+          alt={alt}
+          isDarkMode
+        />
+      </>
+    ) : (
+      <ProjectThumbnail projectId={project.id} alt={alt} />
+    )}
+  </div>
 
-          <!-- Bottom gradient -->
-          <div class="to-card pointer-events-none absolute inset-0 left-0 h-full w-full bg-linear-to-b from-transparent from-40% to-85%"></div>
-        </div>
+  <div class="flex flex-1 flex-col px-1 pt-5 md:px-2">
+    <h3 class="text-xl leading-7 font-semibold tracking-[-0.01em]">
+      {project.name}
+    </h3>
 
-        <!-- Title -->
-        <div class="absolute bottom-0 left-0 w-full px-6">
-          <h3 class="text-2xl font-semibold">{project.name}</h3>
-        </div>
-      </div>
-    </CardTitle>
-    <CardDescription className="px-6">
+    <div class="mt-3">
       <TechList
         projectId={project.id}
         technologies={project.technologies}
         maxTechBadgesDisplayed={3}
       />
-    </CardDescription>
-  </CardHeader>
-  <CardContent>
+    </div>
+
     <Markdown
-      className="text-muted-foreground"
+      className="mt-4 mb-5 text-[15px]/6 md:text-[15px]/6"
       content={project.description[language]}
     />
-  </CardContent>
-  <CardFooter className="mt-auto space-x-2 pb-6">
-    {Object.entries(project.externalLinks).map(([source, url]) => (
-      <ExternalSourceButton source={source as ExternalLinkSource} url={url} />
-    ))}
-  </CardFooter>
-</Card>
+
+    <div class="border-divider mt-auto flex flex-wrap gap-2 border-t pt-4 pb-1">
+      {Object.entries(project.externalLinks).map(([source, url]) => (
+        <ExternalSourceButton source={source as ExternalLinkSource} url={url} />
+      ))}
+    </div>
+  </div>
+</article>
