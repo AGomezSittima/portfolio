@@ -1,8 +1,10 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { AboutMeDTO } from "@/i18n/data/about-me";
+import type { CommonDTO } from "@/i18n/data/common";
 import type { HeaderDTO } from "@/i18n/data/header";
 
+import AboutPortrait from "../about-portrait.astro";
 import { Markdown } from "../markdown";
 import PortfolioSection from "./portfolio-section.astro";
 
@@ -14,6 +16,7 @@ const { language } = Astro.props;
 
 const tAboutMe = getI18n("aboutMeData", language) as AboutMeDTO;
 const tHeader = getI18n("headerData", language) as HeaderDTO;
+const tCommon = getI18n("commonData", language) as CommonDTO;
 ---
 
 <PortfolioSection
@@ -21,9 +24,12 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
   eyebrow={`03 / ${tHeader["nav.about"]}`}
   title={tAboutMe["title"]}
 >
-  <div class="space-y-6">
-    {tAboutMe.sections.map(({ content }) => (
-      <Markdown className="text-foreground" content={content} />
-    ))}
+  <div class="grid gap-8 md:grid-cols-[200px_1fr] md:items-start md:gap-12">
+    <AboutPortrait name={tCommon["me.full-name"]} class="w-40 md:w-full" />
+    <div class="space-y-5">
+      {tAboutMe.sections.map(({ content }) => (
+        <Markdown content={content} />
+      ))}
+    </div>
   </div>
 </PortfolioSection>
