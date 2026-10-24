@@ -51,27 +51,6 @@
   ],
   "personal": [
     {
-      "id": 2,
-      "name": "Portfolio",
-      "description": {
-        "es": "Mi portfolio personal desarrollado con Astro, destacando mis habilidades y proyectos.",
-        "en": "My personal portfolio developed with Astro, showcasing my skills and projects."
-      },
-      "externalLinks": {
-        "demo": "https://agomezsittima.dev/",
-        "github": "https://github.com/AGomezSittima/portfolio/"
-      },
-      "technologies": ["astro", "typescript", "tailwindcss", "react"],
-      "featured": true,
-      "thumbnail": {
-        "altText": {
-          "es": "Captura de pantalla del portfolio personal de Álvaro Gómez Sittima",
-          "en": "Screenshot of Álvaro Gómez Sittima's personal portfolio"
-        },
-        "hasDarkMode": true
-      }
-    },
-    {
       "id": 3,
       "name": "Adapta Material Escolar 2.0",
       "endDate": "05/2023",
@@ -97,6 +76,27 @@
           "en": "Screenshot of Adapta Material Escolar 2.0"
         },
         "hasDarkMode": false
+      }
+    },
+    {
+      "id": 2,
+      "name": "Portfolio",
+      "description": {
+        "es": "Mi portfolio personal desarrollado con Astro, destacando mis habilidades y proyectos.",
+        "en": "My personal portfolio developed with Astro, showcasing my skills and projects."
+      },
+      "externalLinks": {
+        "demo": "https://agomezsittima.dev/",
+        "github": "https://github.com/AGomezSittima/portfolio/"
+      },
+      "technologies": ["astro", "typescript", "tailwindcss", "react"],
+      "featured": true,
+      "thumbnail": {
+        "altText": {
+          "es": "Captura de pantalla del portfolio personal de Álvaro Gómez Sittima",
+          "en": "Screenshot of Álvaro Gómez Sittima's personal portfolio"
+        },
+        "hasDarkMode": true
       }
     },
     {
