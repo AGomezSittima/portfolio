@@ -93,7 +93,10 @@
     0 0 0 0.5px rgba(20, 40, 80, 0.06), 0 8px 32px rgba(20, 40, 80, 0.08);
   --glass-shadow-raised:
     0 0 0 0.5px rgba(20, 40, 80, 0.08), 0 12px 40px rgba(20, 40, 80, 0.12);
-  --glass-capsule: rgba(255, 255, 255, 0.8);
+  --glass-capsule: #ffffff;
+  --glass-capsule-shadow:
+    inset 0 1px 0 0 var(--glass-highlight), 0 0 0 0.5px rgba(20, 40, 80, 0.12),
+    0 1px 3px rgba(20, 40, 80, 0.12);
   --glass-solid: #ffffff;
   --glass-solid-border: #e3e8ef;
 
@@ -134,6 +137,9 @@
   --glass-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.4);
   --glass-shadow-raised: 0 16px 40px -4px rgba(0, 0, 0, 0.5);
   --glass-capsule: rgba(255, 255, 255, 0.12);
+  --glass-capsule-shadow:
+    inset 0 1px 0 0 var(--glass-highlight), 0 0 0 0.5px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.4);
   --glass-solid: #121820;
   --glass-solid-border: #232b38;
 
