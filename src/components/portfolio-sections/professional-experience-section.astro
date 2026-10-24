@@ -26,10 +26,15 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
   eyebrow={`01 / ${tHeader["nav.professional-experience"]}`}
   title={tProfessionalExperience["section.title"]}
 >
-  <div class="relative space-y-8 pl-6">
-    <div class="absolute top-0 left-0 h-full w-px bg-linear-to-b from-primary to-transparent from-60% to-95%"></div>
-    {tProjects.map((project) => (
-      <ProfessionalExperience project={project} language={language} />
-    ))}
+  <div class="relative pl-8">
+    <span
+      aria-hidden="true"
+      class="bg-divider absolute top-2 bottom-0 left-[3.5px] w-px [mask-image:linear-gradient(black_85%,transparent)]"
+    ></span>
+    <ol class="space-y-14">
+      {tProjects.map((project) => (
+        <ProfessionalExperience project={project} language={language} />
+      ))}
+    </ol>
   </div>
 </PortfolioSection>

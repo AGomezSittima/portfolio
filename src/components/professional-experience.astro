@@ -2,17 +2,8 @@
 import type { AcceptedLanguage } from "@/i18n";
 import type { WorkProjectDTO } from "@/i18n/data/projects";
 import { formatDate } from "@/lib/dates";
-
-import { LucideChevronRight } from "lucide-react";
+import { LucideChevronRight } from "@lucide/astro";
 import TechList from "./tech-list.astro";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 
 interface Props {
   project: WorkProjectDTO;
@@ -20,47 +11,46 @@ interface Props {
 }
 
 const { project, language } = Astro.props;
+
+const period = `${formatDate(project.startDate, language)} – ${formatDate(project.endDate, language)}`;
 ---
 
-<div class="group relative">
-  <span class="bg-primary absolute top-3 -left-7.5 hidden size-3 animate-ping rounded-full group-hover:inline-block"></span>
-  <span class="bg-primary absolute top-3 -left-7.5 size-3 rounded-full"></span>
+<li class="group relative">
+  <span
+    aria-hidden="true"
+    class="absolute top-2 -left-8 flex size-2 items-center justify-center"
+  >
+    <span class="bg-primary absolute inset-0 rounded-full opacity-0 group-hover:opacity-40 motion-safe:group-hover:animate-ping motion-safe:animation-duration-[2s]"></span>
+    <span class="bg-subtle group-hover:bg-primary relative size-2 rounded-full transition-[background-color,box-shadow] duration-200 group-hover:shadow-[0_0_10px_color-mix(in_srgb,var(--primary)_60%,transparent)]"></span>
+  </span>
 
-  <Card className="bg-card/50 group-hover:border-primary/40 px-4 py-6 backdrop-blur-sm transition group-hover:-translate-y-0.5">
-    <CardHeader>
-      <CardTitle>
-        <h3 class="text-2xl font-semibold">{project["company"]}</h3>
-      </CardTitle>
-      <CardDescription>
-        <p class="text-muted-foreground mb-2 text-sm">
-          <strong class="text-primary font-medium">
-            {project["role"][language]}
-          </strong>{" "}
-          &bull; {formatDate(project["startDate"], language)} -{" "}
-          {formatDate(project["endDate"], language)}
-        </p>
-      </CardDescription>
-      <CardAction>
-        <TechList
-          projectId={project.id}
-          technologies={project.technologies}
-          maxTechBadgesDisplayed={3}
+  <header class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+    <div>
+      <h3 class="text-[17px] leading-6 font-semibold tracking-[-0.005em]">
+        {project.role[language]}
+      </h3>
+      <p class="text-body text-[15px] leading-6">{project.company}</p>
+    </div>
+    <p class="eyebrow order-first shrink-0 sm:order-0">{period}</p>
+  </header>
+
+  <ul class="text-body mt-4 space-y-2.5 text-[15px] leading-6">
+    {project.responsibilities[language].map((responsibility) => (
+      <li class="flex gap-3">
+        <LucideChevronRight
+          aria-hidden="true"
+          class="text-subtle mt-1.5 size-3.5 shrink-0"
         />
-      </CardAction>
-    </CardHeader>
-    <CardContent className="px-8">
-      <div class="text-muted-foreground">
-        <ul class="space-y-4">
-          {project["responsibilities"][language].map((responsibility) => (
-            <li class="flex items-start gap-4">
-              <span>
-                <LucideChevronRight className="size-3.5 inline-block" />
-              </span>
-              <span>{responsibility}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </CardContent>
-  </Card>
-</div>
+        <span>{responsibility}</span>
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-5">
+    <TechList
+      projectId={project.id}
+      technologies={project.technologies}
+      maxTechBadgesDisplayed={3}
+    />
+  </div>
+</li>
