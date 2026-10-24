@@ -22,35 +22,37 @@ const alt = project.thumbnail.altText[language];
 
 <article
   class={cn(
-    "glass glass-interactive flex flex-col rounded-3xl p-4 md:p-5",
+    "glass glass-interactive flex flex-col overflow-hidden rounded-3xl",
     className
   )}
 >
-  <div class="relative aspect-video overflow-hidden rounded-2xl after:pointer-events-none after:absolute after:inset-0 after:rounded-2xl after:shadow-[inset_0_0_0_1px_rgba(11,18,32,0.06)] dark:after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-    {project.thumbnail.hasDarkMode ? (
-      <>
+  <div class="border-divider relative aspect-2/1 overflow-hidden border-b bg-[radial-gradient(80%_100%_at_85%_0%,var(--glow-blue),transparent),radial-gradient(70%_90%_at_10%_100%,var(--glow-warm),transparent)] px-[7%] pt-[6%] shadow-[inset_0_1px_0_var(--glass-highlight)]">
+    <div class="relative aspect-video overflow-hidden rounded-t-lg shadow-[0_8px_24px_-6px_rgba(20,40,80,0.25)] after:pointer-events-none after:absolute after:inset-0 after:rounded-t-lg after:shadow-[inset_0_0_0_1px_rgba(11,18,32,0.06)] dark:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.5)] dark:after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+      {project.thumbnail.hasDarkMode ? (
+        <>
+          <ProjectThumbnail
+            class="dark:hidden"
+            projectId={project.id}
+            alt={alt}
+          />
+          <ProjectThumbnail
+            class="hidden dark:block"
+            projectId={project.id}
+            alt={alt}
+            isDarkMode
+          />
+        </>
+      ) : (
         <ProjectThumbnail
-          class="dark:hidden"
+          class="dark:brightness-90"
           projectId={project.id}
           alt={alt}
         />
-        <ProjectThumbnail
-          class="hidden dark:block"
-          projectId={project.id}
-          alt={alt}
-          isDarkMode
-        />
-      </>
-    ) : (
-      <ProjectThumbnail
-        class="dark:brightness-90"
-        projectId={project.id}
-        alt={alt}
-      />
-    )}
+      )}
+    </div>
   </div>
 
-  <div class="flex flex-1 flex-col px-1 pt-5 md:px-2">
+  <div class="flex flex-1 flex-col p-5 md:px-7 md:pb-6">
     <h3 class="text-xl leading-7 font-semibold tracking-[-0.01em]">
       {project.name}
     </h3>
@@ -68,7 +70,7 @@ const alt = project.thumbnail.altText[language];
       content={project.description[language]}
     />
 
-    <div class="border-divider mt-auto flex flex-wrap gap-2 border-t pt-4 pb-1">
+    <div class="border-divider mt-auto flex flex-wrap gap-2 border-t pt-4">
       {Object.entries(project.externalLinks).map(([source, url]) => (
         <ExternalSourceButton source={source as ExternalLinkSource} url={url} />
       ))}
