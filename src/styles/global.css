@@ -99,6 +99,9 @@
     0 1px 3px rgba(20, 40, 80, 0.12);
   --glass-solid: #ffffff;
   --glass-solid-border: #e3e8ef;
+  /* A brighter white fill is invisible on white, so glass buttons tint */
+  --glass-button-fill-hover: var(--accent);
+  --glass-button-border-hover: rgba(11, 18, 32, 0.1);
 
   /* Tech tag pills: tinted, since white glass vanishes on white glass cards */
   --tag-fill: rgba(11, 18, 32, 0.04);
@@ -146,6 +149,8 @@
     0 1px 3px rgba(0, 0, 0, 0.4);
   --glass-solid: #121820;
   --glass-solid-border: #232b38;
+  --glass-button-fill-hover: var(--glass-fill-hover);
+  --glass-button-border-hover: var(--glass-border);
 
   --tag-fill: var(--glass-fill);
   --tag-border: var(--glass-border);

@@ -1,5 +1,5 @@
 export const glassButtonClass =
-  "glass glass-interactive rounded-full text-foreground";
+  "glass glass-interactive rounded-full text-foreground hover:border-(--glass-button-border-hover) hover:bg-(--glass-button-fill-hover)";
 
 // Page-coloured layer under a floating glass control, so content
 // scrolling under it doesn't wash out its labels.

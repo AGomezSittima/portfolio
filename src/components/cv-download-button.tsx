@@ -19,7 +19,7 @@ type CVDownloadButtonProps = {
 };
 
 const segmentClass =
-  "text-foreground h-full rounded-full hover:bg-(--glass-fill-hover) data-[state=open]:bg-(--glass-fill-hover)";
+  "text-foreground h-full rounded-full hover:bg-(--glass-button-fill-hover) data-[state=open]:bg-(--glass-button-fill-hover)";
 
 export function CVDownloadButton({
   label,
@@ -69,7 +69,7 @@ export function CVDownloadButton({
               <DropdownMenuItem
                 key={`cv-${acceptedCode}`}
                 className={cn(
-                  "text-body focus:text-foreground cursor-pointer rounded-full px-3 py-2 focus:bg-(--glass-capsule)",
+                  "text-body focus:text-foreground cursor-pointer rounded-full px-3 py-2 focus:bg-(--glass-button-fill-hover) dark:focus:bg-(--glass-capsule)",
                   isCurrentLanguage && "text-foreground"
                 )}
                 asChild

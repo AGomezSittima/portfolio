@@ -96,7 +96,7 @@ export function LanguagePicker({
                 aria-current={selected ? "true" : undefined}
                 onSelect={() => handleLanguageChange(path, code)}
                 className={cn(
-                  "text-body focus:text-foreground cursor-pointer gap-3 rounded-full px-3 py-2 focus:bg-(--glass-capsule)",
+                  "text-body focus:text-foreground cursor-pointer gap-3 rounded-full px-3 py-2 focus:bg-(--glass-button-fill-hover) dark:focus:bg-(--glass-capsule)",
                   selected && "text-foreground opacity-100!"
                 )}
               >
