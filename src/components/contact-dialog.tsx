@@ -31,7 +31,7 @@ export function ContactDialog({ trigger, language }: ContactDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="glass-raised gap-5 rounded-3xl bg-(--glass-solid)/85 p-6 sm:max-w-md sm:p-7">
+      <DialogContent className="glass-raised flex flex-col gap-4 overflow-hidden rounded-3xl bg-(--glass-solid)/85 p-5 sm:max-w-md sm:gap-5 sm:p-7">
         <DialogHeader className="gap-1.5">
           <DialogTitle asChild>
             <h3 className="text-xl leading-7 font-semibold tracking-[-0.01em]">

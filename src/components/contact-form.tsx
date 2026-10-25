@@ -78,144 +78,155 @@ export function ContactForm({
   const [isPending, setIsPending] = useState(false);
 
   return (
-    <div>
-      <h4 className="mb-4 text-base font-semibold">
+    <div className="flex min-h-0 flex-col">
+      <h4 className="mb-3 text-base font-semibold sm:mb-4">
         {t.contactDialog.form.title}
       </h4>
       <form
         id="contact-form"
+        className="flex min-h-0 flex-col"
         onSubmit={(e) => {
           e.preventDefault();
 
           form.handleSubmit();
         }}
       >
-        <FieldGroup>
-          <form.Field
-            name="fullName"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              const tField = t.contactDialog.form.fields[field.name];
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
-                    placeholder={tField.placeholder}
-                    autoComplete="off"
-                    className={cn(fieldControlClass, "h-10")}
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-          <form.Field
-            name="email"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              const tField = t.contactDialog.form.fields[field.name];
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
-                    placeholder={tField.placeholder}
-                    autoComplete="off"
-                    className={cn(fieldControlClass, "h-10")}
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-          <form.Field
-            name="subject"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              const tField = t.contactDialog.form.fields[field.name];
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
-                    placeholder={tField.placeholder}
-                    autoComplete="off"
-                    className={cn(fieldControlClass, "h-10")}
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-          <form.Field
-            name="message"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              const tField = t.contactDialog.form.fields[field.name];
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
-                  <Textarea
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    aria-invalid={isInvalid}
-                    placeholder={tField.placeholder}
-                    autoComplete="off"
-                    className={cn(
-                      fieldControlClass,
-                      "max-h-44 min-h-24 resize-none overflow-y-auto"
+        <div className="-m-1 min-h-0 overflow-y-auto p-1">
+          <FieldGroup className="gap-5 sm:gap-7">
+            <form.Field
+              name="fullName"
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const tField = t.contactDialog.form.fields[field.name];
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid}
+                      placeholder={tField.placeholder}
+                      autoComplete="off"
+                      className={cn(fieldControlClass, "h-10")}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
                     )}
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-          <Field orientation="horizontal">
-            <SubmitButton
-              className="h-10 flex-1 font-semibold"
-              isPending={isPending}
-            >
-              {isPending && <Spinner />}
-              <span>
-                {isPending
-                  ? t.contactDialog.form.pending
-                  : t.contactDialog.form.submit}
-              </span>
-            </SubmitButton>
-            <Button
-              type="button"
-              variant={null}
-              className={cn(glassButtonClass, "h-10 px-5")}
-              onClick={() => onCancel?.()}
-            >
-              {t.contactDialog.form.cancel}
-            </Button>
-          </Field>
-        </FieldGroup>
+                  </Field>
+                );
+              }}
+            />
+            <form.Field
+              name="email"
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const tField = t.contactDialog.form.fields[field.name];
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid}
+                      placeholder={tField.placeholder}
+                      autoComplete="off"
+                      className={cn(fieldControlClass, "h-10")}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            />
+            <form.Field
+              name="subject"
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const tField = t.contactDialog.form.fields[field.name];
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid}
+                      placeholder={tField.placeholder}
+                      autoComplete="off"
+                      className={cn(fieldControlClass, "h-10")}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            />
+            <form.Field
+              name="message"
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                const tField = t.contactDialog.form.fields[field.name];
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <FieldLabel htmlFor={field.name}>{tField.label}</FieldLabel>
+                    <Textarea
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid}
+                      placeholder={tField.placeholder}
+                      autoComplete="off"
+                      className={cn(
+                        fieldControlClass,
+                        "max-h-44 min-h-20 resize-none overflow-y-auto sm:min-h-24"
+                      )}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            />
+          </FieldGroup>
+        </div>
+        <Field orientation="horizontal" className="mt-4 sm:mt-6">
+          <SubmitButton
+            className="h-10 flex-1 font-semibold"
+            isPending={isPending}
+          >
+            {isPending && <Spinner />}
+            <span>
+              {isPending
+                ? t.contactDialog.form.pending
+                : t.contactDialog.form.submit}
+            </span>
+          </SubmitButton>
+          <Button
+            type="button"
+            variant={null}
+            className={cn(glassButtonClass, "h-10 px-5")}
+            onClick={() => onCancel?.()}
+          >
+            {t.contactDialog.form.cancel}
+          </Button>
+        </Field>
       </form>
     </div>
   );
