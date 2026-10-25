@@ -11,7 +11,11 @@ import {
   unrealPath,
 } from "@/lib/paths";
 import { LucideArrowUpRight } from "lucide-react";
-import { tagPillClass, tagPillLinkClass } from "@/lib/styles";
+import {
+  tagPillClass,
+  tagPillHoverClass,
+  tagPillLinkClass,
+} from "@/lib/styles";
 import { cn } from "@/lib/utils";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 
@@ -457,7 +461,7 @@ export function TechnologyBadge({
   return (
     <Badge
       variant={null}
-      className={cn(tagPillClass, url && tagPillLinkClass)}
+      className={cn(tagPillClass, url && [tagPillHoverClass, tagPillLinkClass])}
       asChild={!!url}
     >
       {url ? (

@@ -102,7 +102,6 @@
 
   /* Tech tag pills: tinted, since white glass vanishes on white glass cards */
   --tag-fill: rgba(11, 18, 32, 0.04);
-  --tag-fill-hover: rgba(11, 18, 32, 0.07);
   --tag-border: rgba(11, 18, 32, 0.08);
 
   /* Background atmosphere (warm never on text or borders; the only warm
@@ -149,7 +148,6 @@
   --glass-solid-border: #232b38;
 
   --tag-fill: var(--glass-fill);
-  --tag-fill-hover: var(--glass-fill-hover);
   --tag-border: var(--glass-border);
 
   --glow-blue: rgba(59, 111, 224, 0.14);

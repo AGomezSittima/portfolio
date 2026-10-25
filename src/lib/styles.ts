@@ -13,7 +13,6 @@ export const tagPillClass =
   "tag h-6 gap-1.5 rounded-full border-(--tag-border) bg-(--tag-fill) px-2.5 font-normal text-body shadow-[inset_0_1px_0_0_var(--glass-highlight)] transition-[color,background-color,border-color] duration-200";
 
 export const tagPillHoverClass =
-  "hover:bg-(--tag-fill-hover) hover:text-foreground";
+  "hover:border-primary/30 hover:bg-primary/8 hover:text-primary-on-glass focus-visible:text-primary-on-glass active:bg-primary/12";
 
-export const tagPillLinkClass =
-  "group gap-1 pr-2 hover:border-primary/30 hover:bg-primary/8 hover:text-primary-on-glass focus-visible:text-primary-on-glass active:bg-primary/12";
+export const tagPillLinkClass = "group gap-1 pr-2";

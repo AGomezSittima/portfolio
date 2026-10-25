@@ -1,5 +1,5 @@
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 import { TechnologyBadge } from "./technology-badge";
 import { tagPillClass, tagPillHoverClass } from "@/lib/styles";
@@ -19,16 +19,17 @@ export function TechnologiesMore({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
+        <Badge
           variant={null}
+          asChild
           className={cn(
             tagPillClass,
             tagPillHoverClass,
-            "data-[state=open]:text-foreground data-[state=open]:bg-(--tag-fill-hover)"
+            "data-[state=open]:border-primary/30 data-[state=open]:bg-primary/8 data-[state=open]:text-primary-on-glass"
           )}
         >
-          +{technologies.length}
-        </Button>
+          <button type="button">+{technologies.length}</button>
+        </Badge>
       </PopoverTrigger>
       <PopoverContent
         side="top"
