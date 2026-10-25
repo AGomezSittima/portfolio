@@ -109,4 +109,4 @@ All commands are run from the root of the project:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The source code is licensed under the MIT License. Personal content (texts, images, CV) is not covered and remains all rights reserved. See the [LICENSE](LICENSE) file for details.

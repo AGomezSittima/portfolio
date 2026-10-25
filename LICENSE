@@ -19,3 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Scope of this licence
+
+The MIT License above applies only to the source code of this website.
+
+It does not cover the personal content, which remains
+Copyright (c) Álvaro Gómez Sittima, all rights reserved. This includes the
+texts in src/i18n/data (biography, experience and project descriptions),
+all images and graphics in src/assets and public (screenshots, favicon,
+social preview images) except third-party logos, and any photos or CV files,
+wherever they are hosted.
+
+Third-party logos and trademarks (e.g. in src/assets/brand-logos) belong to
+their respective owners.

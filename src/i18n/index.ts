@@ -3,7 +3,6 @@ import { basicsData } from "./data/basics";
 import { commonData } from "./data/common";
 import { contactFormData } from "./data/contact-form";
 import { featuredProjectsData } from "./data/featured-projects";
-import { footerData } from "./data/footer";
 import { headerData } from "./data/header";
 import { heroData } from "./data/hero";
 import { metadataData } from "./data/metadata";
@@ -28,7 +27,6 @@ const dataStoreMapping = {
   contactFormData,
   commonData,
   featuredProjectsData,
-  footerData,
   headerData,
   heroData,
   metadataData,
