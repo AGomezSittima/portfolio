@@ -51,6 +51,7 @@ const githubPathValue = githubPath();
   <Markdown
     className="mx-auto mt-5 max-w-140 text-pretty"
     content={tHero["summary"]}
+    newTabLabel={tBasics["basics.opensInNewTab"]}
   />
 
   <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -75,10 +76,10 @@ const githubPathValue = githubPath();
             rel="noopener noreferrer"
             target="_blank"
             tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]} ${tBasics["basics.opensInNewTab"]}`}
             client:visible
           >
-            <Github class="size-[18px]" />
+            <Github class="size-4.5" />
           </LinkIconButton>
         )}
         {linkedinPathValue && (
@@ -88,7 +89,7 @@ const githubPathValue = githubPath();
             rel="noopener noreferrer"
             target="_blank"
             tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
+            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]} ${tBasics["basics.opensInNewTab"]}`}
             client:visible
           >
             <LinkedIn class="size-4" />

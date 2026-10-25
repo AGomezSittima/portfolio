@@ -3,10 +3,11 @@ import ReactMarkdown from "react-markdown";
 
 interface Props {
   content: string;
+  newTabLabel: string;
   className?: string;
 }
 
-export function Markdown({ content, className }: Props) {
+export function Markdown({ content, newTabLabel, className }: Props) {
   return (
     <div
       className={cn(
@@ -21,6 +22,7 @@ export function Markdown({ content, className }: Props) {
           a: ({ href, children, ...props }) => (
             <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
               {children}
+              <span className="sr-only"> {newTabLabel}</span>
             </a>
           ),
         }}

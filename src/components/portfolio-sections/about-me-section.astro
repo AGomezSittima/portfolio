@@ -1,6 +1,7 @@
 ---
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { AboutMeDTO } from "@/i18n/data/about-me";
+import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
 import type { HeaderDTO } from "@/i18n/data/header";
 
@@ -17,6 +18,7 @@ const { language } = Astro.props;
 const tAboutMe = getI18n("aboutMeData", language) as AboutMeDTO;
 const tHeader = getI18n("headerData", language) as HeaderDTO;
 const tCommon = getI18n("commonData", language) as CommonDTO;
+const tBasics = getI18n("basicsData", language) as BasicsDTO;
 ---
 
 <PortfolioSection
@@ -28,7 +30,10 @@ const tCommon = getI18n("commonData", language) as CommonDTO;
     <AboutPortrait name={tCommon["me.full-name"]} class="w-40 md:w-full" />
     <div class="space-y-5">
       {tAboutMe.sections.map(({ content }) => (
-        <Markdown content={content} />
+        <Markdown
+          content={content}
+          newTabLabel={tBasics["basics.opensInNewTab"]}
+        />
       ))}
     </div>
   </div>

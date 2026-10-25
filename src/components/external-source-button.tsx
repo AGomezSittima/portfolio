@@ -46,11 +46,13 @@ const sourceVisualMap: Record<ExternalLinkSource, SourceVisual> = {
 type ExternalSourceButtonProps = {
   source: ExternalLinkSource;
   url: string;
+  newTabLabel: string;
 };
 
 export function ExternalSourceButton({
   source,
   url,
+  newTabLabel,
 }: ExternalSourceButtonProps) {
   return (
     <Button
@@ -64,6 +66,7 @@ export function ExternalSourceButton({
       <a href={url} target="_blank" rel="noopener noreferrer">
         {sourceVisualMap[source].icon}
         <span>{sourceVisualMap[source].label}</span>
+        <span className="sr-only"> {newTabLabel}</span>
       </a>
     </Button>
   );
