@@ -59,13 +59,13 @@ export function ContactDialog({ trigger, language }: ContactDialogProps) {
         </div>
         <ContactForm
           language={language}
-          onSuccess={(message) => {
+          onSuccess={({ title, description }) => {
             setOpen(false);
 
-            toast.success(message);
+            toast.success(title, { description });
           }}
-          onError={(message) => {
-            toast.error(message);
+          onError={({ title, description }) => {
+            toast.error(title, { description });
           }}
           onCancel={() => setOpen(false)}
         />

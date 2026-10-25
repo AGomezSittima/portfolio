@@ -32,8 +32,14 @@
       "submit": "Enviar",
       "cancel": "Cancelar",
       "pending": "Enviando ...",
-      "onSuccess": "Mensaje enviado correctamente. ¡Gracias por contactarme!",
-      "onError": "El mensaje no se ha podido enviar."
+      "onSuccess": {
+        "title": "Mensaje enviado correctamente.",
+        "description": "¡Gracias por contactarme!"
+      },
+      "onError": {
+        "title": "El mensaje no se ha podido enviar.",
+        "description": null
+      }
     }
   }
 }

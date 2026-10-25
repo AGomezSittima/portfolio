@@ -28,8 +28,12 @@ const defaultValues: z.input<typeof contactMeSchema> = {
 
 type ContactFormProps = {
   language: AcceptedLanguage;
-  onSuccess?: (message: string) => void;
-  onError?: (message: string) => void;
+  onSuccess?: (
+    message: ContactFormDTO["contactDialog"]["form"]["onSuccess"]
+  ) => void;
+  onError?: (
+    message: ContactFormDTO["contactDialog"]["form"]["onError"]
+  ) => void;
   onCancel?: () => void;
 };
 

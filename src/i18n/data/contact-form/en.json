@@ -32,8 +32,14 @@
       "submit": "Send",
       "cancel": "Cancel",
       "pending": "Sending...",
-      "onSuccess": "Message sent successfully. Thank you for contacting me!",
-      "onError": "The message could not be sent."
+      "onSuccess": {
+        "title": "Message sent successfully.",
+        "description": "Thank you for contacting me!"
+      },
+      "onError": {
+        "title": "The message could not be sent.",
+        "description": null
+      }
     }
   }
 }
