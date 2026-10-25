@@ -1,4 +1,6 @@
 ---
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { BasicsDTO } from "@/i18n/data/basics";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 import { TechnologiesMore } from "./technologies-more";
 import { TechnologyBadge } from "./technology-badge";
@@ -6,10 +8,15 @@ import { TechnologyBadge } from "./technology-badge";
 interface Props {
   projectId: number;
   technologies: string[];
+  language: AcceptedLanguage;
   maxTechBadgesDisplayed?: number;
 }
 
-const { projectId, technologies, maxTechBadgesDisplayed } = Astro.props;
+const { projectId, technologies, language, maxTechBadgesDisplayed } =
+  Astro.props;
+
+const tBasics = getI18n("basicsData", language) as BasicsDTO;
+const newTabLabel = tBasics["basics.opensInNewTab"];
 
 const totalProjects = technologies.length;
 const shouldShowMoreButton =
@@ -19,7 +26,10 @@ const shouldShowMoreButton =
 
 <div class="flex flex-wrap gap-2">
   {technologies.slice(0, maxTechBadgesDisplayed).map((tech) => (
-    <TechnologyBadge technology={tech as TechnologiesDTO} />
+    <TechnologyBadge
+      technology={tech as TechnologiesDTO}
+      newTabLabel={newTabLabel}
+    />
   ))}
   {shouldShowMoreButton && (
     <TechnologiesMore
@@ -28,6 +38,7 @@ const shouldShowMoreButton =
       technologies={
         technologies.slice(maxTechBadgesDisplayed) as TechnologiesDTO[]
       }
+      newTabLabel={newTabLabel}
     />
   )}
 </div>

@@ -3,5 +3,6 @@
   "basics.sendEmail": "Enviar correo",
   "basics.contactMe": "Contáctame",
   "basics.present": "Presente",
-  "basics.viewMore": "Ver más"
+  "basics.viewMore": "Ver más",
+  "basics.opensInNewTab": "(se abre en una pestaña nueva)"
 }

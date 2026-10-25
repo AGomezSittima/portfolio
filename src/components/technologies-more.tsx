@@ -8,11 +8,13 @@ import { cn } from "@/lib/utils";
 type TechnologiesMoreProps = {
   projectId: number;
   technologies: TechnologiesDTO[];
+  newTabLabel: string;
 };
 
 export function TechnologiesMore({
   projectId,
   technologies,
+  newTabLabel,
 }: TechnologiesMoreProps) {
   return (
     <Popover>
@@ -22,7 +24,7 @@ export function TechnologiesMore({
           className={cn(
             tagPillClass,
             tagPillHoverClass,
-            "data-[state=open]:text-foreground data-[state=open]:bg-(--glass-fill-hover)"
+            "data-[state=open]:text-foreground data-[state=open]:bg-(--tag-fill-hover)"
           )}
         >
           +{technologies.length}
@@ -36,7 +38,11 @@ export function TechnologiesMore({
       >
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
-            <TechnologyBadge key={`${projectId}-${tech}`} technology={tech} />
+            <TechnologyBadge
+              key={`${projectId}-${tech}`}
+              technology={tech}
+              newTabLabel={newTabLabel}
+            />
           ))}
         </div>
       </PopoverContent>
