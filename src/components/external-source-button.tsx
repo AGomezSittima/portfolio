@@ -1,7 +1,9 @@
 import { Button } from "./ui/button";
 import type { JSX } from "react";
 import { LucideExternalLink } from "lucide-react";
+import type { AcceptedLanguage } from "@/i18n";
 import type { ExternalLinkSource } from "@/i18n/data/projects";
+import { ExternalLink } from "./external-link";
 
 type SourceVisual = {
   label: string;
@@ -44,13 +46,13 @@ const sourceVisualMap: Record<ExternalLinkSource, SourceVisual> = {
 type ExternalSourceButtonProps = {
   source: ExternalLinkSource;
   url: string;
-  newTabLabel: string;
+  language: AcceptedLanguage;
 };
 
 export function ExternalSourceButton({
   source,
   url,
-  newTabLabel,
+  language,
 }: ExternalSourceButtonProps) {
   return (
     <Button
@@ -59,11 +61,10 @@ export function ExternalSourceButton({
       asChild
       className="has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-3.5"
     >
-      <a href={url} target="_blank" rel="noopener noreferrer">
+      <ExternalLink href={url} language={language}>
         {sourceVisualMap[source].icon}
         <span>{sourceVisualMap[source].label}</span>
-        <span className="sr-only"> {newTabLabel}</span>
-      </a>
+      </ExternalLink>
     </Button>
   );
 }

@@ -1,6 +1,5 @@
 ---
-import { type AcceptedLanguage, getI18n } from "@/i18n";
-import type { BasicsDTO } from "@/i18n/data/basics";
+import type { AcceptedLanguage } from "@/i18n";
 import type {
   ExternalLinkSource,
   PersonalProjectDTO,
@@ -20,7 +19,6 @@ interface Props {
 
 const { project, language, featured, class: className } = Astro.props;
 const alt = project.thumbnail.altText[language];
-const tBasics = getI18n("basicsData", language) as BasicsDTO;
 
 // Screenshot is 86% of the card; the grid is min(880px, 100vw - 2rem)
 const sizes = featured
@@ -81,7 +79,7 @@ const sizes = featured
     <Markdown
       className="mt-4 mb-5 text-small"
       content={project.description[language]}
-      newTabLabel={tBasics["basics.opensInNewTab"]}
+      language={language}
     />
 
     <div class="mt-auto flex flex-wrap gap-2 border-t pt-4">
@@ -89,7 +87,7 @@ const sizes = featured
         <ExternalSourceButton
           source={source as ExternalLinkSource}
           url={url}
-          newTabLabel={tBasics["basics.opensInNewTab"]}
+          language={language}
         />
       ))}
     </div>

@@ -1,18 +1,19 @@
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Badge } from "./ui/badge";
+import type { AcceptedLanguage } from "@/i18n";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 import { TechnologyBadge } from "./technology-badge";
 
 type TechnologiesMoreProps = {
   projectId: number;
   technologies: TechnologiesDTO[];
-  newTabLabel: string;
+  language: AcceptedLanguage;
 };
 
 export function TechnologiesMore({
   projectId,
   technologies,
-  newTabLabel,
+  language,
 }: TechnologiesMoreProps) {
   return (
     <Popover>
@@ -32,7 +33,7 @@ export function TechnologiesMore({
             <TechnologyBadge
               key={`${projectId}-${tech}`}
               technology={tech}
-              newTabLabel={newTabLabel}
+              language={language}
             />
           ))}
         </div>

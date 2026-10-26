@@ -11,7 +11,9 @@ import {
   unrealPath,
 } from "@/lib/paths";
 import { LucideArrowUpRight } from "lucide-react";
+import type { AcceptedLanguage } from "@/i18n";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
+import { ExternalLink } from "./external-link";
 
 type TechnologyVisual = {
   label: string;
@@ -434,13 +436,13 @@ const technologyVisualMap: Record<TechnologiesDTO, TechnologyVisual> = {
 
 type TechnologyBadgeProps = {
   technology: TechnologiesDTO;
-  newTabLabel: string;
+  language: AcceptedLanguage;
   showIcon?: boolean;
 };
 
 export function TechnologyBadge({
   technology,
-  newTabLabel,
+  language,
   showIcon = false,
 }: TechnologyBadgeProps) {
   const { label, url, icon } = technologyVisualMap[technology];
@@ -455,19 +457,13 @@ export function TechnologyBadge({
   return (
     <Badge variant="tag" asChild={!!url}>
       {url ? (
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group"
-        >
+        <ExternalLink href={url} language={language} className="group">
           {visualElement}
-          <span className="sr-only"> {newTabLabel}</span>
           <LucideArrowUpRight
             aria-hidden="true"
             className="text-muted-foreground/80 transition-[color,translate] duration-200 group-hover:text-current group-focus-visible:text-current motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
           />
-        </a>
+        </ExternalLink>
       ) : (
         visualElement
       )}
