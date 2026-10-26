@@ -37,30 +37,12 @@ const sizes = featured
        left); the screenshot inset is proportional to the card width -->
   <div class="relative aspect-2/1 overflow-hidden border-b bg-[radial-gradient(80%_100%_at_85%_0%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent),radial-gradient(70%_90%_at_10%_100%,color-mix(in_oklab,var(--glow-warm)_35%,transparent),transparent)] px-[7%] pt-[6%] inset-shadow-highlight">
     <div class="relative aspect-video overflow-hidden rounded-t-lg shadow-lg after:pointer-events-none after:absolute after:inset-0 after:rounded-t-lg after:inset-ring after:inset-ring-foreground/5 dark:shadow-black/50">
-      {project.thumbnail.hasDarkMode ? (
-        <>
-          <ProjectThumbnail
-            class="dark:hidden"
-            projectId={project.id}
-            alt={alt}
-            sizes={sizes}
-          />
-          <ProjectThumbnail
-            class="hidden dark:block"
-            projectId={project.id}
-            alt={alt}
-            sizes={sizes}
-            isDarkMode
-          />
-        </>
-      ) : (
-        <ProjectThumbnail
-          class="dark:brightness-80"
-          projectId={project.id}
-          alt={alt}
-          sizes={sizes}
-        />
-      )}
+      <ProjectThumbnail
+        projectId={project.id}
+        alt={alt}
+        sizes={sizes}
+        hasDarkMode={project.thumbnail.hasDarkMode}
+      />
     </div>
   </div>
 

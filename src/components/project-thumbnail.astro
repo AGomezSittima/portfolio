@@ -1,35 +1,48 @@
 ---
+import { cn } from "@/lib/utils";
 import { Image } from "astro:assets";
 
 interface Props {
   projectId: number;
   alt: string;
   sizes: string;
-  class?: string;
-  isDarkMode?: boolean;
+  hasDarkMode?: boolean;
 }
 
-const { projectId, alt, sizes, class: className, isDarkMode } = Astro.props;
+const { projectId, alt, sizes, hasDarkMode } = Astro.props;
 
 const projectImagesFolder = "/src/assets/projects";
-const projectImagesPath = `${projectImagesFolder}/*.webp`;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/*.webp"
 );
 
-const imagePath = `${projectImagesFolder}/Thumbnail_${projectId}${isDarkMode ? "_Dark" : ""}.webp`;
+function loadImage(isDarkMode: boolean) {
+  const imagePath = `${projectImagesFolder}/Thumbnail_${projectId}${isDarkMode ? "_Dark" : ""}.webp`;
 
-if (!images[imagePath]) {
-  throw new Error(
-    `"${imagePath}" does not exist in glob: "${projectImagesPath}"`
-  );
+  if (!images[imagePath]) {
+    throw new Error(
+      `"${imagePath}" does not exist in glob: "${projectImagesFolder}/*.webp"`
+    );
+  }
+
+  return images[imagePath]();
 }
+
+// Without a dark screenshot, the light one is dimmed in dark mode
+const variants = hasDarkMode
+  ? [
+      { src: loadImage(false), class: "dark:hidden" },
+      { src: loadImage(true), class: "hidden dark:block" },
+    ]
+  : [{ src: loadImage(false), class: "dark:brightness-80" }];
 ---
 
-<Image
-  src={images[imagePath]()}
-  alt={alt}
-  widths={[400, 640, 800, 1080, 1520]}
-  sizes={sizes}
-  class:list={["size-full object-cover", className]}
-/>
+{variants.map((variant) => (
+  <Image
+    src={variant.src}
+    alt={alt}
+    widths={[400, 640, 800, 1080, 1520]}
+    sizes={sizes}
+    class={cn("size-full object-cover", variant.class)}
+  />
+))}
