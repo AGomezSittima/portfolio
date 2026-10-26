@@ -1,33 +1,26 @@
 <script is:inline>
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
   function getCurrentTheme() {
-    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+    const storedTheme = localStorage?.getItem("theme") ?? "";
 
-    if (["dark", "light"].includes(localStorageTheme)) {
-      return localStorageTheme;
+    if (["dark", "light"].includes(storedTheme)) {
+      return storedTheme;
     }
 
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-
-    return "light";
+    return systemDark.matches ? "dark" : "light";
   }
 
-  // Initial theme setup
-  const theme = getCurrentTheme();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
+  function applyTheme() {
+    document.documentElement.classList.toggle(
+      "dark",
+      getCurrentTheme() === "dark"
+    );
   }
 
-  window.localStorage.setItem("theme", theme);
+  applyTheme();
 
   // Handle View Transition swap
-  document.addEventListener("astro:after-swap", () => {
-    const theme = getCurrentTheme();
-
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  });
+  document.addEventListener("astro:after-swap", applyTheme);
+  systemDark.addEventListener("change", applyTheme);
 </script>
