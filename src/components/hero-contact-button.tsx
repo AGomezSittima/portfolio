@@ -10,11 +10,7 @@ type HeroContactButtonProps = {
 export function HeroContactButton({ label, language }: HeroContactButtonProps) {
   return (
     <ContactDialog
-      trigger={
-        <Button className="h-10 px-5 font-semibold shadow-[0_6px_20px_-8px_var(--primary)]">
-          {label}
-        </Button>
-      }
+      trigger={<Button size="lg">{label}</Button>}
       language={language}
     />
   );

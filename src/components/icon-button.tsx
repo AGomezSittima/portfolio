@@ -1,5 +1,3 @@
-import { glassButtonClass } from "@/lib/styles";
-import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
   Tooltip,
@@ -17,11 +15,9 @@ type TooltipOptions = {
   tooltipAlign?: TooltipContentProps["align"];
 };
 
-type IconButtonVariant = ButtonProps["variant"] | "glass";
-
 type IconButtonProps = ComponentProps<"button"> & {
   asChild?: boolean;
-  variant?: IconButtonVariant;
+  variant?: ButtonProps["variant"];
   size?: Extract<ButtonProps["size"], "icon" | "icon-sm" | "icon-lg">;
   tooltip?: string;
 } & TooltipOptions;
@@ -37,14 +33,12 @@ export function IconButton({
   tooltipAlign = "center",
   ...props
 }: IconButtonProps) {
-  const isGlass = variant === "glass";
-
   const button = (
     <Button
-      variant={isGlass ? null : variant}
+      variant={variant}
       size={size}
       asChild={asChild}
-      className={cn(isGlass && glassButtonClass, className)}
+      className={className}
       {...props}
     >
       {children}

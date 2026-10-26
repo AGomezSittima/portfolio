@@ -18,9 +18,6 @@ type CVDownloadButtonProps = {
   optionLabels: Record<AcceptedLanguage, string>;
 };
 
-const segmentClass =
-  "text-foreground h-full rounded-full hover:bg-(--glass-button-fill-hover) data-[state=open]:bg-(--glass-button-fill-hover)";
-
 export function CVDownloadButton({
   label,
   optionLabels,
@@ -29,9 +26,9 @@ export function CVDownloadButton({
   return (
     <ButtonGroup className="glass h-10 rounded-full">
       <Button
-        variant={null}
+        variant="ghost"
         asChild
-        className={cn(segmentClass, "gap-2 pr-3.5 pl-4 has-[>svg]:pl-4")}
+        className="h-full gap-2 pr-3.5 pl-4 has-[>svg]:pl-4"
       >
         <a
           href={resumePath(currentLanguageCode)}
@@ -42,25 +39,18 @@ export function CVDownloadButton({
           {label}
         </a>
       </Button>
-      <ButtonGroupSeparator className="bg-foreground/10 my-2.5" />
+      <ButtonGroupSeparator className="bg-border my-2.5" />
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button
-            variant={null}
+            variant="ghost"
             aria-label={label}
-            className={cn(
-              segmentClass,
-              "pr-3 pl-2.5 has-[>svg]:pr-3 has-[>svg]:pl-2.5 [&[data-state=open]>svg]:rotate-180"
-            )}
+            className="data-[state=open]:bg-accent h-full pr-3 pl-2.5 has-[>svg]:pr-3 has-[>svg]:pl-2.5 [&[data-state=open]>svg]:rotate-180"
           >
-            <LucideChevronDown className="text-subtle transition-transform duration-200" />
+            <LucideChevronDown className="text-muted-foreground/80 duration-200 motion-safe:transition-transform" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="end"
-          sideOffset={8}
-          className="glass-raised rounded-2xl p-1.5"
-        >
+        <DropdownMenuContent align="end" sideOffset={8}>
           {Object.entries(optionLabels).map(([code, label]) => {
             const isCurrentLanguage = code === currentLanguageCode;
             const acceptedCode = toAcceptedLanguage(code);
@@ -68,10 +58,7 @@ export function CVDownloadButton({
             return (
               <DropdownMenuItem
                 key={`cv-${acceptedCode}`}
-                className={cn(
-                  "text-body focus:text-foreground cursor-pointer rounded-full px-3 py-2 focus:bg-(--glass-button-fill-hover) dark:focus:bg-(--glass-capsule)",
-                  isCurrentLanguage && "text-foreground"
-                )}
+                className={cn(isCurrentLanguage && "text-foreground")}
                 asChild
               >
                 <a

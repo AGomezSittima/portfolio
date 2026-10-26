@@ -36,14 +36,14 @@ const links = [
 
 <nav
   aria-label={t["nav.label"]}
-  class="glass-raised flex h-12 items-center gap-0.5 rounded-full px-1.5"
+  class="glass glass-raised flex h-12 items-center gap-0.5 rounded-full px-1.5"
 >
   {links.map(({ href, label, icon: Icon }) => (
     <NavLink href={href} label={label}>
       <Icon aria-hidden="true" />
     </NavLink>
   ))}
-  <span aria-hidden="true" class="bg-foreground/20 mx-1 h-5 w-px"></span>
+  <span aria-hidden="true" class="bg-border mx-1 h-5 w-px"></span>
   <NavContactButton client:idle label={t["nav.contact"]} language={lang} />
 </nav>
 

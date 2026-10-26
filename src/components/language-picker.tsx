@@ -3,7 +3,6 @@ import { useState } from "react";
 import { navigate } from "astro:transitions/client";
 import { languages, type AcceptedLanguage } from "@/i18n";
 import { useTranslatedPath } from "@/i18n/utils";
-import { glassButtonClass } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import {
@@ -61,17 +60,15 @@ export function LanguagePicker({
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
               <Button
-                variant={null}
+                variant="glass"
+                size="lg"
                 aria-label={label}
-                className={cn(
-                  glassButtonClass,
-                  "tag h-10 gap-1 pr-2.5 pl-3.5 font-medium has-[>svg]:pr-2.5 has-[>svg]:pl-3.5 [&[data-state=open]>svg]:rotate-180"
-                )}
+                className="glass-raised gap-1 pr-2.5 pl-3.5 font-mono has-[>svg]:pr-2.5 has-[>svg]:pl-3.5 [&[data-state=open]>svg]:rotate-180"
               >
                 {currentLanguage.toUpperCase()}
                 <LucideChevronDown
                   aria-hidden
-                  className="text-subtle dark:text-foreground/80 size-3.5! transition-transform duration-200"
+                  className="text-muted-foreground/80 size-3.5! duration-200 motion-safe:transition-transform"
                 />
               </Button>
             </DropdownMenuTrigger>
@@ -80,11 +77,7 @@ export function LanguagePicker({
             <p>{label}</p>
           </TooltipContent>
         </Tooltip>
-        <DropdownMenuContent
-          align="end"
-          sideOffset={8}
-          className="glass-raised min-w-40 rounded-2xl p-1.5"
-        >
+        <DropdownMenuContent align="end" sideOffset={8} className="min-w-40">
           {(Object.keys(languages) as AcceptedLanguage[]).map((code) => {
             const path = useTranslatedPath(code)(currentUrl || "/");
             const selected = code === currentLanguage;
@@ -96,11 +89,11 @@ export function LanguagePicker({
                 aria-current={selected ? "true" : undefined}
                 onSelect={() => handleLanguageChange(path, code)}
                 className={cn(
-                  "text-body focus:text-foreground cursor-pointer gap-3 rounded-full px-3 py-2 focus:bg-(--glass-button-fill-hover) dark:focus:bg-(--glass-capsule)",
+                  "gap-3",
                   selected && "text-foreground opacity-100!"
                 )}
               >
-                <span className="tag text-subtle w-5">
+                <span className="text-tag text-muted-foreground w-5 font-mono">
                   {code.toUpperCase()}
                 </span>
                 <span className="flex-1">{languages[code]}</span>

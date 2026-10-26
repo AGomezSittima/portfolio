@@ -1,13 +1,21 @@
 ---
-import { navItemClass } from "@/lib/styles";
+import { buttonVariants } from "@/components/ui/button";
 import type { NavItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 type Props = NavItem;
 
 const { label, href } = Astro.props;
 ---
 
-<a class={navItemClass} href={href} data-nav-link>
+<a
+  class={cn(
+    buttonVariants({ variant: "nav", size: null }),
+    "h-9 px-2.5 sm:px-3.5 sm:[&_svg]:hidden"
+  )}
+  href={href}
+  data-nav-link
+>
   <slot />
   <span class="sr-only sm:not-sr-only">{label}</span>
 </a>

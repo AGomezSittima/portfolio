@@ -11,12 +11,6 @@ import {
   unrealPath,
 } from "@/lib/paths";
 import { LucideArrowUpRight } from "lucide-react";
-import {
-  tagPillClass,
-  tagPillHoverClass,
-  tagPillLinkClass,
-} from "@/lib/styles";
-import { cn } from "@/lib/utils";
 import type { TechnologiesDTO } from "@/i18n/data/projects";
 
 type TechnologyVisual = {
@@ -459,18 +453,19 @@ export function TechnologyBadge({
   );
 
   return (
-    <Badge
-      variant={null}
-      className={cn(tagPillClass, url && [tagPillHoverClass, tagPillLinkClass])}
-      asChild={!!url}
-    >
+    <Badge variant="tag" asChild={!!url}>
       {url ? (
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group"
+        >
           {visualElement}
           <span className="sr-only"> {newTabLabel}</span>
           <LucideArrowUpRight
             aria-hidden="true"
-            className="text-subtle transition-[color,translate] duration-200 group-hover:text-current group-focus-visible:text-current motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
+            className="text-muted-foreground/80 transition-[color,translate] duration-200 group-hover:text-current group-focus-visible:text-current motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
           />
         </a>
       ) : (

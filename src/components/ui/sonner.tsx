@@ -14,7 +14,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       className="toaster group"
       position="bottom-center"
       icons={{
-        success: <CircleCheckIcon className="text-primary-on-glass size-4" />,
+        success: <CircleCheckIcon className="text-primary size-4" />,
         info: <InfoIcon className="size-4" />,
         warning: <TriangleAlertIcon className="size-4" />,
         error: <OctagonXIcon className="text-destructive size-4" />,
@@ -24,11 +24,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
         unstyled: true,
         classNames: {
           toast:
-            "glass-raised bg-(--glass-solid)/85 text-foreground font-sans flex w-(--width) items-center gap-3 rounded-2xl px-4 py-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 *:transition-opacity data-[expanded=false]:data-[front=false]:*:opacity-0",
+            "glass glass-raised text-foreground font-sans flex w-(--width) items-center gap-3 rounded-xl px-4 py-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 *:transition-opacity data-[expanded=false]:data-[front=false]:*:opacity-0",
           icon: "flex size-4 shrink-0 items-center",
           content: "flex min-w-0 flex-1 flex-col gap-0.5",
           title: "font-medium leading-snug",
-          description: "text-body",
+          description: "text-muted-foreground",
         },
       }}
       {...props}

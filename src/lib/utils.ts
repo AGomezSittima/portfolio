@@ -1,12 +1,17 @@
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
-// Glass utilities set their own fill, border and shadow, so they must replace
-// shadcn's defaults (e.g. bg-popover, shadow-md) instead of losing to them
+// `glass` sets its own fill, border and shadow, so it must replace shadcn's
+// defaults (e.g. bg-popover, shadow-md) instead of losing to them. Its
+// modifiers (glass-raised, glass-interactive) only set parameters
 const twMerge = extendTailwindMerge<"glass">({
   extend: {
+    // Type roles from global.css, so text-body isn't mistaken for a colour
+    theme: {
+      text: ["display", "section", "title", "body", "small", "label", "tag"],
+    },
     classGroups: {
-      glass: ["glass", "glass-raised"],
+      glass: ["glass"],
     },
     conflictingClassGroups: {
       glass: [

@@ -14,13 +14,13 @@ const { name, class: className } = Astro.props;
   role="img"
   aria-label={name}
   class={cn(
-    "glass grid aspect-4/5 place-items-center overflow-hidden rounded-3xl bg-linear-to-br from-white/70 to-(--glass-fill) dark:from-white/8",
+    "glass grid aspect-4/5 place-items-center overflow-hidden rounded-3xl bg-linear-to-br from-white/70 to-card dark:from-white/8",
     className
   )}
 >
   <LucideUserRound
     aria-hidden="true"
-    class="text-subtle size-12 opacity-50"
+    class="text-muted-foreground size-12 opacity-50"
     stroke-width={1.25}
   />
 </div>

@@ -21,9 +21,10 @@ const linkedinPathValue = linkedinPath();
 const githubPathValue = githubPath();
 ---
 
-<footer class="mx-auto w-full max-w-180 px-4 sm:px-6">
-  <div class="border-divider flex flex-col items-center justify-between gap-4 border-t py-8 sm:flex-row">
-    <p class="text-subtle text-center text-sm">
+<footer class="mx-auto w-full max-w-content px-4 sm:px-6">
+  <!-- REVIEW: Use Separator component? -->
+  <div class="flex flex-col items-center justify-between gap-4 border-t py-8 sm:flex-row">
+    <p class="text-muted-foreground text-center text-sm">
       {`© ${new Date().getFullYear()} ${tCommon["me.full-name"]}`}
     </p>
     <div class="flex items-center gap-2">

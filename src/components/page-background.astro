@@ -12,7 +12,7 @@ const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 
 <div
   aria-hidden="true"
-  class="pointer-events-none fixed inset-0 -z-10 opacity-[0.025] dark:opacity-[0.035]"
+  class="pointer-events-none fixed inset-0 -z-10 opacity-3 dark:opacity-4"
   style={{ backgroundImage: noise }}
 ></div>
 
@@ -28,14 +28,14 @@ const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 
   .glow-blue {
     --size: min(760px, 120vw);
-    --color: var(--glow-blue);
+    --color: color-mix(in oklab, var(--primary) 12%, transparent);
     top: 300px;
     left: 60%;
   }
 
   .glow-warm {
     --size: min(680px, 110vw);
-    --color: var(--glow-warm);
+    --color: color-mix(in oklab, var(--glow-warm) 35%, transparent);
     top: 420px;
     left: 40%;
   }

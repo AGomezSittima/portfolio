@@ -2,7 +2,6 @@
 import { getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
 import { getLangFromUrl, getPathWithoutLang } from "@/i18n/utils";
-import { glassHaloClass } from "@/lib/styles";
 import { LanguagePicker } from "./language-picker";
 import Navmenu from "./nav-menu.astro";
 import { ThemeToggle } from "./theme-toggle";
@@ -14,22 +13,15 @@ const currentUrl = getPathWithoutLang(Astro.url);
 ---
 
 <header class="sticky top-4 z-30 mx-auto mt-4 flex w-fit max-w-[calc(100%-2rem)] items-center gap-2 sm:top-6 sm:mt-6 sm:gap-3">
-  <div class={glassHaloClass}>
-    <Navmenu />
-  </div>
+  <Navmenu />
 
   <div class="flex items-center gap-2">
-    <div class={glassHaloClass}>
-      <LanguagePicker
-        client:load
-        currentLanguage={lang}
-        currentUrl={currentUrl}
-        label={t["button.language-picker"]}
-      />
-    </div>
-
-    <div class={glassHaloClass}>
-      <ThemeToggle tooltip={t["button.theme-toggle"]} client:load />
-    </div>
+    <LanguagePicker
+      client:load
+      currentLanguage={lang}
+      currentUrl={currentUrl}
+      label={t["button.language-picker"]}
+    />
+    <ThemeToggle tooltip={t["button.theme-toggle"]} client:load />
   </div>
 </header>

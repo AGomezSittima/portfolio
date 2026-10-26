@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/typography";
 
 /* Setup project colors */
 
@@ -12,12 +11,13 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: var(--primary-hover);
-  --color-primary-on-glass: var(--primary-on-glass);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -25,37 +25,54 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  /* Text layers: foreground > body > subtle */
-  --color-body: var(--body);
-  --color-subtle: var(--subtle);
-  --color-divider: var(--divider);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --inset-shadow-highlight: inset 0 1px 0 0 var(--glass-highlight);
 }
 
 @theme {
-  --animate-toggle-glow: toggle-glow 3.5s ease-in-out infinite;
+  /* Content type roles; UI chrome keeps Tailwind's text-sm / text-xs */
+  --text-display: clamp(2.5rem, 6vw, 4rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
+  --text-section: clamp(1.625rem, 1.25rem + 1.5vw, 2rem);
+  --text-section--line-height: 1.25;
+  --text-section--letter-spacing: -0.01em;
+  --text-section--font-weight: 600;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.75rem;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 600;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.75rem;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.5rem;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.12em;
+  --text-label--font-weight: 500;
+  --text-tag: 0.75rem;
+  --text-tag--line-height: 1rem;
+  --text-tag--letter-spacing: 0.04em;
 
-  @keyframes toggle-glow {
-    0%,
-    100% {
-      rotate: 0deg;
-      scale: 1;
-    }
+  /* Main reading column, and the project grid's breakout (1rem gutters
+     included, so the grid itself is 880px) */
+  --container-content: 45rem;
+  --container-wide: 57rem;
 
-    50% {
-      rotate: 60deg;
-      scale: 1.12;
-    }
-  }
+  /* Accent glow around small lit elements; takes the element's text colour */
+  --shadow-glow: 0 0 12px currentColor;
+  --drop-shadow-glow: 0 0 6px currentColor;
 }
 
 :root {
@@ -63,154 +80,103 @@
 
   --background: #f6f8fb;
   --foreground: #0b1220;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-foreground: #0b1220;
   --popover: #ffffff;
   --popover-foreground: #0b1220;
   --primary: #2563eb;
   --primary-foreground: #ffffff;
   --primary-hover: #1d4fd8;
-  --primary-on-glass: #1d4fd8;
   --secondary: #edf1f7;
   --secondary-foreground: #0b1220;
   --muted: #edf1f7;
   --muted-foreground: #4a5568;
-  --accent: #e8eef8;
-  --accent-foreground: #0b1220;
+  /* The one hover surface: the glass fill tinted 5% towards the text colour.
+     Declared once; it resolves against each theme's --card and --foreground */
+  --accent: color-mix(in oklab, var(--card), var(--foreground) 5%);
+  --accent-foreground: var(--foreground);
   --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
   --border: rgba(11, 18, 32, 0.08);
   --input: rgba(11, 18, 32, 0.12);
   --ring: #2563eb;
-  --body: #4a5568;
-  --subtle: #647084;
-  --divider: rgba(11, 18, 32, 0.08);
 
   /* Liquid glass */
-  --glass-fill: rgba(255, 255, 255, 0.55);
-  --glass-fill-hover: rgba(255, 255, 255, 0.72);
   --glass-border: rgba(255, 255, 255, 0.85);
   --glass-highlight: rgba(255, 255, 255, 0.9);
   --glass-shadow:
     0 0 0 0.5px rgba(20, 40, 80, 0.06), 0 8px 32px rgba(20, 40, 80, 0.08);
   --glass-shadow-raised:
     0 0 0 0.5px rgba(20, 40, 80, 0.08), 0 12px 40px rgba(20, 40, 80, 0.12);
-  --glass-capsule: #ffffff;
-  --glass-capsule-shadow:
-    inset 0 1px 0 0 var(--glass-highlight), 0 0 0 0.5px rgba(20, 40, 80, 0.12),
-    0 1px 3px rgba(20, 40, 80, 0.12);
-  --glass-solid: #ffffff;
-  --glass-solid-border: #e3e8ef;
-  /* A brighter white fill is invisible on white, so glass buttons tint */
-  --glass-button-fill-hover: var(--accent);
-  --glass-button-border-hover: rgba(11, 18, 32, 0.1);
 
-  /* Tech tag pills: tinted, since white glass vanishes on white glass cards */
-  --tag-fill: rgba(11, 18, 32, 0.04);
-  --tag-border: rgba(11, 18, 32, 0.08);
-
-  /* Background atmosphere (warm never on text or borders; the only warm
-     icon is the theme toggle sun, on hover) */
-  --glow-blue: rgba(191, 212, 255, 0.45);
-  --glow-warm: rgba(255, 217, 138, 0.35);
+  /* Background atmosphere, light only (warm never on text or borders; the
+     only warm icon is the theme toggle sun, on hover). Alpha is set at use */
+  --glow-warm: #ffd98a;
 }
 
 .dark {
   --background: #0a0e14;
   --foreground: #e6eaf2;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-foreground: #e6eaf2;
   --popover: #121820;
   --popover-foreground: #e6eaf2;
   --primary: #5b93ff;
   --primary-foreground: #0a0e14;
   --primary-hover: #82aeff;
-  --primary-on-glass: #a9c6ff;
   --secondary: #1a212c;
   --secondary-foreground: #e6eaf2;
   --muted: #1a212c;
   --muted-foreground: #9aa4b5;
-  --accent: #1a212c;
-  --accent-foreground: #e6eaf2;
   --destructive: #f87171;
-  --destructive-foreground: #0a0e14;
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
   --ring: #5b93ff;
-  --body: #9aa4b5;
-  --subtle: #7a8496;
-  --divider: rgba(255, 255, 255, 0.08);
 
-  --glass-fill: rgba(255, 255, 255, 0.06);
-  --glass-fill-hover: rgba(255, 255, 255, 0.09);
   --glass-border: rgba(255, 255, 255, 0.12);
   --glass-highlight: rgba(255, 255, 255, 0.2);
   --glass-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.4);
   --glass-shadow-raised: 0 16px 40px -4px rgba(0, 0, 0, 0.5);
-  --glass-capsule: rgba(255, 255, 255, 0.12);
-  --glass-capsule-shadow:
-    inset 0 1px 0 0 var(--glass-highlight), 0 0 0 0.5px rgba(0, 0, 0, 0.4),
-    0 1px 3px rgba(0, 0, 0, 0.4);
-  --glass-solid: #121820;
-  --glass-solid-border: #232b38;
-  --glass-button-fill-hover: var(--glass-fill-hover);
-  --glass-button-border-hover: var(--glass-border);
 
-  --tag-fill: var(--glass-fill);
-  --tag-border: var(--glass-border);
-
-  --glow-blue: rgba(59, 111, 224, 0.14);
   --glow-warm: transparent;
 }
 
 /* Liquid glass surfaces */
 
+/* --glass-fill, --glass-blur and --glass-elevation are parameters set by the
+   modifiers below, not theme tokens */
 @utility glass {
   border: 1px solid var(--glass-border);
-  background-color: var(--glass-fill);
+  background-color: var(--glass-fill, var(--card));
   box-shadow:
-    inset 0 1px 0 0 var(--glass-highlight),
-    var(--glass-shadow);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  backdrop-filter: blur(24px) saturate(160%);
+    var(--inset-shadow-highlight), var(--glass-elevation, var(--glass-shadow));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 24px)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur, 24px)) saturate(160%);
 
   @supports not (
     (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
   ) {
-    border-color: var(--glass-solid-border);
-    background-color: var(--glass-solid);
+    border-color: var(--border);
+    background-color: var(--popover);
   }
 
   @media (prefers-reduced-transparency: reduce) {
-    border-color: var(--glass-solid-border);
-    background-color: var(--glass-solid);
+    border-color: var(--border);
+    background-color: var(--popover);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 }
 
-/* Tier 2: floating nav, dialogs, popovers */
+/* With `glass`: everything that floats (header, menus, popovers, tooltips,
+   toasts, dialogs). Denser fill so labels hold over any content */
 @utility glass-raised {
-  border: 1px solid var(--glass-border);
-  background-color: var(--glass-fill);
-  box-shadow:
-    inset 0 1px 0 0 var(--glass-highlight),
-    var(--glass-shadow-raised);
-  -webkit-backdrop-filter: blur(30px) saturate(160%);
-  backdrop-filter: blur(30px) saturate(160%);
-
-  @supports not (
-    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
-  ) {
-    border-color: var(--glass-solid-border);
-    background-color: var(--glass-solid);
-  }
-
-  @media (prefers-reduced-transparency: reduce) {
-    border-color: var(--glass-solid-border);
-    background-color: var(--glass-solid);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
+  --glass-fill: color-mix(in oklab, var(--popover) 80%, transparent);
+  --glass-blur: 30px;
+  --glass-elevation: var(--glass-shadow-raised);
 }
 
-/* Hover: brighter fill and a 2px lift (lift skipped under reduced motion) */
+/* With `glass`: hover tints the fill like --accent (relative to this element's
+   own fill) and lifts 2px; the lift is skipped under reduced motion */
 @utility glass-interactive {
   transition-property: background-color, translate, box-shadow;
   transition-duration: 200ms;
@@ -218,7 +184,11 @@
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--glass-fill-hover);
+      background-color: color-mix(
+        in oklab,
+        var(--glass-fill, var(--card)),
+        var(--foreground) 5%
+      );
     }
   }
 
@@ -229,32 +199,10 @@
   }
 }
 
-/* Header halos (glassHaloClass): hidden at the top of the page, fade in on scroll */
-@utility scroll-edge {
-  @supports (animation-timeline: scroll()) {
-    animation: scroll-edge-in linear both;
-    animation-timeline: scroll();
-    animation-range: 0 80px;
-  }
-}
-
 /* Typography roles */
 
 @utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--subtle);
-}
-
-@utility tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1rem;
-  letter-spacing: 0.04em;
+  @apply text-label font-mono uppercase;
 }
 
 @layer base {
@@ -263,7 +211,7 @@
   }
 
   html {
-    @apply scroll-smooth;
+    @apply motion-safe:scroll-smooth;
   }
 
   body {
@@ -275,7 +223,10 @@
     cursor: pointer;
   }
 
-  /* Sections fade and rise 12px when they enter the viewport.
+  /* Reduced motion: movement is guarded where it's defined (motion-safe:,
+     or a no-preference query); opacity fades always run. */
+
+  /* Sections fade (and rise 12px) when they enter the viewport.
      "reveal-ready" is set by reveal-script.astro, so without JS nothing hides. */
   [data-reveal] {
     transition:
@@ -285,45 +236,28 @@
 
   .reveal-ready [data-reveal]:not(.revealed) {
     opacity: 0;
-    translate: 0 12px;
-  }
 
-  .theme-transition {
-    &::view-transition-old(root),
-    &::view-transition-new(root) {
-      animation: none;
-    }
-
-    &::view-transition-new(root) {
-      clip-path: circle(0px at var(--ripple-x) var(--ripple-y));
-      animation: ripple-expand 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
-    }
-
-    &::view-transition-old(root) {
-      animation: fade-out 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+    @media (prefers-reduced-motion: no-preference) {
+      translate: 0 12px;
     }
   }
 
-  /* Reduced motion: no movement, only opacity changes */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation: none !important;
-      transition: none !important;
-      scroll-behavior: auto !important;
-    }
+  /* Theme switch ripple; with reduced motion the browser's crossfade runs */
+  @media (prefers-reduced-motion: no-preference) {
+    .theme-transition {
+      &::view-transition-old(root),
+      &::view-transition-new(root) {
+        animation: none;
+      }
 
-    html {
-      scroll-behavior: auto;
-    }
+      &::view-transition-new(root) {
+        clip-path: circle(0px at var(--ripple-x) var(--ripple-y));
+        animation: ripple-expand 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+      }
 
-    [data-reveal] {
-      transition: opacity 360ms ease-out !important;
-    }
-
-    .reveal-ready [data-reveal]:not(.revealed) {
-      translate: none;
+      &::view-transition-old(root) {
+        animation: fade-out 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+      }
     }
   }
 
@@ -333,12 +267,6 @@
     }
 
     to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes scroll-edge-in {
-    from {
       opacity: 0;
     }
   }

@@ -9,18 +9,20 @@ interface Props {
 
 export function Markdown({ content, newTabLabel, className }: Props) {
   return (
-    <div
-      className={cn(
-        "prose prose-p:my-0 max-w-none text-base/[1.65] md:text-[17px]/7",
-        "[--tw-prose-body:var(--body)] [--tw-prose-bold:var(--foreground)] [--tw-prose-links:var(--primary)]",
-        "prose-strong:font-medium prose-a:font-medium prose-a:underline-offset-4 prose-a:hover:text-primary-hover",
-        className
-      )}
-    >
+    <div className={cn("text-body text-muted-foreground", className)}>
       <ReactMarkdown
         components={{
+          strong: ({ children }) => (
+            <strong className="text-foreground font-medium">{children}</strong>
+          ),
           a: ({ href, children, ...props }) => (
-            <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary-hover font-medium underline underline-offset-4"
+              {...props}
+            >
               {children}
               <span className="sr-only"> {newTabLabel}</span>
             </a>

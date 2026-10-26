@@ -3,6 +3,7 @@ import type { AcceptedLanguage } from "@/i18n";
 import type { WorkProjectDTO } from "@/i18n/data/projects";
 import { formatDate } from "@/lib/dates";
 import { LucideChevronRight } from "@lucide/astro";
+import Beacon from "./beacon.astro";
 import TechList from "./tech-list.astro";
 
 interface Props {
@@ -16,30 +17,27 @@ const period = `${formatDate(project.startDate, language)} – ${formatDate(proj
 ---
 
 <li class="group relative">
-  <span
-    aria-hidden="true"
-    class="absolute top-2 -left-8 flex size-2 items-center justify-center"
-  >
-    <span class="bg-primary absolute inset-0 rounded-full opacity-0 group-hover:opacity-40 motion-safe:group-hover:animate-ping motion-safe:animation-duration-[2s]"></span>
-    <span class="bg-subtle group-hover:bg-primary relative size-2 rounded-full transition-[background-color,box-shadow] duration-200 group-hover:shadow-[0_0_10px_color-mix(in_srgb,var(--primary)_60%,transparent)]"></span>
-  </span>
+  <Beacon
+    pulse="hover"
+    class="absolute top-2.5 -left-8 text-muted-foreground/80 group-hover:text-primary"
+  />
 
   <header class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
     <div>
-      <h3 class="text-[17px] leading-6 font-semibold tracking-[-0.005em]">
-        {project.role[language]}
-      </h3>
-      <p class="text-body text-[15px] leading-6">{project.company}</p>
+      <h3 class="text-body font-semibold">{project.role[language]}</h3>
+      <p class="text-small text-muted-foreground">{project.company}</p>
     </div>
-    <p class="eyebrow order-first shrink-0 sm:order-0">{period}</p>
+    <p class="eyebrow order-first shrink-0 text-muted-foreground sm:order-0">
+      {period}
+    </p>
   </header>
 
-  <ul class="text-body mt-4 space-y-2.5 text-[15px] leading-6">
+  <ul class="mt-4 space-y-2.5 text-small text-muted-foreground">
     {project.responsibilities[language].map((responsibility) => (
       <li class="flex gap-3">
         <LucideChevronRight
           aria-hidden="true"
-          class="text-subtle mt-1.5 size-3.5 shrink-0"
+          class="mt-1.5 size-3.5 shrink-0 text-muted-foreground/80"
         />
         <span>{responsibility}</span>
       </li>

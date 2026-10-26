@@ -61,12 +61,15 @@ const { title, mainClass } = Astro.props;
       });
     </script>
   </head>
-  <body class="bg-background text-foreground relative isolate flex min-h-screen flex-col overflow-x-clip">
+  <body class="relative isolate flex min-h-screen flex-col overflow-x-clip">
     <PageBackground />
     <Toaster client:idle />
     <Header />
     <main
-      class:list={["mx-auto w-full max-w-180 flex-1 px-4 sm:px-6", mainClass]}
+      class:list={[
+        "mx-auto w-full max-w-content flex-1 px-4 sm:px-6",
+        mainClass,
+      ]}
     >
       <slot />
     </main>

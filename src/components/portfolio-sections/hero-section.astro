@@ -44,12 +44,10 @@ const githubPathValue = githubPath();
     </div>
   )}
 
-  <h1 class="mt-5 text-[clamp(40px,6vw,64px)] leading-[1.1] font-semibold tracking-[-0.02em] text-balance">
-    {tCommon["me.full-name"]}
-  </h1>
+  <h1 class="mt-5 text-display text-balance">{tCommon["me.full-name"]}</h1>
 
   <Markdown
-    className="mx-auto mt-5 max-w-140 text-pretty"
+    className="mx-auto mt-5 max-w-xl text-pretty"
     content={tHero["summary"]}
     newTabLabel={tBasics["basics.opensInNewTab"]}
   />
@@ -71,7 +69,7 @@ const githubPathValue = githubPath();
       <div class="flex items-center gap-2">
         {githubPathValue && (
           <LinkIconButton
-            className="size-11"
+            size="icon-lg"
             href={githubPathValue}
             rel="noopener noreferrer"
             target="_blank"
@@ -84,7 +82,7 @@ const githubPathValue = githubPath();
         )}
         {linkedinPathValue && (
           <LinkIconButton
-            className="size-11"
+            size="icon-lg"
             href={linkedinPathValue}
             rel="noopener noreferrer"
             target="_blank"
