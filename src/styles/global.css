@@ -145,10 +145,11 @@
 /* Liquid glass surfaces */
 
 /* --glass-fill, --glass-blur and --glass-elevation are parameters set by the
-   modifiers below, not theme tokens */
+   modifiers below, not theme tokens. */
 @utility glass {
+  --glass-surface: var(--glass-fill, var(--card));
   border: 1px solid var(--glass-border);
-  background-color: var(--glass-fill, var(--card));
+  background-color: var(--glass-surface);
   box-shadow:
     var(--inset-shadow-highlight), var(--glass-elevation, var(--glass-shadow));
   -webkit-backdrop-filter: blur(var(--glass-blur, 24px)) saturate(160%);
@@ -157,13 +158,13 @@
   @supports not (
     (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
   ) {
+    --glass-surface: var(--popover);
     border-color: var(--border);
-    background-color: var(--popover);
   }
 
   @media (prefers-reduced-transparency: reduce) {
+    --glass-surface: var(--popover);
     border-color: var(--border);
-    background-color: var(--popover);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -188,7 +189,7 @@
     &:hover {
       background-color: color-mix(
         in oklab,
-        var(--glass-fill, var(--card)),
+        var(--glass-surface),
         var(--foreground) 5%
       );
     }
