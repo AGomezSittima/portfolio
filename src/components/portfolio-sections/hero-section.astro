@@ -1,20 +1,16 @@
 ---
 import { OPEN_TO_WORK } from "astro:env/server";
 
-import Github from "@/assets/brand-logos/github.svg";
-import LinkedIn from "@/assets/brand-logos/linkedin.svg";
 import { type AcceptedLanguage, getI18n } from "@/i18n";
-import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
 import type { HeroDTO } from "@/i18n/data/hero";
-import { githubPath, linkedinPath } from "@/lib/paths";
 
 import { CVDownloadButton } from "../cv-download-button";
 import HeroAvatar from "../hero-avatar.astro";
 import { HeroContactButton } from "../hero-contact-button";
-import { LinkIconButton } from "../icon-button";
 import { Markdown } from "../markdown";
 import OpenToWork from "../open-to-work.astro";
+import SocialLinks from "../social-links.astro";
 import PortfolioSection from "./portfolio-section.astro";
 
 interface Props {
@@ -24,11 +20,7 @@ interface Props {
 const { language } = Astro.props;
 
 const tCommon = getI18n("commonData", language) as CommonDTO;
-const tBasics = getI18n("basicsData", language) as BasicsDTO;
 const tHero = getI18n("heroData", language) as HeroDTO;
-
-const linkedinPathValue = linkedinPath();
-const githubPathValue = githubPath();
 ---
 
 <PortfolioSection
@@ -65,35 +57,6 @@ const githubPathValue = githubPath();
       optionLabels={tHero["cv"]["dropdownOptions"]}
     />
 
-    {(githubPathValue || linkedinPathValue) && (
-      <div class="flex items-center gap-2">
-        {githubPathValue && (
-          <LinkIconButton
-            size="icon-lg"
-            href={githubPathValue}
-            rel="noopener noreferrer"
-            target="_blank"
-            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]} ${tBasics["basics.opensInNewTab"]}`}
-            client:visible
-          >
-            <Github class="size-4.5" />
-          </LinkIconButton>
-        )}
-        {linkedinPathValue && (
-          <LinkIconButton
-            size="icon-lg"
-            href={linkedinPathValue}
-            rel="noopener noreferrer"
-            target="_blank"
-            tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-            aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]} ${tBasics["basics.opensInNewTab"]}`}
-            client:visible
-          >
-            <LinkedIn class="size-4" />
-          </LinkIconButton>
-        )}
-      </div>
-    )}
+    <SocialLinks language={language} size="icon-lg" />
   </div>
 </PortfolioSection>

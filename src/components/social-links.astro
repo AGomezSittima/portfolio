@@ -1,0 +1,60 @@
+---
+import type { ComponentProps } from "react";
+
+import GitHub from "@/assets/brand-logos/github.svg";
+import LinkedIn from "@/assets/brand-logos/linkedin.svg";
+import { type AcceptedLanguage, getI18n } from "@/i18n";
+import type { BasicsDTO } from "@/i18n/data/basics";
+import type { CommonDTO } from "@/i18n/data/common";
+import { githubPath, linkedinPath } from "@/lib/paths";
+import { cn } from "@/lib/utils";
+import { LinkIconButton } from "./icon-button";
+
+interface Props {
+  language: AcceptedLanguage;
+  size?: ComponentProps<typeof LinkIconButton>["size"];
+  class?: string;
+}
+
+const { language, size, class: className } = Astro.props;
+
+const tCommon = getI18n("commonData", language) as CommonDTO;
+const tBasics = getI18n("basicsData", language) as BasicsDTO;
+
+const githubPathValue = githubPath();
+const linkedinPathValue = linkedinPath();
+
+const goTo = (brand: string) => `${tBasics["basics.goto"]} ${brand}`;
+const newTab = tBasics["basics.opensInNewTab"];
+---
+
+{(githubPathValue || linkedinPathValue) && (
+  <div class={cn("flex items-center gap-2", className)}>
+    {githubPathValue && (
+      <LinkIconButton
+        size={size}
+        href={githubPathValue}
+        target="_blank"
+        rel="noopener noreferrer"
+        tooltip={goTo(tCommon["brand.github"])}
+        aria-label={`${goTo(tCommon["brand.github"])} ${newTab}`}
+        client:visible
+      >
+        <GitHub class="size-4.5" />
+      </LinkIconButton>
+    )}
+    {linkedinPathValue && (
+      <LinkIconButton
+        size={size}
+        href={linkedinPathValue}
+        target="_blank"
+        rel="noopener noreferrer"
+        tooltip={goTo(tCommon["brand.linkedin"])}
+        aria-label={`${goTo(tCommon["brand.linkedin"])} ${newTab}`}
+        client:visible
+      >
+        <LinkedIn class="size-4" />
+      </LinkIconButton>
+    )}
+  </div>
+)}

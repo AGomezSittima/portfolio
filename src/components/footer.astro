@@ -1,12 +1,9 @@
 ---
-import GitHub from "@/assets/brand-logos/github.svg";
-import LinkedIn from "@/assets/brand-logos/linkedin.svg";
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
-import { githubPath, linkedinPath } from "@/lib/paths";
 import { ContactIconButton } from "./contact-button";
-import { LinkIconButton } from "./icon-button";
+import SocialLinks from "./social-links.astro";
 
 interface Props {
   language: AcceptedLanguage;
@@ -16,9 +13,6 @@ const { language } = Astro.props;
 
 const tCommon = getI18n("commonData", language) as CommonDTO;
 const tBasics = getI18n("basicsData", language) as BasicsDTO;
-
-const linkedinPathValue = linkedinPath();
-const githubPathValue = githubPath();
 ---
 
 <footer class="mx-auto w-full max-w-content px-4 sm:px-6">
@@ -27,30 +21,7 @@ const githubPathValue = githubPath();
       {`© ${new Date().getFullYear()} ${tCommon["me.full-name"]}`}
     </p>
     <div class="flex items-center gap-2">
-      {githubPathValue && (
-        <LinkIconButton
-          href={githubPathValue}
-          target="_blank"
-          rel="noopener noreferrer"
-          tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.github"]}`}
-          aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.github"]} ${tBasics["basics.opensInNewTab"]}`}
-          client:visible
-        >
-          <GitHub class="size-4.5" />
-        </LinkIconButton>
-      )}
-      {linkedinPathValue && (
-        <LinkIconButton
-          href={linkedinPathValue}
-          target="_blank"
-          rel="noopener noreferrer"
-          tooltip={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]}`}
-          aria-label={`${tBasics["basics.goto"]} ${tCommon["brand.linkedin"]} ${tBasics["basics.opensInNewTab"]}`}
-          client:visible
-        >
-          <LinkedIn class="size-4" />
-        </LinkIconButton>
-      )}
+      <SocialLinks language={language} />
       <ContactIconButton
         language={language}
         tooltip={tBasics["basics.contactMe"]}
