@@ -10,7 +10,6 @@ import { Button } from "./ui/button";
 import { actions } from "astro:actions";
 import { z } from "astro/zod";
 import { useState } from "react";
-import { SubmitButton } from "./submit-button";
 import { Spinner } from "./ui/spinner";
 import { getI18n, type AcceptedLanguage } from "@/i18n";
 import type { ContactFormDTO } from "@/i18n/data/contact-form";
@@ -197,14 +196,19 @@ export function ContactForm({
           </FieldGroup>
         </div>
         <Field orientation="horizontal" className="mt-4 sm:mt-6">
-          <SubmitButton size="lg" className="flex-1" isPending={isPending}>
+          <Button
+            type="submit"
+            size="lg"
+            className="flex-1"
+            disabled={isPending}
+          >
             {isPending && <Spinner />}
             <span>
               {isPending
                 ? t.contactDialog.form.pending
                 : t.contactDialog.form.submit}
             </span>
-          </SubmitButton>
+          </Button>
           <Button
             type="button"
             variant="glass"

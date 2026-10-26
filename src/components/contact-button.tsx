@@ -1,6 +1,9 @@
-import { ContactDialog } from "./contact-dialog";
+import { LucideMail } from "lucide-react";
+import type { ComponentProps } from "react";
 import type { AcceptedLanguage } from "@/i18n";
+import { ContactDialog } from "./contact-dialog";
 import { IconButton } from "./icon-button";
+import { Button } from "./ui/button";
 
 function MailFilledIcon() {
   return (
@@ -19,7 +22,7 @@ function MailFilledIcon() {
 type ContactIconButtonProps = {
   language: AcceptedLanguage;
   tooltip?: string;
-  size?: React.ComponentProps<typeof IconButton>["size"];
+  size?: ComponentProps<typeof IconButton>["size"];
 };
 
 export function ContactIconButton({
@@ -35,6 +38,37 @@ export function ContactIconButton({
         </IconButton>
       }
       language={language}
+    />
+  );
+}
+
+type ContactButtonProps = {
+  label: string;
+  language: AcceptedLanguage;
+};
+
+export function HeroContactButton({ label, language }: ContactButtonProps) {
+  return (
+    <ContactDialog
+      trigger={<Button size="lg">{label}</Button>}
+      language={language}
+    />
+  );
+}
+
+export function NavContactButton({ label, language }: ContactButtonProps) {
+  return (
+    <ContactDialog
+      language={language}
+      trigger={
+        <Button
+          variant="ghost"
+          className="has-[>svg]:px-2.5 sm:px-3.5 sm:has-[>svg]:px-3.5"
+        >
+          <LucideMail aria-hidden />
+          <span className="sr-only sm:not-sr-only">{label}</span>
+        </Button>
+      }
     />
   );
 }
