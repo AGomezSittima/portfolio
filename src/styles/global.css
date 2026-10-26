@@ -245,6 +245,14 @@
     }
   }
 
+  /* Theme switch: the ripple is the transition, so nothing else animates
+     (per-element colour transitions left stale layers once it ended) */
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: none !important;
+  }
+
   /* Theme switch ripple; with reduced motion the browser's crossfade runs */
   @media (prefers-reduced-motion: no-preference) {
     .theme-transition {

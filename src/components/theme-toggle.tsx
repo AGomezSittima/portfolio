@@ -26,6 +26,10 @@ function handleClick(e: MouseEvent<HTMLButtonElement>) {
 
   if (!document.startViewTransition || astroTransitionRunning) {
     toggleTheme(e, element);
+
+    // Commit the new styles without transitions before re-enabling them
+    getComputedStyle(document.body);
+    setTimeout(() => element.classList.remove("theme-transition"));
     return;
   }
 
