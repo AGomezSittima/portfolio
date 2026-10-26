@@ -1,11 +1,3 @@
----
-// REVIEW: hand-rolled IntersectionObserver reveal. Alternatives to weigh:
-// - CSS only: `animation-timeline: view()` (no JS, but scroll-linked rather
-//   than time-based, and not yet in Firefox).
-// - Motion (`motion` package, `inView` + `animate`): small, handles
-//   reduced motion, but adds a dependency for one effect.
----
-
 <!-- Hide [data-reveal] elements before first paint (only when JS runs) -->
 <script is:inline>
   document.documentElement.classList.add("reveal-ready");
@@ -35,7 +27,7 @@
           observer.unobserve(entry.target);
         }
       },
-      { rootMargin: "0px 0px -10% 0px" }
+      { rootMargin: "0px 0px -15% 0px" }
     );
 
     elements.forEach((element) => observer.observe(element));
