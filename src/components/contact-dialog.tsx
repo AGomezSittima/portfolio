@@ -12,6 +12,7 @@ import { ContactForm } from "./contact-form";
 import React, { useState } from "react";
 import { toast } from "sonner";
 import { getI18n, type AcceptedLanguage } from "@/i18n";
+import type { BasicsDTO } from "@/i18n/data/basics";
 import type { ContactFormDTO } from "@/i18n/data/contact-form";
 import { Separator } from "./ui/separator";
 import { EMAIL } from "astro:env/client";
@@ -25,11 +26,15 @@ export function ContactDialog({ trigger, language }: ContactDialogProps) {
   const [open, setOpen] = useState(false);
 
   const t = getI18n("contactFormData", language) as ContactFormDTO;
+  const tBasics = getI18n("basicsData", language) as BasicsDTO;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="flex flex-col gap-4 overflow-hidden p-5 sm:max-w-md sm:gap-5 sm:p-7">
+      <DialogContent
+        closeLabel={tBasics["basics.close"]}
+        className="flex flex-col gap-4 overflow-hidden p-5 sm:max-w-md sm:gap-5 sm:p-7"
+      >
         <DialogHeader className="gap-1.5">
           <DialogTitle asChild>
             <h3>{t.contactDialog.title}</h3>

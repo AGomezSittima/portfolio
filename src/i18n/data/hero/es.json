@@ -4,6 +4,7 @@
   "contactButton": "Contáctame",
   "cv": {
     "button": "Descargar CV",
+    "menuLabel": "Elegir idioma del CV",
     "dropdownOptions": {
       "es": "Descargar CV en español (ES)",
       "en": "Descargar CV en inglés (EN)"

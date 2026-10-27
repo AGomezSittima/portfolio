@@ -14,12 +14,14 @@ import { cn } from "@/lib/utils";
 
 type CVDownloadButtonProps = {
   label: string;
+  menuLabel: string;
   currentLanguageCode: AcceptedLanguage;
   optionLabels: Record<AcceptedLanguage, string>;
 };
 
 export function CVDownloadButton({
   label,
+  menuLabel,
   optionLabels,
   currentLanguageCode,
 }: CVDownloadButtonProps) {
@@ -44,7 +46,7 @@ export function CVDownloadButton({
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            aria-label={label}
+            aria-label={menuLabel}
             className="data-[state=open]:bg-accent h-full pr-3 pl-2.5 has-[>svg]:pr-3 has-[>svg]:pl-2.5 [&[data-state=open]>svg]:rotate-180"
           >
             <LucideChevronDown className="text-muted-foreground/80 duration-200 motion-safe:transition-transform" />

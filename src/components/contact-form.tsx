@@ -80,6 +80,7 @@ export function ContactForm({
       <form
         id="contact-form"
         className="flex min-h-0 flex-col"
+        noValidate
         onSubmit={(e) => {
           e.preventDefault();
 
@@ -105,7 +106,7 @@ export function ContactForm({
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid}
                       placeholder={tField.placeholder}
-                      autoComplete="off"
+                      autoComplete="name"
                     />
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -126,12 +127,13 @@ export function ContactForm({
                     <Input
                       id={field.name}
                       name={field.name}
+                      type="email"
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
                       aria-invalid={isInvalid}
                       placeholder={tField.placeholder}
-                      autoComplete="off"
+                      autoComplete="email"
                     />
                     {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />

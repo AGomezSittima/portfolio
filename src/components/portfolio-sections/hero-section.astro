@@ -53,6 +53,7 @@ const tHero = getI18n("heroData", language) as HeroDTO;
     <CVDownloadButton
       client:load
       label={tHero["cv"]["button"]}
+      menuLabel={tHero["cv"]["menuLabel"]}
       currentLanguageCode={language}
       optionLabels={tHero["cv"]["dropdownOptions"]}
     />

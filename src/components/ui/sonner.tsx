@@ -24,7 +24,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         unstyled: true,
         classNames: {
           toast:
-            "glass glass-raised text-foreground font-sans flex w-(--width) items-center gap-3 rounded-xl px-4 py-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 *:transition-opacity data-[expanded=false]:data-[front=false]:*:opacity-0",
+            "glass glass-raised text-foreground font-sans flex w-(--width) items-center gap-3 rounded-xl px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:outline-solid*:transition-opacity data-[expanded=false]:data-[front=false]:*:opacity-0",
           icon: "flex size-4 shrink-0 items-center",
           content: "flex min-w-0 flex-1 flex-col gap-0.5",
           title: "font-medium leading-snug",

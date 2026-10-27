@@ -4,5 +4,8 @@
   "basics.contactMe": "Contáctame",
   "basics.present": "Presente",
   "basics.viewMore": "Ver más",
-  "basics.opensInNewTab": "(se abre en una pestaña nueva)"
+  "basics.opensInNewTab": "(se abre en una pestaña nueva)",
+  "basics.close": "Cerrar",
+  "basics.moreTechnologies.one": "Ver {n} tecnología más",
+  "basics.moreTechnologies.other": "Ver {n} tecnologías más"
 }

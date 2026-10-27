@@ -4,6 +4,7 @@
   "contactButton": "Get in touch",
   "cv": {
     "button": "Download Resume",
+    "menuLabel": "Choose resume language",
     "dropdownOptions": {
       "es": "Download Resume in Spanish (ES)",
       "en": "Download Resume in English (EN)"
