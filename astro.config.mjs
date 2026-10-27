@@ -8,6 +8,8 @@ const { SITE_URL, BUCKET_IMAGES_URL } = process.env;
 
 export default defineConfig({
   output: "static",
+  // ClientRouter's default; declared so `astro:prefetch` can be imported
+  prefetch: { prefetchAll: true },
   vite: {
     plugins: [tailwindcss()],
   },

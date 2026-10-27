@@ -1,5 +1,10 @@
-import { LucideCheck, LucideChevronDown } from "lucide-react";
+import {
+  LucideCheck,
+  LucideChevronDown,
+  LucideLoaderCircle,
+} from "lucide-react";
 import { useState } from "react";
+import { prefetch } from "astro:prefetch";
 import { navigate } from "astro:transitions/client";
 import { languages, type AcceptedLanguage } from "@/i18n";
 import { useTranslatedPath } from "@/i18n/utils";
@@ -24,13 +29,8 @@ type LanguagePickerProps = {
   label?: string;
 };
 
-function handleLanguageChange(path: string, language: AcceptedLanguage) {
-  document.cookie = `lang=${language}; path=/; max-age=31536000; SameSite=Lax; Secure`;
-
-  localStorage.setItem("scrollY", window.scrollY.toString());
-
-  navigate(path);
-}
+// Delay before showing the spinner, so cached pages don't flash it
+const PENDING_DELAY_MS = 150;
 
 export function LanguagePicker({
   currentLanguage,
@@ -39,6 +39,38 @@ export function LanguagePicker({
 }: LanguagePickerProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [pending, setPending] = useState(false);
+
+  const codes = Object.keys(languages) as AcceptedLanguage[];
+  const paths = Object.fromEntries(
+    codes.map((code) => [code, useTranslatedPath(code)(currentUrl || "/")])
+  ) as Record<AcceptedLanguage, string>;
+
+  const prefetchOthers = () => {
+    codes
+      .filter((code) => code !== currentLanguage)
+      .forEach((code) => prefetch(paths[code]));
+  };
+
+  const handleDropdown = (open: boolean) => {
+    if (open) prefetchOthers();
+
+    setDropdownOpen(open);
+  };
+
+  // The router fetches the new page before the view transition starts
+  const handleLanguageChange = (language: AcceptedLanguage) => {
+    document.cookie = `lang=${language}; path=/; max-age=31536000; SameSite=Lax; Secure`;
+
+    localStorage.setItem("scrollY", window.scrollY.toString());
+
+    const timer = setTimeout(() => setPending(true), PENDING_DELAY_MS);
+
+    navigate(paths[language]).finally(() => {
+      clearTimeout(timer);
+      setPending(false);
+    });
+  };
 
   const handleTooltip = (open: boolean) => {
     if (dropdownOpen) return;
@@ -50,7 +82,7 @@ export function LanguagePicker({
     <TooltipProvider>
       <DropdownMenu
         open={dropdownOpen}
-        onOpenChange={setDropdownOpen}
+        onOpenChange={handleDropdown}
         modal={false}
       >
         <Tooltip
@@ -63,13 +95,22 @@ export function LanguagePicker({
                 variant="glass"
                 size="lg"
                 aria-label={label}
+                aria-busy={pending}
+                onPointerEnter={prefetchOthers}
                 className="glass-raised gap-1 pr-2.5 pl-3.5 font-mono has-[>svg]:pr-2.5 has-[>svg]:pl-3.5 [&[data-state=open]>svg]:rotate-180"
               >
                 {currentLanguage.toUpperCase()}
-                <LucideChevronDown
-                  aria-hidden
-                  className="text-muted-foreground/80 size-3.5! duration-200 motion-safe:transition-transform"
-                />
+                {pending ? (
+                  <LucideLoaderCircle
+                    aria-hidden
+                    className="text-muted-foreground/80 size-3.5! motion-safe:animate-spin"
+                  />
+                ) : (
+                  <LucideChevronDown
+                    aria-hidden
+                    className="text-muted-foreground/80 size-3.5! duration-200 motion-safe:transition-transform"
+                  />
+                )}
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
@@ -78,8 +119,7 @@ export function LanguagePicker({
           </TooltipContent>
         </Tooltip>
         <DropdownMenuContent align="end" sideOffset={8} className="min-w-40">
-          {(Object.keys(languages) as AcceptedLanguage[]).map((code) => {
-            const path = useTranslatedPath(code)(currentUrl || "/");
+          {codes.map((code) => {
             const selected = code === currentLanguage;
 
             return (
@@ -87,7 +127,7 @@ export function LanguagePicker({
                 key={`language-${code}`}
                 disabled={selected}
                 aria-current={selected ? "true" : undefined}
-                onSelect={() => handleLanguageChange(path, code)}
+                onSelect={() => handleLanguageChange(code)}
                 className={cn(
                   "gap-3",
                   selected && "text-foreground opacity-100!"
