@@ -8,6 +8,7 @@ import ThemeSetupScript from "@/components/theme-setup-script.astro";
 import { Toaster } from "@/components/ui/sonner";
 import { getI18n } from "@/i18n";
 import { buttonVariants } from "@/components/ui/button";
+import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
 import type { HeaderDTO } from "@/i18n/data/header";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,7 @@ import { ClientRouter } from "astro:transitions";
 const lang = getLangFromUrl(Astro.url);
 const t = getI18n("commonData", lang) as CommonDTO;
 const tHeader = getI18n("headerData", lang) as HeaderDTO;
+const tBasics = getI18n("basicsData", lang) as BasicsDTO;
 
 interface Props {
   title?: string;
@@ -75,7 +77,7 @@ const { title, mainClass } = Astro.props;
       {tHeader["nav.skip-to-content"]}
     </a>
     <PageBackground />
-    <Toaster client:idle />
+    <Toaster containerAriaLabel={tBasics["basics.notifications"]} client:idle />
     <Header />
     <main
       id="main-content"

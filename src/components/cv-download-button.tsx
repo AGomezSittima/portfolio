@@ -1,4 +1,5 @@
 import { LucideChevronDown, LucideDownload } from "lucide-react";
+import { ExternalLink } from "./external-link";
 import { Button } from "./ui/button";
 import { ButtonGroup, ButtonGroupSeparator } from "./ui/button-group";
 import {
@@ -32,14 +33,13 @@ export function CVDownloadButton({
         asChild
         className="h-full gap-2 pr-3.5 pl-4 has-[>svg]:pl-4"
       >
-        <a
+        <ExternalLink
           href={resumePath(currentLanguageCode)}
-          target="_blank"
-          rel="noopener noreferrer"
+          language={currentLanguageCode}
         >
           <LucideDownload aria-hidden />
           {label}
-        </a>
+        </ExternalLink>
       </Button>
       <ButtonGroupSeparator className="bg-border my-2.5" />
       <DropdownMenu modal={false}>
@@ -63,13 +63,12 @@ export function CVDownloadButton({
                 className={cn(isCurrentLanguage && "text-foreground")}
                 asChild
               >
-                <a
+                <ExternalLink
                   href={resumePath(acceptedCode)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  language={currentLanguageCode}
                 >
                   {label}
-                </a>
+                </ExternalLink>
               </DropdownMenuItem>
             );
           })}

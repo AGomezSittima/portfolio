@@ -6,6 +6,7 @@
   "basics.viewMore": "View more",
   "basics.opensInNewTab": "(opens in a new tab)",
   "basics.close": "Close",
+  "basics.notifications": "Notifications",
   "basics.moreTechnologies.one": "Show {n} more technology",
   "basics.moreTechnologies.other": "Show {n} more technologies"
 }
