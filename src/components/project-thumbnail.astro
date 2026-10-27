@@ -1,4 +1,5 @@
 ---
+import type { ThumbnailThemesDTO } from "@/i18n/data/projects";
 import { cn } from "@/lib/utils";
 import { Image } from "astro:assets";
 
@@ -6,18 +7,18 @@ interface Props {
   projectId: number;
   alt: string;
   sizes: string;
-  hasDarkMode?: boolean;
+  themes: ThumbnailThemesDTO;
 }
 
-const { projectId, alt, sizes, hasDarkMode } = Astro.props;
+const { projectId, alt, sizes, themes } = Astro.props;
 
 const projectImagesFolder = "/src/assets/projects";
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/projects/*.webp"
 );
 
-function loadImage(isDarkMode: boolean) {
-  const imagePath = `${projectImagesFolder}/Thumbnail_${projectId}${isDarkMode ? "_Dark" : ""}.webp`;
+function loadImage(theme: ThumbnailThemesDTO[number]) {
+  const imagePath = `${projectImagesFolder}/Thumbnail_${projectId}${theme === "dark" ? "_Dark" : ""}.webp`;
 
   if (!images[imagePath]) {
     throw new Error(
@@ -28,13 +29,16 @@ function loadImage(isDarkMode: boolean) {
   return images[imagePath]();
 }
 
-// Without a dark screenshot, the light one is dimmed in dark mode
-const variants = hasDarkMode
-  ? [
-      { src: loadImage(false), class: "dark:hidden" },
-      { src: loadImage(true), class: "hidden dark:block" },
-    ]
-  : [{ src: loadImage(false), class: "dark:brightness-80" }];
+// A lone screenshot shows in both themes; a light one is dimmed in dark mode
+const themeClasses =
+  themes.length > 1
+    ? { light: "dark:hidden", dark: "hidden dark:block" }
+    : { light: "dark:brightness-80", dark: undefined };
+
+const variants = themes.map((theme) => ({
+  src: loadImage(theme),
+  class: themeClasses[theme],
+}));
 ---
 
 {variants.map((variant) => (

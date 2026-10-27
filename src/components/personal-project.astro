@@ -3,6 +3,7 @@ import type { AcceptedLanguage } from "@/i18n";
 import type {
   ExternalLinkSource,
   PersonalProjectDTO,
+  ThumbnailThemesDTO,
 } from "@/i18n/data/projects";
 import { cn } from "@/lib/utils";
 import { ExternalSourceButton } from "./external-source-button";
@@ -41,7 +42,7 @@ const sizes = featured
         projectId={project.id}
         alt={alt}
         sizes={sizes}
-        hasDarkMode={project.thumbnail.hasDarkMode}
+        themes={project.thumbnail.themes as ThumbnailThemesDTO}
       />
     </div>
   </div>

@@ -75,7 +75,7 @@
           "es": "Captura de pantalla de Adapta Material Escolar 2.0",
           "en": "Screenshot of Adapta Material Escolar 2.0"
         },
-        "hasDarkMode": false
+        "themes": ["light"]
       }
     },
     {
@@ -96,7 +96,7 @@
           "es": "Captura de pantalla del portfolio personal de Álvaro Gómez Sittima",
           "en": "Screenshot of Álvaro Gómez Sittima's personal portfolio"
         },
-        "hasDarkMode": true
+        "themes": ["light", "dark"]
       }
     },
     {
@@ -117,7 +117,7 @@
           "es": "Captura de pantalla de Ticket Bounty",
           "en": "Screenshot of Ticket Bounty"
         },
-        "hasDarkMode": true
+        "themes": ["light", "dark"]
       }
     }
   ]

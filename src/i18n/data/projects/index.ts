@@ -32,3 +32,5 @@ export type TechnologiesDTO =
   | "vba";
 
 export type ExternalLinkSource = "github" | "itchio" | "demo";
+
+export type ThumbnailThemesDTO = ["light"] | ["dark"] | ["light", "dark"];
