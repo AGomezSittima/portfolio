@@ -25,7 +25,11 @@ const tCommon = getI18n("commonData", language) as CommonDTO;
   title={tAboutMe["title"]}
 >
   <div class="grid gap-8 md:grid-cols-[200px_1fr] md:items-start md:gap-12">
-    <AboutPortrait name={tCommon["me.full-name"]} class="w-40 md:w-full" />
+    <AboutPortrait
+      name={tCommon["me.full-name"]}
+      sizes="(min-width: 768px) 200px, 160px"
+      class="w-40 md:w-full"
+    />
     <div class="space-y-5">
       {tAboutMe.sections.map(({ content }) => (
         <Markdown content={content} language={language} />

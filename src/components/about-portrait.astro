@@ -1,26 +1,43 @@
 ---
+import { aboutPortraitPath } from "@/lib/paths";
 import { cn } from "@/lib/utils";
 import { LucideUserRound } from "@lucide/astro";
+import { Image } from "astro:assets";
 
 interface Props {
   name: string;
+  sizes: string;
   class?: string;
 }
 
-const { name, class: className } = Astro.props;
+const { name, sizes, class: className } = Astro.props;
+
+const src = aboutPortraitPath();
 ---
 
-<div
-  role="img"
-  aria-label={name}
-  class={cn(
-    "glass grid aspect-4/5 place-items-center overflow-hidden rounded-3xl bg-linear-to-br from-white/70 to-card dark:from-white/8",
-    className
-  )}
->
-  <LucideUserRound
-    aria-hidden="true"
-    class="text-muted-foreground size-12 opacity-50"
-    stroke-width={1.25}
+{src ? (
+  <Image
+    src={src}
+    alt={name}
+    width={400}
+    height={500}
+    widths={[160, 200, 320, 400, 480, 600]}
+    sizes={sizes}
+    class={cn("glass aspect-4/5 rounded-3xl object-cover", className)}
   />
-</div>
+) : (
+  <div
+    role="img"
+    aria-label={name}
+    class={cn(
+      "glass grid aspect-4/5 place-items-center overflow-hidden rounded-3xl bg-linear-to-br from-white/70 to-card dark:from-white/8",
+      className
+    )}
+  >
+    <LucideUserRound
+      aria-hidden="true"
+      class="text-muted-foreground size-12 opacity-50"
+      stroke-width={1.25}
+    />
+  </div>
+)}

@@ -1,6 +1,12 @@
 import type { AcceptedLanguage } from "@/i18n";
+import { commonData } from "@/i18n/data/common";
 import { useTranslatedPath } from "@/i18n/utils";
-import { RESUME_URL, GITHUB_URL, LINKEDIN_URL } from "astro:env/client";
+import {
+  BUCKET_CV_URL,
+  BUCKET_IMAGES_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "astro:env/client";
 
 export const homePath = (lang: AcceptedLanguage) =>
   useTranslatedPath(lang)("/");
@@ -14,8 +20,23 @@ export const professionalExperiencePath = (lang: AcceptedLanguage) =>
 export const projectsShowcasePath = (lang: AcceptedLanguage) =>
   useTranslatedPath(lang)("/#featured-projects");
 
+const resumeOwner = commonData.es["me.full-name"]
+  .normalize("NFD")
+  .replace(/\p{Diacritic}/gu, "")
+  .replace(/\s+/g, "_");
+
+const resumeDocuments: Record<AcceptedLanguage, string> = {
+  es: "CV",
+  en: "Resume",
+};
+
 export const resumePath = (lang: AcceptedLanguage) =>
-  `${RESUME_URL}/CV_AlvaroGomezSittima_${lang.toUpperCase()}.pdf`;
+  `${BUCKET_CV_URL}/${resumeOwner}_${resumeDocuments[lang]}.pdf`;
+
+export const heroAvatarPath = () =>
+  BUCKET_IMAGES_URL ? `${BUCKET_IMAGES_URL}/avatar.webp` : null;
+export const aboutPortraitPath = () =>
+  BUCKET_IMAGES_URL ? `${BUCKET_IMAGES_URL}/portrait.webp` : null;
 
 export const contactFormPath = (formId: string) =>
   `https://formspree.io/f/${formId}`;

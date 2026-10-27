@@ -1,9 +1,14 @@
 ---
+import { heroAvatarPath } from "@/lib/paths";
+import { Image } from "astro:assets";
+
 interface Props {
   name: string;
 }
 
 const { name } = Astro.props;
+
+const src = heroAvatarPath();
 
 const initials = name
   .split(" ")
@@ -32,12 +37,24 @@ const initials = name
   </svg>
 
   <div class="glass rounded-full p-0.5">
-    <div
-      role="img"
-      aria-label={name}
-      class="from-primary/20 text-muted-foreground grid size-18 place-items-center rounded-full bg-linear-to-br to-white/60 text-lg font-medium dark:to-white/5"
-    >
-      {initials}
-    </div>
+    {src ? (
+      <Image
+        src={src}
+        alt={name}
+        width={72}
+        height={72}
+        densities={[2, 3]}
+        loading="eager"
+        class="size-18 rounded-full object-cover"
+      />
+    ) : (
+      <div
+        role="img"
+        aria-label={name}
+        class="from-primary/20 text-muted-foreground grid size-18 place-items-center rounded-full bg-linear-to-br to-white/60 text-lg font-medium dark:to-white/5"
+      >
+        {initials}
+      </div>
+    )}
   </div>
 </div>

@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
 
-const SITE_URL = process.env.SITE_URL;
+const { SITE_URL, BUCKET_IMAGES_URL } = process.env;
 
 export default defineConfig({
   output: "static",
@@ -13,6 +13,11 @@ export default defineConfig({
   },
   integrations: [react()],
   adapter: netlify(),
+  image: {
+    remotePatterns: BUCKET_IMAGES_URL
+      ? [{ protocol: "https", hostname: new URL(BUCKET_IMAGES_URL).hostname }]
+      : [],
+  },
   fonts: [
     {
       provider: fontProviders.google(),
@@ -44,9 +49,14 @@ export default defineConfig({
         context: "server",
         access: "public",
       }),
-      RESUME_URL: envField.string({
+      BUCKET_CV_URL: envField.string({
         context: "client",
         access: "public",
+      }),
+      BUCKET_IMAGES_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
       }),
       EMAIL: envField.string({
         context: "client",
