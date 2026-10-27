@@ -457,11 +457,11 @@ export function TechnologyBadge({
   return (
     <Badge variant="tag" asChild={!!url}>
       {url ? (
-        <ExternalLink href={url} language={language} className="group">
+        <ExternalLink href={url} language={language} className="group/badge">
           {visualElement}
           <LucideArrowUpRight
             aria-hidden="true"
-            className="text-muted-foreground/80 transition-[color,translate] duration-200 group-hover:text-current group-focus-visible:text-current motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
+            className="text-muted-foreground/80 transition-[color,translate] duration-200 group-hover/badge:text-current group-focus-visible/badge:text-current motion-safe:group-hover/badge:translate-x-px motion-safe:group-hover/badge:-translate-y-px"
           />
         </ExternalLink>
       ) : (
