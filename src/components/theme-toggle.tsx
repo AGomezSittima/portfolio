@@ -1,9 +1,29 @@
 import { LucideMoon, LucideSun } from "lucide-react";
 import { IconButton } from "./icon-button";
-import type { MouseEvent } from "react";
+import { useSyncExternalStore, type MouseEvent } from "react";
 
 interface ThemeToggleProps {
   tooltip?: string;
+  label?: string;
+}
+
+function subscribeToTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  return () => observer.disconnect();
+}
+
+function useIsDark() {
+  return useSyncExternalStore(
+    subscribeToTheme,
+    () => document.documentElement.classList.contains("dark"),
+    () => false
+  );
 }
 
 function toggleTheme(e: MouseEvent<HTMLButtonElement>, element: HTMLElement) {
@@ -40,13 +60,16 @@ function handleClick(e: MouseEvent<HTMLButtonElement>) {
     });
 }
 
-export function ThemeToggle({ tooltip }: ThemeToggleProps) {
+export function ThemeToggle({ tooltip, label }: ThemeToggleProps) {
+  const isDark = useIsDark();
+
   return (
     <IconButton
       id="themeToggle"
       size="icon-lg"
       tooltip={tooltip}
-      aria-label={tooltip}
+      aria-label={label ?? tooltip}
+      aria-pressed={isDark}
       onClick={handleClick}
       className="glass-raised group relative overflow-hidden"
     >

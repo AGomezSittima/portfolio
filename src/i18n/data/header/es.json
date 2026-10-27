@@ -6,5 +6,6 @@
   "nav.projects": "Proyectos",
   "nav.contact": "Contacto",
   "button.language-picker": "Seleccionar idioma",
-  "button.theme-toggle": "Cambiar tema"
+  "button.theme-toggle": "Cambiar tema",
+  "button.theme-toggle.aria-label": "Modo oscuro"
 }

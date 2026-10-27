@@ -22,6 +22,10 @@ const currentUrl = getPathWithoutLang(Astro.url);
       currentUrl={currentUrl}
       label={t["button.language-picker"]}
     />
-    <ThemeToggle tooltip={t["button.theme-toggle"]} client:load />
+    <ThemeToggle
+      tooltip={t["button.theme-toggle"]}
+      label={t["button.theme-toggle.aria-label"]}
+      client:load
+    />
   </div>
 </header>
