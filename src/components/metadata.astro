@@ -1,6 +1,12 @@
 ---
-import { getI18n, type AcceptedLanguage } from "@/i18n";
+import {
+  defaultLanguage,
+  getI18n,
+  languages,
+  type AcceptedLanguage,
+} from "@/i18n";
 import type { MetadataDTO } from "@/i18n/data/metadata";
+import { getPathWithoutLang, useTranslatedPath } from "@/i18n/utils";
 import { SITE_URL } from "astro:env/server";
 
 function getOpenGraphImageUrl(imageUrl: string) {
@@ -13,17 +19,61 @@ interface Props {
   lang: AcceptedLanguage;
 }
 
+const ogLocales: Record<AcceptedLanguage, string> = {
+  es: "es_ES",
+  en: "en_US",
+};
+
 const lang = Astro.props.lang;
 const t = getI18n("metadataData", lang) as MetadataDTO;
 
 const ogImageUrl = getOpenGraphImageUrl("/OG_1200x630.png");
+
+const codes = Object.keys(languages) as AcceptedLanguage[];
+const path = getPathWithoutLang(Astro.url);
+const getLangUrl = (code: AcceptedLanguage) =>
+  new URL(useTranslatedPath(code)(path), SITE_URL).href;
+const pageUrl = getLangUrl(lang);
+const isNotFound = Astro.response.status === 404;
 ---
 
 <!-- General -->
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="dark light" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
+<link
+  rel="icon"
+  href="/favicon/favicon-32.png"
+  sizes="32x32"
+  media="(prefers-color-scheme: light)"
+/>
+<link
+  rel="icon"
+  href="/favicon/favicon-32-dark.png"
+  sizes="32x32"
+  media="(prefers-color-scheme: dark)"
+/>
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
+<!-- Canonical and language alternates (not for the 404 page) -->
+{!isNotFound && (
+  <>
+    <link rel="canonical" href={pageUrl} />
+    {codes.map((code) => (
+      <link rel="alternate" hreflang={code} href={getLangUrl(code)} />
+    ))}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={getLangUrl(defaultLanguage)}
+    />
+  </>
+)}
 
 <!-- Application Info -->
 <meta name="application-name" content={t.applicationName} />
@@ -39,7 +89,13 @@ const ogImageUrl = getOpenGraphImageUrl("/OG_1200x630.png");
 <meta property="og:title" content={t.og.title} />
 <meta property="og:description" content={t.og.description} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content={SITE_URL} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:locale" content={ogLocales[lang]} />
+{codes
+  .filter((code) => code !== lang)
+  .map((code) => (
+    <meta property="og:locale:alternate" content={ogLocales[code]} />
+  ))}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
