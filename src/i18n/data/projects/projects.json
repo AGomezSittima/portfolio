@@ -18,7 +18,7 @@
         "en": [
           "Built user interfaces across multiple products, focusing on responsive design and accessibility.",
           "Adapted existing interfaces for mobile devices.",
-          "Developed backend functionalities as per project requirements."
+          "Developed backend features as per project requirements."
         ]
       },
       "technologies": ["react", "python", "typescript", "tailwindcss"]
@@ -34,13 +34,13 @@
       "endDate": "04/2025",
       "responsibilities": {
         "es": [
-          "Progresé de Becario a Junior y luego a Software Engineer en menos de dos años, debido a mis contribuciones técnicas.",
-          "Trabajé en un proyecto de migración de datos para UNESCO.",
+          "Pasé de becario a junior y después a ingeniero de software en menos de dos años gracias a mis contribuciones técnicas.",
+          "Trabajé en un proyecto de migración de datos para la UNESCO.",
           "Asumí la responsabilidad de la calidad de los datos y los procesos de migración, liderando los aspectos técnicos.",
-          "Optimizé los procesos de migración de datos, reduciendo el tiempo de ejecución de varios días a menos de 24 horas."
+          "Optimicé los procesos de migración de datos, reduciendo el tiempo de ejecución de varios días a menos de 24 horas."
         ],
         "en": [
-          "Progressed from Intern to Junior and then Software Engineer in less than two years, due to my technical contributions.",
+          "Progressed from intern to junior and then software engineer in under two years, thanks to my technical contributions.",
           "Worked on a data migration project for UNESCO.",
           "Took ownership of data quality and migration processes, leading the technical aspects.",
           "Optimized data migration processes, reducing execution time from several days to less than 24 hours."
@@ -55,7 +55,7 @@
       "name": "Adapta Material Escolar 2.0",
       "endDate": "05/2023",
       "description": {
-        "es": "Herramienta web interactiva para la adaptación de materiales escolares en contextos educativos diversos. Proyecto de fin de grado en la Universidad Complutense de Madrid (UCM).",
+        "es": "Herramienta web interactiva para la adaptación de materiales escolares en contextos educativos diversos. Trabajo de fin de grado (TFG) en la Universidad Complutense de Madrid (UCM).",
         "en": "Interactive web tool for adapting school materials in diverse educational contexts. Final degree project at the Complutense University of Madrid (UCM)."
       },
       "externalLinks": {
@@ -82,7 +82,7 @@
       "id": 2,
       "name": "Portfolio",
       "description": {
-        "es": "Mi portfolio personal desarrollado con Astro, destacando mis habilidades y proyectos.",
+        "es": "Mi portfolio personal desarrollado con Astro, donde muestro mis habilidades y proyectos.",
         "en": "My personal portfolio developed with Astro, showcasing my skills and projects."
       },
       "externalLinks": {
@@ -103,7 +103,7 @@
       "id": 4,
       "name": "Ticket Bounty",
       "description": {
-        "es": "Aplicación web desarrollada con Next.js basada en el curso [The Road to Next](https://www.road-to-next.com/), explorando el App Router y patrones modernos de desarrollo.",
+        "es": "Aplicación web desarrollada con Next.js basada en el curso [The Road to Next](https://www.road-to-next.com/), en la que exploro el App Router y patrones modernos de desarrollo.",
         "en": "Web application built with Next.js based on [The Road to Next](https://www.road-to-next.com/) course, exploring the App Router and modern development patterns."
       },
       "externalLinks": {

@@ -5,8 +5,8 @@
   "cv": {
     "button": "Descargar CV",
     "dropdownOptions": {
-      "es": "Descargar CV en Español (ES)",
-      "en": "Descargar CV en Inglés (EN)"
+      "es": "Descargar CV en español (ES)",
+      "en": "Descargar CV en inglés (EN)"
     }
   }
 }
