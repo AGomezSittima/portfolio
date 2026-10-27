@@ -11,8 +11,9 @@ export const localizedContactMeSchema = (lang: AcceptedLanguage) => {
       .min(1, t.contactDialog.form.fieldErrors.required)
       .max(255, t.contactDialog.form.fieldErrors.tooLong),
     email: z
-      .email(t.contactDialog.form.fieldErrors.invalidEmail)
-      .min(1, t.contactDialog.form.fieldErrors.required),
+      .string()
+      .min(1, t.contactDialog.form.fieldErrors.required)
+      .pipe(z.email(t.contactDialog.form.fieldErrors.invalidEmail)),
     subject: z
       .string()
       .min(1, t.contactDialog.form.fieldErrors.required)
@@ -26,7 +27,10 @@ export const localizedContactMeSchema = (lang: AcceptedLanguage) => {
 
 export const contactMeSchema = z.object({
   fullName: z.string().min(1, "Is required").max(255, "Too long"),
-  email: z.email("Invalid email address").min(1, "Is required"),
+  email: z
+    .string()
+    .min(1, "Is required")
+    .pipe(z.email("Invalid email address")),
   subject: z.string().min(1, "Is required").max(255, "Too long"),
   message: z.string().min(1, "Is required").max(5000, "Too long"),
 });

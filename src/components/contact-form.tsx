@@ -21,6 +21,11 @@ const defaultValues: z.input<typeof contactMeSchema> = {
   message: "",
 };
 
+// In display order, to focus the first invalid field on submit
+const fieldNames = Object.keys(defaultValues) as Array<
+  keyof typeof defaultValues
+>;
+
 type ContactFormProps = {
   language: AcceptedLanguage;
   onSuccess?: (
@@ -68,6 +73,18 @@ export function ContactForm({
         setIsPending(false);
       }
     },
+    onSubmitInvalid: ({ formApi }) => {
+      const firstInvalid = fieldNames.find(
+        (name) => formApi.getFieldMeta(name)?.errors.length
+      );
+
+      if (!firstInvalid) return;
+
+      // Wait for the error to render so it is read with the field
+      requestAnimationFrame(() => {
+        document.getElementById(firstInvalid)?.focus();
+      });
+    },
   });
 
   const [isPending, setIsPending] = useState(false);
@@ -104,12 +121,19 @@ export function ContactForm({
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
+                      required
                       aria-invalid={isInvalid}
+                      aria-describedby={
+                        isInvalid ? `${field.name}-error` : undefined
+                      }
                       placeholder={tField.placeholder}
                       autoComplete="name"
                     />
                     {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
+                      <FieldError
+                        id={`${field.name}-error`}
+                        errors={field.state.meta.errors}
+                      />
                     )}
                   </Field>
                 );
@@ -131,12 +155,19 @@ export function ContactForm({
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
+                      required
                       aria-invalid={isInvalid}
+                      aria-describedby={
+                        isInvalid ? `${field.name}-error` : undefined
+                      }
                       placeholder={tField.placeholder}
                       autoComplete="email"
                     />
                     {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
+                      <FieldError
+                        id={`${field.name}-error`}
+                        errors={field.state.meta.errors}
+                      />
                     )}
                   </Field>
                 );
@@ -157,12 +188,19 @@ export function ContactForm({
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
+                      required
                       aria-invalid={isInvalid}
+                      aria-describedby={
+                        isInvalid ? `${field.name}-error` : undefined
+                      }
                       placeholder={tField.placeholder}
                       autoComplete="off"
                     />
                     {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
+                      <FieldError
+                        id={`${field.name}-error`}
+                        errors={field.state.meta.errors}
+                      />
                     )}
                   </Field>
                 );
@@ -183,13 +221,20 @@ export function ContactForm({
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
+                      required
                       aria-invalid={isInvalid}
+                      aria-describedby={
+                        isInvalid ? `${field.name}-error` : undefined
+                      }
                       placeholder={tField.placeholder}
                       autoComplete="off"
                       className="max-h-44 min-h-20 resize-none overflow-y-auto sm:min-h-24"
                     />
                     {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
+                      <FieldError
+                        id={`${field.name}-error`}
+                        errors={field.state.meta.errors}
+                      />
                     )}
                   </Field>
                 );
