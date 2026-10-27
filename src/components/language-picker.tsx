@@ -136,7 +136,9 @@ export function LanguagePicker({
                 <span className="text-tag text-muted-foreground w-5 font-mono">
                   {code.toUpperCase()}
                 </span>
-                <span className="flex-1">{languages[code]}</span>
+                <span lang={code} className="flex-1">
+                  {languages[code]}
+                </span>
                 {selected && <LucideCheck className="text-primary" />}
               </DropdownMenuItem>
             );
