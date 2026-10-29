@@ -9,7 +9,7 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { actions } from "astro:actions";
 import { z } from "astro/zod";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Spinner } from "./ui/spinner";
 import { PrivacyNotice } from "./privacy-notice";
 import { getI18n, type AcceptedLanguage } from "@/i18n";
@@ -46,6 +46,20 @@ export function ContactForm({
 }: ContactFormProps) {
   const t = getI18n("contactFormData", language) as ContactFormDTO;
 
+  // Signed by the server when the form opens; too-fast submits are dropped
+  const startedAt = useRef<string | undefined>(undefined);
+  const honeypot = useRef<HTMLInputElement>(null);
+
+  const requestToken = async () => {
+    const { data } = await actions.contact.start();
+
+    startedAt.current = data?.token;
+  };
+
+  useEffect(() => {
+    requestToken().catch(console.error);
+  }, []);
+
   const formSchema = localizedContactMeSchema(language);
   const form = useForm({
     defaultValues,
@@ -54,13 +68,24 @@ export function ContactForm({
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
+      // Without a token the server would drop the message silently
+      if (!startedAt.current) {
+        onError?.(t.contactDialog.form.onError);
+        requestToken().catch(console.error);
+
+        return;
+      }
+
       setIsPending(true);
 
       try {
-        const { data: responseData, error } =
-          await actions.contact.contactMe(value);
+        const { error } = await actions.contact.contactMe({
+          ...value,
+          website: honeypot.current?.value,
+          startedAt: startedAt.current,
+        });
 
-        if (error || !responseData.success) {
+        if (error) {
           onError?.(t.contactDialog.form.onError);
 
           return;
@@ -105,6 +130,15 @@ export function ContactForm({
           form.handleSubmit();
         }}
       >
+        <div aria-hidden="true" className="sr-only">
+          <input
+            ref={honeypot}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
         <div className="-m-1 min-h-0 overflow-y-auto p-1">
           <FieldGroup className="gap-5 sm:gap-7">
             <form.Field
