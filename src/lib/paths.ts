@@ -20,6 +20,9 @@ export const professionalExperiencePath = (lang: AcceptedLanguage) =>
 export const projectsShowcasePath = (lang: AcceptedLanguage) =>
   useTranslatedPath(lang)("/#featured-projects");
 
+export const privacyPath = (lang: AcceptedLanguage) =>
+  useTranslatedPath(lang)("/privacy");
+
 const resumeOwner = commonData.es["me.full-name"]
   .normalize("NFD")
   .replace(/\p{Diacritic}/gu, "")

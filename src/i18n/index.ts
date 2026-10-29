@@ -8,6 +8,7 @@ import { heroData } from "./data/hero";
 import { metadataData } from "./data/metadata";
 import { notFoundData } from "./data/404";
 import { portfolioPageData } from "./data/portfolio-page";
+import { privacyPolicyData } from "./data/privacy-policy";
 import { professionalExperienceData } from "./data/professional-experience";
 import { projectsData } from "./data/projects";
 
@@ -32,6 +33,7 @@ const dataStoreMapping = {
   metadataData,
   notFoundData,
   portfolioPageData,
+  privacyPolicyData,
   professionalExperienceData,
   projectsData,
 };

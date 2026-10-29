@@ -1,0 +1,53 @@
+{
+  "title": "Privacy policy",
+  "eyebrow": "Privacy",
+  "lastUpdated": "Last updated: {date}",
+  "updatedOn": "2026-10-29",
+  "sections": [
+    {
+      "id": "controller",
+      "title": "Data controller",
+      "content": "The controller of your data is **{name}**. You can contact me at [{email}](mailto:{email})."
+    },
+    {
+      "id": "data",
+      "title": "What data I collect",
+      "content": "When you use the contact form I collect your **name**, **email address**, **subject** and **message**. The hosting provider also logs technical data, such as your IP address, to serve and protect the site."
+    },
+    {
+      "id": "purpose",
+      "title": "How I use it",
+      "content": "I use your data **only to reply to your message**. The legal basis is taking steps at your request before entering into a contract (Art. 6(1)(b) GDPR) or my legitimate interest in answering your enquiry (Art. 6(1)(f) GDPR). I don't use it to send you marketing."
+    },
+    {
+      "id": "recipients",
+      "title": "Who else processes it",
+      "content": "The form is sent through **Formspree** and the site is hosted on **Netlify**. Both act as data processors and only process the data to provide their service. I don't share your data with anyone else."
+    },
+    {
+      "id": "transfers",
+      "title": "International transfers",
+      "content": "Formspree and Netlify are based in the **United States**. These transfers rely on the EU-US Data Privacy Framework or, failing that, on the Standard Contractual Clauses approved by the European Commission."
+    },
+    {
+      "id": "retention",
+      "title": "How long I keep it",
+      "content": "I keep your data for as long as needed to handle your enquiry and for **12 months** at most. After that I delete it, including from the Formspree dashboard."
+    },
+    {
+      "id": "rights",
+      "title": "Your rights",
+      "content": "You can ask me to access, rectify or erase your data, object to or restrict its processing, or request its portability by writing to [{email}](mailto:{email}). If you think I haven't handled it properly, you can lodge a complaint with the [Spanish Data Protection Agency (AEPD)](https://www.aepd.es/en)."
+    },
+    {
+      "id": "storage",
+      "title": "Cookies and local storage",
+      "content": "This site doesn't use analytics or tracking cookies. It only stores your preferences: a `lang` cookie with your chosen language (1 year) and, in the browser's local storage, the theme (`theme`) and the scroll position when switching languages (`scrollY`)."
+    },
+    {
+      "id": "changes",
+      "title": "Changes to this policy",
+      "content": "If I change this policy, I'll update the date shown at the top of the page."
+    }
+  ]
+}

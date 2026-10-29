@@ -1,0 +1,52 @@
+---
+import { Markdown } from "@/components/markdown";
+import { getI18n } from "@/i18n";
+import type { CommonDTO } from "@/i18n/data/common";
+import type { PrivacyPolicyDTO } from "@/i18n/data/privacy-policy";
+import { toAcceptedLanguage } from "@/i18n/utils";
+import Layout from "@/layouts/layout.astro";
+import { EMAIL } from "astro:env/client";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+    { params: { lang: undefined } },
+  ];
+}
+
+const lang = toAcceptedLanguage(Astro.params.lang);
+const t = getI18n("privacyPolicyData", lang) as PrivacyPolicyDTO;
+const tCommon = getI18n("commonData", lang) as CommonDTO;
+
+const fill = (text: string) =>
+  text
+    .replaceAll("{name}", tCommon["me.full-name"])
+    .replaceAll("{email}", EMAIL);
+
+const updatedOn = new Intl.DateTimeFormat(lang, { dateStyle: "long" }).format(
+  new Date(t.updatedOn)
+);
+---
+
+<Layout title={t.title}>
+  <article class="mx-auto max-w-2xl py-20 md:py-32">
+    <header class="mb-12">
+      <p class="eyebrow text-muted-foreground">{t.eyebrow}</p>
+      <h1 class="mt-3 text-section">{t.title}</h1>
+      <p class="mt-4 text-small text-muted-foreground">
+        {t.lastUpdated.replace("{date}", updatedOn)}
+      </p>
+    </header>
+    <div class="space-y-10">
+      {t.sections.map(({ id, title, content }) => (
+        <section id={id} aria-labelledby={`${id}-title`}>
+          <h2 id={`${id}-title`} class="text-title">
+            {title}
+          </h2>
+          <Markdown content={fill(content)} language={lang} className="mt-3" />
+        </section>
+      ))}
+    </div>
+  </article>
+</Layout>

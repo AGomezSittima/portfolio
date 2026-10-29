@@ -1,0 +1,53 @@
+{
+  "title": "Política de privacidad",
+  "eyebrow": "Privacidad",
+  "lastUpdated": "Última actualización: {date}",
+  "updatedOn": "2026-10-29",
+  "sections": [
+    {
+      "id": "controller",
+      "title": "Responsable",
+      "content": "El responsable del tratamiento de tus datos es **{name}**. Puedes contactarme en [{email}](mailto:{email})."
+    },
+    {
+      "id": "data",
+      "title": "Qué datos recojo",
+      "content": "Cuando usas el formulario de contacto recojo tu **nombre**, tu **correo electrónico**, el **asunto** y el **mensaje**. El servicio de alojamiento también registra datos técnicos, como tu dirección IP, para servir la web y protegerla."
+    },
+    {
+      "id": "purpose",
+      "title": "Para qué los uso",
+      "content": "Uso tus datos **solo para responder a tu mensaje**. La base legal es la aplicación de medidas precontractuales a petición tuya (art. 6.1.b RGPD) o mi interés legítimo en atender tu consulta (art. 6.1.f RGPD). No los uso para enviarte publicidad."
+    },
+    {
+      "id": "recipients",
+      "title": "Quién más los trata",
+      "content": "El formulario se envía a través de **Formspree** y la web está alojada en **Netlify**. Ambos actúan como encargados del tratamiento y solo procesan los datos para prestar su servicio. No cedo tus datos a nadie más."
+    },
+    {
+      "id": "transfers",
+      "title": "Transferencias internacionales",
+      "content": "Formspree y Netlify están en **Estados Unidos**. Estas transferencias se amparan en el Marco de Privacidad de Datos UE-EE. UU. o, en su defecto, en las cláusulas contractuales tipo aprobadas por la Comisión Europea."
+    },
+    {
+      "id": "retention",
+      "title": "Cuánto tiempo los guardo",
+      "content": "Conservo tus datos el tiempo necesario para atender tu consulta y, como máximo, **12 meses**. Después los borro, también del panel de Formspree."
+    },
+    {
+      "id": "rights",
+      "title": "Tus derechos",
+      "content": "Puedes pedirme acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo o solicitar su portabilidad escribiendo a [{email}](mailto:{email}). Si crees que no los he tratado correctamente, puedes presentar una reclamación ante la [Agencia Española de Protección de Datos](https://www.aepd.es)."
+    },
+    {
+      "id": "storage",
+      "title": "Cookies y almacenamiento local",
+      "content": "Esta web no usa cookies de analítica ni de seguimiento. Solo guarda tus preferencias: una cookie `lang` con el idioma elegido (1 año) y, en el almacenamiento local del navegador, el tema (`theme`) y la posición de desplazamiento al cambiar de idioma (`scrollY`)."
+    },
+    {
+      "id": "changes",
+      "title": "Cambios en esta política",
+      "content": "Si cambio esta política, actualizaré la fecha que aparece al principio de la página."
+    }
+  ]
+}
