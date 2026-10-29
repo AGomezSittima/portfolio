@@ -22,17 +22,17 @@
     {
       "id": "recipients",
       "title": "Who else processes it",
-      "content": "The form is sent through **Formspree** and the site is hosted on **Netlify**. Both act as data processors and only process the data to provide their service. I don't share your data with anyone else."
+      "content": "The form is sent as an email through **Brevo** (Brevo SAS, France) and arrives in my email inbox. The site is hosted on **Netlify**. Brevo and Netlify act as data processors and only process the data to provide their service. I don't share your data with anyone else."
     },
     {
       "id": "transfers",
       "title": "International transfers",
-      "content": "Formspree and Netlify are based in the **United States**. Formspree hosts the data on Amazon Web Services and relies on the European Commission's **Standard Contractual Clauses** for the transfer. Netlify is certified under the **EU-US Data Privacy Framework** and also uses Standard Contractual Clauses where it doesn't apply."
+      "content": "Brevo hosts the data in the **European Union** (France and Belgium). Some of its providers and group companies in the United States and India may access it for content delivery, support or maintenance, relying on the **EU-US Data Privacy Framework** or the European Commission's **Standard Contractual Clauses**. Netlify is based in the **United States**, is certified under the EU-US Data Privacy Framework and also uses Standard Contractual Clauses where it doesn't apply."
     },
     {
       "id": "retention",
       "title": "How long I keep it",
-      "content": "I keep your data for as long as needed to handle your enquiry and for **12 months** at most. After that I delete it, including from the Formspree dashboard."
+      "content": "I keep your data for as long as needed to handle your enquiry and for **12 months** at most. After that I delete it from my inbox. Of the form data, Brevo only keeps your email address (as the reply-to address) and the subject in its send log for **1 month**."
     },
     {
       "id": "rights",

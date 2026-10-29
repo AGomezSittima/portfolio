@@ -22,17 +22,17 @@
     {
       "id": "recipients",
       "title": "Quién más los trata",
-      "content": "El formulario se envía a través de **Formspree** y la web está alojada en **Netlify**. Ambos actúan como encargados del tratamiento y solo procesan los datos para prestar su servicio. No cedo tus datos a nadie más."
+      "content": "El formulario se envía como correo electrónico a través de **Brevo** (Brevo SAS, Francia) y llega a mi buzón de correo. La web está alojada en **Netlify**. Brevo y Netlify actúan como encargados del tratamiento y solo procesan los datos para prestar su servicio. No cedo tus datos a nadie más."
     },
     {
       "id": "transfers",
       "title": "Transferencias internacionales",
-      "content": "Formspree y Netlify están en **Estados Unidos**. Formspree aloja los datos en Amazon Web Services y ampara la transferencia en las **cláusulas contractuales tipo** de la Comisión Europea. Netlify está adherida al **Marco de Privacidad de Datos UE-EE. UU.** y, cuando no aplica, también usa cláusulas contractuales tipo."
+      "content": "Brevo aloja los datos en la **Unión Europea** (Francia y Bélgica). Algunos de sus proveedores y empresas del grupo en Estados Unidos e India pueden acceder a ellos para la red de distribución, el soporte o el mantenimiento, y se amparan en el **Marco de Privacidad de Datos UE-EE. UU.** o en las **cláusulas contractuales tipo** de la Comisión Europea. Netlify está en **Estados Unidos**, está adherida al Marco de Privacidad de Datos UE-EE. UU. y, cuando no aplica, también usa cláusulas contractuales tipo."
     },
     {
       "id": "retention",
       "title": "Cuánto tiempo los guardo",
-      "content": "Conservo tus datos el tiempo necesario para atender tu consulta y, como máximo, **12 meses**. Después los borro, también del panel de Formspree."
+      "content": "Conservo tus datos el tiempo necesario para atender tu consulta y, como máximo, **12 meses**. Después los borro de mi correo. Del formulario, Brevo solo guarda tu correo electrónico (como dirección de respuesta) y el asunto en su registro de envíos durante **1 mes**."
     },
     {
       "id": "rights",

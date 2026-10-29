@@ -51,7 +51,7 @@
             "term": "Finalidad",
             "description": "Solo responder a tu mensaje"
           },
-          { "term": "Envío", "description": "A través de Formspree (EE. UU.)" },
+          { "term": "Envío", "description": "A través de Brevo (UE)" },
           { "term": "Conservación", "description": "Máximo 12 meses" },
           {
             "term": "Derechos",

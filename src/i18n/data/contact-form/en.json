@@ -51,7 +51,7 @@
             "term": "Purpose",
             "description": "Only to reply to your message"
           },
-          { "term": "Sent via", "description": "Formspree (US)" },
+          { "term": "Sent via", "description": "Brevo (EU)" },
           { "term": "Retention", "description": "12 months at most" },
           {
             "term": "Rights",
