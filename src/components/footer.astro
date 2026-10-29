@@ -2,8 +2,12 @@
 import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { BasicsDTO } from "@/i18n/data/basics";
 import type { CommonDTO } from "@/i18n/data/common";
+import type { PrivacyPolicyDTO } from "@/i18n/data/privacy-policy";
+import { getPathWithoutLang } from "@/i18n/utils";
+import { privacyPath } from "@/lib/paths";
 import { ContactIconButton } from "./contact-button";
 import SocialLinks from "./social-links.astro";
+import { Separator } from "./ui/separator";
 
 interface Props {
   language: AcceptedLanguage;
@@ -13,13 +17,29 @@ const { language } = Astro.props;
 
 const tCommon = getI18n("commonData", language) as CommonDTO;
 const tBasics = getI18n("basicsData", language) as BasicsDTO;
+const tPrivacy = getI18n("privacyPolicyData", language) as PrivacyPolicyDTO;
+
+const isPrivacyPage = getPathWithoutLang(Astro.url) === "/privacy";
 ---
 
 <footer class="mx-auto w-full max-w-content px-4 sm:px-6">
   <div class="flex flex-col items-center justify-between gap-4 border-t py-8 sm:flex-row">
-    <p class="text-muted-foreground text-center text-sm">
-      {`© ${new Date().getFullYear()} ${tCommon["me.full-name"]}`}
-    </p>
+    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+      <p class="text-muted-foreground">
+        {`© ${new Date().getFullYear()} ${tCommon["me.full-name"]}`}
+      </p>
+      <Separator
+        orientation="vertical"
+        className="data-[orientation=vertical]:h-4"
+      />
+      <a
+        href={privacyPath(language)}
+        aria-current={isPrivacyPage ? "page" : undefined}
+        class="text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground underline-offset-4 transition-colors hover:underline"
+      >
+        {tPrivacy.shortTitle}
+      </a>
+    </div>
     <div class="flex items-center gap-2">
       <SocialLinks language={language} />
       <ContactIconButton
