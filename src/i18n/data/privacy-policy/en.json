@@ -12,7 +12,7 @@
     {
       "id": "data",
       "title": "What data I collect",
-      "content": "When you use the contact form I collect your **name**, **email address**, **subject** and **message**. The hosting provider also logs technical data, such as your IP address, to serve and protect the site. All fields are required, but using the form is voluntary. Only your email address needs to be real for me to reply."
+      "content": "When you use the contact form I collect your **name**, **email address**, **subject** and **message**. The site's hosting and the CV downloads also log technical data, such as your IP address, to serve and protect the site. All fields are required, but using the form is voluntary. Only your email address needs to be real for me to reply."
     },
     {
       "id": "purpose",
@@ -22,12 +22,12 @@
     {
       "id": "recipients",
       "title": "Who else processes it",
-      "content": "The form is sent as an email through **Brevo** (Brevo SAS, France) and arrives in my email inbox. The site is hosted on **Netlify**. Brevo and Netlify act as data processors and only process the data to provide their service. I don't share your data with anyone else."
+      "content": "The form is sent as an email through **Brevo** (Brevo SAS, France) and arrives in my email inbox. The site is hosted on **Netlify**, and CVs are downloaded from **Cloudflare**, which only receives technical data such as your IP address. All three act as data processors and only process the data to provide their service. I don't share your data with anyone else."
     },
     {
       "id": "transfers",
       "title": "International transfers",
-      "content": "Brevo hosts the data in the **European Union** (France and Belgium). Some of its providers and group companies in the United States and India may access it for content delivery, support or maintenance, relying on the **EU-US Data Privacy Framework** or the European Commission's **Standard Contractual Clauses**. Netlify is based in the **United States**, is certified under the EU-US Data Privacy Framework and also uses Standard Contractual Clauses where it doesn't apply."
+      "content": "Brevo hosts the data in the **European Union** (France and Belgium). Some of its providers and group companies in the United States and India may access it for content delivery, support or maintenance, relying on the **EU-US Data Privacy Framework** or the European Commission's **Standard Contractual Clauses**. Netlify and Cloudflare are based in the **United States**, are certified under the EU-US Data Privacy Framework and also use Standard Contractual Clauses where it doesn't apply."
     },
     {
       "id": "retention",

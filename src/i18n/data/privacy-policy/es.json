@@ -12,7 +12,7 @@
     {
       "id": "data",
       "title": "Qué datos recojo",
-      "content": "Cuando usas el formulario de contacto recojo tu **nombre**, tu **correo electrónico**, el **asunto** y el **mensaje**. El servicio de alojamiento también registra datos técnicos, como tu dirección IP, para servir la web y protegerla. Todos los campos son obligatorios, pero usar el formulario es voluntario. Solo el correo tiene que ser real para que pueda responderte."
+      "content": "Cuando usas el formulario de contacto recojo tu **nombre**, tu **correo electrónico**, el **asunto** y el **mensaje**. El alojamiento de la web y la descarga de los CV también registran datos técnicos, como tu dirección IP, para servir la web y protegerla. Todos los campos son obligatorios, pero usar el formulario es voluntario. Solo el correo tiene que ser real para que pueda responderte."
     },
     {
       "id": "purpose",
@@ -22,12 +22,12 @@
     {
       "id": "recipients",
       "title": "Quién más los trata",
-      "content": "El formulario se envía como correo electrónico a través de **Brevo** (Brevo SAS, Francia) y llega a mi buzón de correo. La web está alojada en **Netlify**. Brevo y Netlify actúan como encargados del tratamiento y solo procesan los datos para prestar su servicio. No cedo tus datos a nadie más."
+      "content": "El formulario se envía como correo electrónico a través de **Brevo** (Brevo SAS, Francia) y llega a mi buzón de correo. La web está alojada en **Netlify** y los CV se descargan desde **Cloudflare**, que solo recibe datos técnicos como tu dirección IP. Los tres actúan como encargados del tratamiento y solo procesan los datos para prestar su servicio. No cedo tus datos a nadie más."
     },
     {
       "id": "transfers",
       "title": "Transferencias internacionales",
-      "content": "Brevo aloja los datos en la **Unión Europea** (Francia y Bélgica). Algunos de sus proveedores y empresas del grupo en Estados Unidos e India pueden acceder a ellos para la red de distribución, el soporte o el mantenimiento, y se amparan en el **Marco de Privacidad de Datos UE-EE. UU.** o en las **cláusulas contractuales tipo** de la Comisión Europea. Netlify está en **Estados Unidos**, está adherida al Marco de Privacidad de Datos UE-EE. UU. y, cuando no aplica, también usa cláusulas contractuales tipo."
+      "content": "Brevo aloja los datos en la **Unión Europea** (Francia y Bélgica). Algunos de sus proveedores y empresas del grupo en Estados Unidos e India pueden acceder a ellos para la red de distribución, el soporte o el mantenimiento, y se amparan en el **Marco de Privacidad de Datos UE-EE. UU.** o en las **cláusulas contractuales tipo** de la Comisión Europea. Netlify y Cloudflare están en **Estados Unidos**, están adheridas al Marco de Privacidad de Datos UE-EE. UU. y, cuando no aplica, también usan cláusulas contractuales tipo."
     },
     {
       "id": "retention",
