@@ -38,7 +38,19 @@ export default defineConfig({
   ],
   env: {
     schema: {
-      FORMSPREE_FORM_ID: envField.string({
+      BREVO_API_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      CONTACT_TO_EMAIL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      CONTACT_FROM_EMAIL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      CONTACT_FORM_SECRET: envField.string({
         context: "server",
         access: "secret",
       }),

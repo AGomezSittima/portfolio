@@ -1,34 +1,41 @@
-import { defineAction } from "astro:actions";
-import { contactMeSchema } from "./schema";
-import { contactFormPath } from "@/lib/paths";
-import { FORMSPREE_FORM_ID } from "astro:env/server";
+import { ActionError, defineAction } from "astro:actions";
+import { sendContactEmail } from "./brevo";
+import { createFormToken, getFormTokenAge } from "./form-token";
+import { contactActionSchema } from "./schema";
+
+const MIN_FILL_TIME_MS = 3000;
+
+// Bots get a fake success so they don't retry or learn what failed
+const drop = (reason: string) => {
+  console.warn(`contact: dropped (${reason})`);
+
+  return { success: true };
+};
 
 export const contact = {
+  start: defineAction({
+    handler: () => ({ token: createFormToken() }),
+  }),
   contactMe: defineAction({
-    input: contactMeSchema,
-    handler: async (data) => {
+    input: contactActionSchema,
+    handler: async ({ website, startedAt, ...data }) => {
+      if (website) return drop("honeypot");
+
+      // REVIEW: a token can be reused; a nonce store (e.g. Netlify Blobs) would stop replays
+      const age = getFormTokenAge(startedAt);
+
+      if (age === null) return drop("token");
+      if (age < MIN_FILL_TIME_MS) return drop("too fast");
+
       try {
-        const response = await fetch(contactFormPath(FORMSPREE_FORM_ID), {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          const body = await response.text().catch(() => "");
-          console.error(
-            `Formspree rejected the submission (${response.status}): ${body}`
-          );
-
-          return { success: false };
-        }
+        await sendContactEmail(data);
       } catch (error) {
-        console.error("Formspree request failed:", error);
+        console.error("contact: send failed", error);
 
-        return { success: false };
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Message could not be sent",
+        });
       }
 
       return { success: true };

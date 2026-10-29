@@ -34,3 +34,9 @@ export const contactMeSchema = z.object({
   subject: z.string().min(1, "Is required").max(255, "Too long"),
   message: z.string().min(1, "Is required").max(5000, "Too long"),
 });
+
+// Optional so bots that skip them are dropped silently, not shown an error
+export const contactActionSchema = contactMeSchema.extend({
+  website: z.string().optional(),
+  startedAt: z.string().optional(),
+});

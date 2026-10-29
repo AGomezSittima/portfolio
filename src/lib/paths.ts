@@ -41,9 +41,6 @@ export const heroAvatarPath = () =>
 export const aboutPortraitPath = () =>
   BUCKET_IMAGES_URL ? `${BUCKET_IMAGES_URL}/portrait.webp` : null;
 
-export const contactFormPath = (formId: string) =>
-  `https://formspree.io/f/${formId}`;
-
 // External paths
 export const githubPath = () => (GITHUB_URL ? GITHUB_URL : null);
 export const linkedinPath = () => (LINKEDIN_URL ? LINKEDIN_URL : null);
