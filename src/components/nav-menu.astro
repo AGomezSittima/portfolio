@@ -5,9 +5,8 @@ import {
   LucideUserRound,
 } from "@lucide/astro";
 
-import { getI18n } from "@/i18n";
+import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
-import { getLangFromUrl } from "@/i18n/utils";
 import {
   aboutPath,
   professionalExperiencePath,
@@ -16,21 +15,26 @@ import {
 import { NavContactButton } from "./contact-button";
 import NavLink from "./nav-link.astro";
 
-const lang = getLangFromUrl(Astro.url);
-const t = getI18n("headerData", lang) as HeaderDTO;
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const t = getI18n("headerData", language) as HeaderDTO;
 
 const links = [
   {
-    href: professionalExperiencePath(lang),
+    href: professionalExperiencePath(language),
     label: t["nav.professional-experience"],
     icon: LucideBriefcaseBusiness,
   },
   {
-    href: projectsShowcasePath(lang),
+    href: projectsShowcasePath(language),
     label: t["nav.projects"],
     icon: LucideFolderOpen,
   },
-  { href: aboutPath(lang), label: t["nav.about"], icon: LucideUserRound },
+  { href: aboutPath(language), label: t["nav.about"], icon: LucideUserRound },
 ];
 ---
 
@@ -44,7 +48,7 @@ const links = [
     </NavLink>
   ))}
   <span aria-hidden="true" class="bg-border mx-1 h-5 w-px"></span>
-  <NavContactButton client:idle label={t["nav.contact"]} language={lang} />
+  <NavContactButton client:idle label={t["nav.contact"]} language={language} />
 </nav>
 
 <script>

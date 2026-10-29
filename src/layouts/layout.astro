@@ -78,7 +78,7 @@ const { title, mainClass } = Astro.props;
     </a>
     <PageBackground />
     <Toaster containerAriaLabel={tBasics["basics.notifications"]} client:idle />
-    <Header />
+    <Header language={lang} />
     <main
       id="main-content"
       class:list={[

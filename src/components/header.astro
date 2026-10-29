@@ -1,24 +1,29 @@
 ---
-import { getI18n } from "@/i18n";
+import { type AcceptedLanguage, getI18n } from "@/i18n";
 import type { HeaderDTO } from "@/i18n/data/header";
-import { getLangFromUrl, getPathWithoutLang } from "@/i18n/utils";
+import { getPathWithoutLang } from "@/i18n/utils";
 import { LanguagePicker } from "./language-picker";
 import Navmenu from "./nav-menu.astro";
 import { ThemeToggle } from "./theme-toggle";
 
-const lang = getLangFromUrl(Astro.url);
-const t = getI18n("headerData", lang) as HeaderDTO;
+interface Props {
+  language: AcceptedLanguage;
+}
+
+const { language } = Astro.props;
+
+const t = getI18n("headerData", language) as HeaderDTO;
 
 const currentUrl = getPathWithoutLang(Astro.url);
 ---
 
 <header class="sticky top-4 z-30 mx-auto mt-4 flex w-fit max-w-[calc(100%-2rem)] items-center gap-2 sm:top-6 sm:mt-6 sm:gap-3">
-  <Navmenu />
+  <Navmenu language={language} />
 
   <div class="flex items-center gap-2">
     <LanguagePicker
       client:load
-      currentLanguage={lang}
+      currentLanguage={language}
       currentUrl={currentUrl}
       label={t["button.language-picker"]}
     />
