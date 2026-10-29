@@ -59,7 +59,7 @@ The site will be available at `http://localhost:4321`
 ### Forms
 
 - **[@tanstack/react-form](https://tanstack.com/form)** - Form state management
-- **[Formspree](https://formspree.io)** - Form backend for contact form submissions
+- **[Brevo](https://www.brevo.com)** - Transactional email API that delivers contact form submissions
 
 ### Deployment
 
