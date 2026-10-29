@@ -12,12 +12,12 @@
     {
       "id": "data",
       "title": "What data I collect",
-      "content": "When you use the contact form I collect your **name**, **email address**, **subject** and **message**. The hosting provider also logs technical data, such as your IP address, to serve and protect the site."
+      "content": "When you use the contact form I collect your **name**, **email address**, **subject** and **message**. The hosting provider also logs technical data, such as your IP address, to serve and protect the site. All fields are required, but using the form is voluntary. Only your email address needs to be real for me to reply."
     },
     {
       "id": "purpose",
       "title": "How I use it",
-      "content": "I use your data **only to reply to your message**. The legal basis is taking steps at your request before entering into a contract (Art. 6(1)(b) GDPR) or my legitimate interest in answering your enquiry (Art. 6(1)(f) GDPR). I don't use it to send you marketing."
+      "content": "I use your data **only to reply to your message**. The legal basis is taking steps at your request before entering into a contract (Art. 6(1)(b) GDPR) or my legitimate interest in answering your enquiry (Art. 6(1)(f) GDPR). I don't use it to send you marketing. The hosting's technical logs are processed based on my legitimate interest in keeping the site secure and running (Art. 6(1)(f) GDPR). I don't make automated decisions or build profiles with your data."
     },
     {
       "id": "recipients",
@@ -27,7 +27,7 @@
     {
       "id": "transfers",
       "title": "International transfers",
-      "content": "Formspree and Netlify are based in the **United States**. These transfers rely on the EU-US Data Privacy Framework or, failing that, on the Standard Contractual Clauses approved by the European Commission."
+      "content": "Formspree and Netlify are based in the **United States**. Formspree hosts the data on Amazon Web Services and relies on the European Commission's **Standard Contractual Clauses** for the transfer. Netlify is certified under the **EU-US Data Privacy Framework** and also uses Standard Contractual Clauses where it doesn't apply."
     },
     {
       "id": "retention",
@@ -37,7 +37,7 @@
     {
       "id": "rights",
       "title": "Your rights",
-      "content": "You can ask me to access, rectify or erase your data, object to or restrict its processing, or request its portability by writing to [{email}](mailto:{email}). If you think I haven't handled it properly, you can lodge a complaint with the [Spanish Data Protection Agency (AEPD)](https://www.aepd.es/en)."
+      "content": "You can ask me to access, rectify or erase your data, object to or restrict its processing, or request its portability by writing to [{email}](mailto:{email}). If you think I haven't handled it properly, you can lodge a complaint with the [Spanish Data Protection Agency (AEPD)](https://www.aepd.es/en) or another EU supervisory authority."
     },
     {
       "id": "storage",

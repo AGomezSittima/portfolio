@@ -12,12 +12,12 @@
     {
       "id": "data",
       "title": "Qué datos recojo",
-      "content": "Cuando usas el formulario de contacto recojo tu **nombre**, tu **correo electrónico**, el **asunto** y el **mensaje**. El servicio de alojamiento también registra datos técnicos, como tu dirección IP, para servir la web y protegerla."
+      "content": "Cuando usas el formulario de contacto recojo tu **nombre**, tu **correo electrónico**, el **asunto** y el **mensaje**. El servicio de alojamiento también registra datos técnicos, como tu dirección IP, para servir la web y protegerla. Todos los campos son obligatorios, pero usar el formulario es voluntario. Solo el correo tiene que ser real para que pueda responderte."
     },
     {
       "id": "purpose",
       "title": "Para qué los uso",
-      "content": "Uso tus datos **solo para responder a tu mensaje**. La base legal es la aplicación de medidas precontractuales a petición tuya (art. 6.1.b RGPD) o mi interés legítimo en atender tu consulta (art. 6.1.f RGPD). No los uso para enviarte publicidad."
+      "content": "Uso tus datos **solo para responder a tu mensaje**. La base legal es la aplicación de medidas precontractuales a petición tuya (art. 6.1.b RGPD) o mi interés legítimo en atender tu consulta (art. 6.1.f RGPD). No los uso para enviarte publicidad. Los registros técnicos del alojamiento se tratan por mi interés legítimo en mantener la web segura y en funcionamiento (art. 6.1.f RGPD). No tomo decisiones automatizadas ni elaboro perfiles con tus datos."
     },
     {
       "id": "recipients",
@@ -27,7 +27,7 @@
     {
       "id": "transfers",
       "title": "Transferencias internacionales",
-      "content": "Formspree y Netlify están en **Estados Unidos**. Estas transferencias se amparan en el Marco de Privacidad de Datos UE-EE. UU. o, en su defecto, en las cláusulas contractuales tipo aprobadas por la Comisión Europea."
+      "content": "Formspree y Netlify están en **Estados Unidos**. Formspree aloja los datos en Amazon Web Services y ampara la transferencia en las **cláusulas contractuales tipo** de la Comisión Europea. Netlify está adherida al **Marco de Privacidad de Datos UE-EE. UU.** y, cuando no aplica, también usa cláusulas contractuales tipo."
     },
     {
       "id": "retention",
@@ -37,7 +37,7 @@
     {
       "id": "rights",
       "title": "Tus derechos",
-      "content": "Puedes pedirme acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo o solicitar su portabilidad escribiendo a [{email}](mailto:{email}). Si crees que no los he tratado correctamente, puedes presentar una reclamación ante la [Agencia Española de Protección de Datos](https://www.aepd.es)."
+      "content": "Puedes pedirme acceder a tus datos, rectificarlos, suprimirlos, oponerte a su tratamiento, limitarlo o solicitar su portabilidad escribiendo a [{email}](mailto:{email}). Si crees que no los he tratado correctamente, puedes presentar una reclamación ante la [Agencia Española de Protección de Datos](https://www.aepd.es) u otra autoridad de control de la UE."
     },
     {
       "id": "storage",
