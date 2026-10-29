@@ -11,6 +11,7 @@ import { actions } from "astro:actions";
 import { z } from "astro/zod";
 import { useState } from "react";
 import { Spinner } from "./ui/spinner";
+import { PrivacyNotice } from "./privacy-notice";
 import { getI18n, type AcceptedLanguage } from "@/i18n";
 import type { ContactFormDTO } from "@/i18n/data/contact-form";
 
@@ -265,6 +266,7 @@ export function ContactForm({
             {t.contactDialog.form.cancel}
           </Button>
         </Field>
+        <PrivacyNotice language={language} className="mt-3" />
       </form>
     </div>
   );

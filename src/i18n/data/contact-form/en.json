@@ -39,6 +39,25 @@
       "onError": {
         "title": "The message could not be sent.",
         "description": null
+      },
+      "privacy": {
+        "notice": "See how I handle your data in the {link}.",
+        "linkText": "privacy policy",
+        "infoLabel": "Show privacy summary",
+        "summaryTitle": "Privacy summary",
+        "summary": [
+          { "term": "Controller", "description": "{name}" },
+          {
+            "term": "Purpose",
+            "description": "Only to reply to your message"
+          },
+          { "term": "Sent via", "description": "Formspree (US)" },
+          { "term": "Retention", "description": "12 months at most" },
+          {
+            "term": "Rights",
+            "description": "Access, rectification, erasure and more at {email}"
+          }
+        ]
       }
     }
   }

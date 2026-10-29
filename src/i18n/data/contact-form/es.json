@@ -39,6 +39,25 @@
       "onError": {
         "title": "El mensaje no se ha podido enviar.",
         "description": null
+      },
+      "privacy": {
+        "notice": "Consulta cómo trato tus datos en la {link}.",
+        "linkText": "política de privacidad",
+        "infoLabel": "Ver resumen de privacidad",
+        "summaryTitle": "Resumen de privacidad",
+        "summary": [
+          { "term": "Responsable", "description": "{name}" },
+          {
+            "term": "Finalidad",
+            "description": "Solo responder a tu mensaje"
+          },
+          { "term": "Envío", "description": "A través de Formspree (EE. UU.)" },
+          { "term": "Conservación", "description": "Máximo 12 meses" },
+          {
+            "term": "Derechos",
+            "description": "Acceso, rectificación, supresión y más en {email}"
+          }
+        ]
       }
     }
   }
