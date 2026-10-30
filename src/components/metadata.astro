@@ -1,10 +1,5 @@
 ---
-import {
-  defaultLanguage,
-  getI18n,
-  languages,
-  type AcceptedLanguage,
-} from "@/i18n";
+import { getI18n, languages, type AcceptedLanguage } from "@/i18n";
 import type { MetadataDTO } from "@/i18n/data/metadata";
 import type { PortfolioPageDTO } from "@/i18n/data/portfolio-page";
 import { getPathWithoutLang, useTranslatedPath } from "@/i18n/utils";
@@ -37,6 +32,8 @@ const path = getPathWithoutLang(Astro.url);
 const getLangUrl = (code: AcceptedLanguage) =>
   new URL(useTranslatedPath(code)(path), SITE_URL).href;
 const pageUrl = getLangUrl(lang);
+const xDefaultUrl =
+  path === "/" ? new URL("/", SITE_URL).href : getLangUrl("en");
 const isNotFound = Astro.response.status === 404;
 ---
 
@@ -72,11 +69,7 @@ const isNotFound = Astro.response.status === 404;
     {codes.map((code) => (
       <link rel="alternate" hreflang={code} href={getLangUrl(code)} />
     ))}
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={getLangUrl(defaultLanguage)}
-    />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
   </>
 )}
 
