@@ -12,6 +12,7 @@ export default defineConfig({
   prefetch: { prefetchAll: true },
   vite: {
     plugins: [tailwindcss()],
+    define: { __BUILD_TIME__: JSON.stringify(Date.now()) },
   },
   integrations: [react()],
   adapter: netlify(),

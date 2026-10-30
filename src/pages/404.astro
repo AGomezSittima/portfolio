@@ -13,7 +13,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = getI18n("notFoundData", lang) as NotFoundDTO;
 ---
 
-<Layout title={t["title"]} mainClass="flex flex-col">
+<Layout
+  title={t["title"]}
+  description={t["description"]}
+  mainClass="flex flex-col"
+>
   <div class="flex flex-1 flex-col items-center justify-center py-24 text-center">
     <p class="eyebrow text-muted-foreground">{t["title"]}</p>
     <h1 class="mt-4 text-7xl font-semibold tracking-tighter sm:text-8xl md:text-9xl">

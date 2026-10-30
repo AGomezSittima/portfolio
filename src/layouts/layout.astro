@@ -9,7 +9,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { getI18n } from "@/i18n";
 import { buttonVariants } from "@/components/ui/button";
 import type { BasicsDTO } from "@/i18n/data/basics";
-import type { CommonDTO } from "@/i18n/data/common";
 import type { HeaderDTO } from "@/i18n/data/header";
 import { cn } from "@/lib/utils";
 import { getLangFromUrl } from "@/i18n/utils";
@@ -18,27 +17,22 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 const lang = getLangFromUrl(Astro.url);
-const t = getI18n("commonData", lang) as CommonDTO;
 const tHeader = getI18n("headerData", lang) as HeaderDTO;
 const tBasics = getI18n("basicsData", lang) as BasicsDTO;
 
 interface Props {
   title?: string;
+  description?: string;
   mainClass?: string;
 }
 
-const { title, mainClass } = Astro.props;
+const { title, description, mainClass } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang} class="overflow-x-clip">
   <head>
-    <Metadata lang={lang} />
-
-    <title>
-      {t["me.name"]}
-      {t["me.last-name"]}{title ? ` - ${title}` : ""}
-    </title>
+    <Metadata lang={lang} title={title} description={description} />
 
     <Font cssVariable="--font-geist" preload />
     <Font cssVariable="--font-geist-mono" />

@@ -6,17 +6,14 @@ import {
   type AcceptedLanguage,
 } from "@/i18n";
 import type { MetadataDTO } from "@/i18n/data/metadata";
+import type { PortfolioPageDTO } from "@/i18n/data/portfolio-page";
 import { getPathWithoutLang, useTranslatedPath } from "@/i18n/utils";
 import { SITE_URL } from "astro:env/server";
 
-function getOpenGraphImageUrl(imageUrl: string) {
-  const version = Date.now();
-
-  return `${SITE_URL}${imageUrl}?v=${version}`;
-}
-
 interface Props {
   lang: AcceptedLanguage;
+  title?: string;
+  description?: string;
 }
 
 const ogLocales: Record<AcceptedLanguage, string> = {
@@ -24,10 +21,16 @@ const ogLocales: Record<AcceptedLanguage, string> = {
   en: "en_US",
 };
 
-const lang = Astro.props.lang;
+const { lang, title, description: pageDescription } = Astro.props;
 const t = getI18n("metadataData", lang) as MetadataDTO;
+const tPage = getI18n("portfolioPageData", lang) as PortfolioPageDTO;
 
-const ogImageUrl = getOpenGraphImageUrl(`/og/${lang}.png`);
+const documentTitle = `${t.author} - ${title ?? tPage["site.title"]}`;
+const shareTitle = `${t.author} - ${title ?? t.role}`;
+const description = pageDescription ?? t.description;
+
+// One version per build, so a redeploy makes platforms fetch the image again
+const ogImageUrl = `${SITE_URL}/og/${lang}.png?v=${__BUILD_TIME__}`;
 
 const codes = Object.keys(languages) as AcceptedLanguage[];
 const path = getPathWithoutLang(Astro.url);
@@ -42,6 +45,8 @@ const isNotFound = Astro.response.status === 404;
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="dark light" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+<title>{documentTitle}</title>
 
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -80,7 +85,7 @@ const isNotFound = Astro.response.status === 404;
 <meta name="author" content={t.author} />
 <meta name="creator" content={t.author} />
 <meta name="publisher" content={t.author} />
-<meta name="description" content={t.description} />
+<meta name="description" content={description} />
 <meta name="keywords" content={t.keywords} />
 
 <!-- Open Graph -->
@@ -89,9 +94,10 @@ const isNotFound = Astro.response.status === 404;
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={t.og.imageAlt} />
-<meta property="og:title" content={t.og.title} />
-<meta property="og:description" content={t.og.description} />
+<meta property="og:title" content={shareTitle} />
+<meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content={t.applicationName} />
 <meta property="og:url" content={pageUrl} />
 <meta property="og:locale" content={ogLocales[lang]} />
 {codes
@@ -102,7 +108,3 @@ const isNotFound = Astro.response.status === 404;
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content={ogImageUrl} />
-<meta name="twitter:image:alt" content={t.og.imageAlt} />
-<meta name="twitter:title" content={t.og.title} />
-<meta name="twitter:description" content={t.og.description} />
