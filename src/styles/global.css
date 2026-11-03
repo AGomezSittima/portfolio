@@ -310,6 +310,13 @@
     @apply motion-safe:scroll-smooth;
   }
 
+  /* The page scrolls on <html> (overflow-x-clip in layout.astro), so
+     Radix's lock on <body> alone doesn't hold.
+     REVIEW: relies on react-remove-scroll-bar's data-scroll-locked */
+  html:has(body[data-scroll-locked]) {
+    overflow: hidden;
+  }
+
   /* Section headers and content fade (and rise 24px) when they enter the
      viewport. "reveal-ready" is set by reveal-script.astro, so without JS nothing hides. */
   [data-reveal] {
