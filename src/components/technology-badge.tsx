@@ -461,7 +461,7 @@ export function TechnologyBadge({
           {visualElement}
           <LucideArrowUpRight
             aria-hidden="true"
-            className="text-muted-foreground/80 transition-[color,translate] duration-200 group-hover/badge:text-current group-focus-visible/badge:text-current motion-safe:group-hover/badge:translate-x-px motion-safe:group-hover/badge:-translate-y-px"
+            className="text-muted-foreground/80 transition group-hover/badge:text-current group-focus-visible/badge:text-current motion-safe:group-hover/badge:translate-x-px motion-safe:group-hover/badge:-translate-y-px"
           />
         </ExternalLink>
       ) : (

@@ -13,19 +13,19 @@ const always = pulse === "always";
 
 <span
   aria-hidden="true"
-  class={cn("relative flex size-2 transition-colors duration-200", className)}
+  class={cn("relative flex size-2 transition-colors", className)}
 >
   <span
     class={cn(
-      "absolute inset-0 rounded-full bg-current motion-safe:animation-duration-2000",
+      "absolute inset-0 rounded-full bg-current",
       always
-        ? "opacity-50 motion-safe:animate-ping"
-        : "opacity-0 group-hover:opacity-50 motion-safe:group-hover:animate-ping"
+        ? "opacity-50 motion-safe:animate-beacon"
+        : "opacity-0 group-hover:opacity-50 motion-safe:group-hover:animate-beacon"
     )}
   ></span>
   <span
     class={cn(
-      "relative size-2 rounded-full bg-current transition-shadow duration-200",
+      "relative size-2 rounded-full bg-current transition-shadow",
       always ? "shadow-glow" : "group-hover:shadow-glow"
     )}
   ></span>

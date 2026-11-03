@@ -6,8 +6,8 @@ const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   aria-hidden="true"
   class="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
 >
-  <div class="glow glow-blue"></div>
-  <div class="glow glow-warm"></div>
+  <div class="glow glow-blue motion-safe:animate-drift-a"></div>
+  <div class="glow glow-warm motion-safe:animate-drift-b"></div>
 </div>
 
 <div
@@ -47,43 +47,5 @@ const noise = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 
   :global(.dark) .glow-warm {
     display: none;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .glow-blue {
-      animation: drift-a 26s ease-in-out infinite alternate;
-    }
-
-    .glow-warm {
-      animation: drift-b 32s ease-in-out infinite alternate;
-    }
-  }
-
-  @keyframes drift-a {
-    0% {
-      translate: 0 0;
-    }
-
-    50% {
-      translate: 60px 30px;
-    }
-
-    100% {
-      translate: -40px -20px;
-    }
-  }
-
-  @keyframes drift-b {
-    0% {
-      translate: 0 0;
-    }
-
-    50% {
-      translate: -50px -35px;
-    }
-
-    100% {
-      translate: 45px 20px;
-    }
   }
 </style>

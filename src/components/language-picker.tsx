@@ -108,7 +108,7 @@ export function LanguagePicker({
                 ) : (
                   <LucideChevronDown
                     aria-hidden
-                    className="text-muted-foreground/80 size-3.5! duration-200 motion-safe:transition-transform"
+                    className="text-muted-foreground/80 size-3.5! motion-safe:transition-transform"
                   />
                 )}
               </Button>

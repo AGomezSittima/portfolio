@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Slot } from "radix-ui";
 
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:outline-solid aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3",
+  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:outline-solid aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3",
   {
     variants: {
       variant: {
@@ -19,7 +19,7 @@ const badgeVariants = cva(
         glass: "glass text-muted-foreground",
         // Tech tags: tinted so they show on white glass cards; links and
         // popover triggers turn blue on hover, focus, press and while open
-        tag: "h-6 gap-1.5 border-border bg-foreground/5 px-2.5 font-mono text-tag font-normal text-muted-foreground inset-shadow-highlight transition-[color,background-color,border-color] duration-200 [a&]:gap-1 [a&]:pr-2 [&:is(a,button)]:hover:border-primary/30 [&:is(a,button)]:hover:bg-primary/10 [&:is(a,button)]:hover:text-primary-hover [&:is(a,button)]:focus-visible:text-primary-hover [&:is(a,button)]:active:bg-primary/20 [button&]:data-[state=open]:border-primary/30 [button&]:data-[state=open]:bg-primary/10 [button&]:data-[state=open]:text-primary-hover",
+        tag: "h-6 gap-1.5 border-border bg-foreground/5 px-2.5 font-mono text-tag font-normal text-muted-foreground inset-shadow-highlight [a&]:gap-1 [a&]:pr-2 [&:is(a,button)]:hover:border-primary/30 [&:is(a,button)]:hover:bg-primary/10 [&:is(a,button)]:hover:text-primary-hover [&:is(a,button)]:focus-visible:text-primary-hover [&:is(a,button)]:active:bg-primary/20 [button&]:data-[state=open]:border-primary/30 [button&]:data-[state=open]:bg-primary/10 [button&]:data-[state=open]:text-primary-hover",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
       },
     },

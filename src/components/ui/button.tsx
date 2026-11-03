@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Slot } from "radix-ui";
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:outline-solid disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm font-medium whitespace-nowrap transition outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:outline-solid disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -12,7 +12,7 @@ const buttonVariants = cva(
           "bg-primary font-semibold text-primary-foreground shadow-md shadow-primary/30 hover:bg-primary-hover",
         glass: "glass glass-interactive text-foreground",
         // Floating nav links: colour-only hover, glass capsule when current
-        nav: "text-foreground/80 transition-[color,background-color,box-shadow] duration-300 ease-out hover:text-primary-hover aria-[current=location]:bg-popover aria-[current=location]:text-foreground aria-[current=location]:shadow-sm aria-[current=location]:ring-1 aria-[current=location]:ring-border aria-[current=location]:inset-shadow-highlight dark:aria-[current=location]:bg-foreground/10 dark:aria-[current=location]:shadow-black/40",
+        nav: "text-foreground/80 duration-emphasis hover:text-primary-hover aria-[current=location]:bg-popover aria-[current=location]:text-foreground aria-[current=location]:shadow-sm aria-[current=location]:ring-1 aria-[current=location]:ring-border aria-[current=location]:inset-shadow-highlight dark:aria-[current=location]:bg-foreground/10 dark:aria-[current=location]:shadow-black/40",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:outline-destructive dark:bg-destructive/60",
         outline:

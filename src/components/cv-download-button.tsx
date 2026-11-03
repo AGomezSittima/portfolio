@@ -49,7 +49,7 @@ export function CVDownloadButton({
             aria-label={menuLabel}
             className="data-[state=open]:bg-accent h-full pr-3 pl-2.5 has-[>svg]:pr-3 has-[>svg]:pl-2.5 [&[data-state=open]>svg]:rotate-180"
           >
-            <LucideChevronDown className="text-muted-foreground/80 duration-200 motion-safe:transition-transform" />
+            <LucideChevronDown className="text-muted-foreground/80 motion-safe:transition-transform" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" sideOffset={8}>

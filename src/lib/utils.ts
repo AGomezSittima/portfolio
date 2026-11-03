@@ -9,9 +9,13 @@ const twMerge = extendTailwindMerge<"glass">({
     // Type roles from global.css, so text-body isn't mistaken for a colour
     theme: {
       text: ["display", "section", "title", "body", "small", "label", "tag"],
+      // Motion tokens from global.css, so overrides replace them
+      animate: ["beacon", "spin-slow", "drift-a", "drift-b"],
+      ease: ["reveal", "ripple"],
     },
     classGroups: {
       glass: ["glass"],
+      duration: [{ duration: ["emphasis", "flourish", "reveal"] }],
     },
     conflictingClassGroups: {
       glass: [
