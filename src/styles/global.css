@@ -182,8 +182,8 @@
    own fill) and lifts 2px; the lift is skipped under reduced motion */
 @utility glass-interactive {
   transition-property: background-color, translate, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: ease-out;
+  transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
 
   @media (hover: hover) {
     &:hover {
@@ -213,10 +213,6 @@
     @apply border-border outline-ring;
   }
 
-  html {
-    @apply motion-safe:scroll-smooth;
-  }
-
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
@@ -225,16 +221,101 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+}
 
-  /* Reduced motion: movement is guarded where it's defined (motion-safe:,
-     or a no-preference query); opacity fades always run. */
+/* Motion (DESIGN.md §8)
+
+   Every duration, easing and keyframe lives here. Components use a bare
+   `transition` (the default below) or the named utilities defined here,
+   never raw or [arbitrary] timing values.
+
+   Reduced motion: there is no blanket rule. Movement is guarded where it is
+   defined (motion-safe:, or a no-preference query); opacity fades always run. */
+
+@theme {
+  /* Hovers and states */
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: var(--ease-out);
+
+  /* duration-emphasis: nav and theme */
+  --transition-duration-emphasis: 300ms;
+  /* duration-flourish: exception for the theme toggle's icon turn */
+  --transition-duration-flourish: 500ms;
+  /* Section reveals */
+  --transition-duration-reveal: 700ms;
+  --ease-reveal: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Exception: the theme ripple speeds up as it grows */
+  --ease-ripple: cubic-bezier(0.7, 0, 1, 1);
+
+  --animate-beacon: ping 2s var(--ease-out) infinite;
+  --animate-spin-slow: spin 8s linear infinite;
+
+  /* Background glows */
+  --animate-drift-a: drift-a 26s ease-in-out infinite alternate;
+  --animate-drift-b: drift-b 32s ease-in-out infinite alternate;
+
+  @keyframes drift-a {
+    0% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: 60px 30px;
+    }
+
+    100% {
+      translate: -40px -20px;
+    }
+  }
+
+  @keyframes drift-b {
+    0% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: -50px -35px;
+    }
+
+    100% {
+      translate: 45px 20px;
+    }
+  }
+}
+
+/* Overlay enter/exit (tw-animate-css) with the default timing above instead
+   of its own 150ms `ease`. Only the two fallbacks differ from the package.
+   REVIEW: mirrors tw-animate-css 1.4 internals; recheck after updating it */
+@theme inline {
+  --animate-in: enter
+    var(
+      --tw-animation-duration,
+      var(--tw-duration, var(--default-transition-duration))
+    )
+    var(--tw-ease, var(--default-transition-timing-function))
+    var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1)
+    var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, none);
+  --animate-out: exit
+    var(
+      --tw-animation-duration,
+      var(--tw-duration, var(--default-transition-duration))
+    )
+    var(--tw-ease, var(--default-transition-timing-function))
+    var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1)
+    var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, none);
+}
+
+@layer base {
+  html {
+    @apply motion-safe:scroll-smooth;
+  }
 
   /* Section headers and content fade (and rise 24px) when they enter the
      viewport. "reveal-ready" is set by reveal-script.astro, so without JS nothing hides. */
   [data-reveal] {
-    transition:
-      opacity 700ms cubic-bezier(0.25, 1, 0.5, 1),
-      translate 700ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition-property: opacity, translate;
+    transition-duration: var(--transition-duration-reveal);
+    transition-timing-function: var(--ease-reveal);
   }
 
   .reveal-ready [data-reveal]:not(.revealed) {
@@ -263,11 +344,13 @@
 
       &::view-transition-new(root) {
         clip-path: circle(0px at var(--ripple-x) var(--ripple-y));
-        animation: ripple-expand 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+        animation: ripple-expand var(--transition-duration-emphasis)
+          var(--ease-ripple) forwards;
       }
 
       &::view-transition-old(root) {
-        animation: fade-out 300ms cubic-bezier(0.7, 0, 1, 1) forwards;
+        animation: fade-out var(--transition-duration-emphasis)
+          var(--ease-ripple) forwards;
       }
     }
   }
