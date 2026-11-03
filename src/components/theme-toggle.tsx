@@ -1,6 +1,10 @@
 import { LucideMoon, LucideSun } from "lucide-react";
 import { IconButton } from "./icon-button";
 import { useSyncExternalStore, type MouseEvent } from "react";
+import { cn } from "@/lib/utils";
+
+const iconClass =
+  "group-hover:drop-shadow-glow duration-flourish relative transition";
 
 interface ThemeToggleProps {
   tooltip?: string;
@@ -75,10 +79,20 @@ export function ThemeToggle({ tooltip, label }: ThemeToggleProps) {
     >
       <span
         aria-hidden
-        className="duration-emphasis motion-safe:group-hover:animate-spin-slow pointer-events-none absolute inset-1 rounded-full bg-[radial-gradient(circle_at_30%_70%,color-mix(in_oklab,var(--primary)_30%,transparent),transparent_60%),radial-gradient(circle_at_62%_38%,color-mix(in_oklab,var(--glow-warm)_80%,transparent),transparent_58%)] opacity-0 blur-xs transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+        className="bg-toggle-glow duration-emphasis motion-safe:group-hover:animate-spin-slow pointer-events-none absolute inset-1 rounded-full opacity-0 blur-xs transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
       />
-      <LucideSun className="group-hover:drop-shadow-glow duration-flourish relative transition group-hover:text-amber-600 motion-safe:group-hover:rotate-90 dark:hidden" />
-      <LucideMoon className="group-hover:drop-shadow-glow duration-flourish relative hidden transition group-hover:text-sky-300 motion-safe:group-hover:-rotate-20 dark:block" />
+      <LucideSun
+        className={cn(
+          iconClass,
+          "group-hover:text-amber-600 motion-safe:group-hover:rotate-90 dark:hidden"
+        )}
+      />
+      <LucideMoon
+        className={cn(
+          iconClass,
+          "hidden group-hover:text-sky-300 motion-safe:group-hover:-rotate-20 dark:block"
+        )}
+      />
     </IconButton>
   );
 }
