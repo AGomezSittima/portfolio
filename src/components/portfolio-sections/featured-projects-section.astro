@@ -20,6 +20,13 @@ const tProjects = (getI18n("projectsData", language) as ProjectsDTO)[
   "personal"
 ];
 const tHeader = getI18n("headerData", language) as HeaderDTO;
+
+// The priority project leads: first in reading order (mobile, tablet,
+// keyboard) and the open middle pane on desktop
+const featured = tProjects.filter((project) => project.featured);
+const lead = featured.find((project) => project.priority) ?? featured[0];
+const others = featured.filter((project) => project !== lead);
+const desktopOrder = ["lg:order-first", "lg:order-last"];
 ---
 
 <PortfolioSection
@@ -27,29 +34,51 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
   eyebrow={`02 / ${tHeader["nav.projects"]}`}
   title={tProjectsPage["section.title"]}
 >
-  <!-- Panes split 1:2:1; --pane-open is the open pane's width, --pane-band
-       its screenshot band (16:9) -->
+  <!-- md: two columns (four tracks, so the third card centres). lg: panes
+       split 1:2:1; --pane-open is the open pane's width, --pane-band its
+       screenshot band (16:9) -->
   <div
     id="featured-projects-row"
-    class="@container relative left-1/2 flex w-screen max-w-wide -translate-x-1/2 flex-col gap-5 px-4 md:flex-row md:gap-4 md:[--pane-band:calc(var(--pane-open)*9/16)] md:[--pane-open:calc(50cqw-1rem)]"
+    class="@container relative left-1/2 grid w-screen max-w-wide -translate-x-1/2 gap-5 px-4 data-settling:**:transition-none! md:grid-cols-4 lg:flex lg:gap-4 lg:[--pane-band:calc(var(--pane-open)*9/16)] lg:[--pane-open:calc(50cqw-1rem)]"
   >
-    {tProjects
-      .filter((project) => project.featured)
-      .map((project, index) => (
-        <PersonalProject
-          project={project}
-          language={language}
-          open={index === 1}
-        />
-      ))}
+    <PersonalProject project={lead} language={language} open />
+    {others.map((project, index) => (
+      <PersonalProject
+        project={project}
+        language={language}
+        class={desktopOrder[index]}
+      />
+    ))}
   </div>
-  <!-- Before first paint, so the row doesn't jump; without JS all stay open -->
+  <!-- Before first paint, so the row doesn't jump; without JS all stay open.
+       The last opened project (this tab) survives language changes. After a
+       language change the swap can paint the row before this runs, so
+       transitions stay off until the state has settled -->
   <script is:inline data-astro-rerun>
-    document
-      .querySelectorAll("#featured-projects-row [data-pane]")
-      .forEach((pane) => {
-        pane.dataset.state = "defaultOpen" in pane.dataset ? "open" : "closed";
+    {
+      const row = document.getElementById("featured-projects-row");
+      const panes = [...row.querySelectorAll("[data-pane]")];
+      let saved = null;
+
+      row.dataset.settling = "";
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => delete row.dataset.settling)
+      );
+
+      try {
+        saved = sessionStorage.getItem("featured-project");
+      } catch {}
+
+      const hasSaved = panes.some((pane) => pane.dataset.projectId === saved);
+
+      panes.forEach((pane) => {
+        const isOpen = hasSaved
+          ? pane.dataset.projectId === saved
+          : "defaultOpen" in pane.dataset;
+
+        pane.dataset.state = isOpen ? "open" : "closed";
       });
+    }
   </script>
 </PortfolioSection>
 
@@ -65,9 +94,9 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
 
     controller = new AbortController();
     const panes = [...row.querySelectorAll<HTMLElement>("[data-pane]")];
-    const wide = window.matchMedia("(min-width: 48rem)");
+    const wide = window.matchMedia("(min-width: 64rem)");
 
-    // Strips only exist from md up; below it every pane is open and usable
+    // Strips only exist from lg up; below it every pane is open and usable
     function sync() {
       for (const pane of panes) {
         const isOpen = pane.dataset.state === "open";
@@ -97,6 +126,13 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
           pane.dataset.state = pane === target ? "open" : "closed";
         });
         sync();
+
+        try {
+          sessionStorage.setItem(
+            "featured-project",
+            target.dataset.projectId ?? ""
+          );
+        } catch {}
         // The pressed toggle disappears, so focus moves to the new details
         target.querySelector<HTMLElement>("h3")?.focus({ preventScroll: true });
       },

@@ -4,6 +4,7 @@
 /* Setup project colors */
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant transparency-reduce (@media (prefers-reduced-transparency: reduce));
 
 @theme inline {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;

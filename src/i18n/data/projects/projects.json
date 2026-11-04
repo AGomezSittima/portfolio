@@ -70,6 +70,7 @@
         "openai"
       ],
       "featured": true,
+      "priority": true,
       "thumbnail": {
         "altText": {
           "es": "Captura de pantalla de Adapta Material Escolar 2.0",

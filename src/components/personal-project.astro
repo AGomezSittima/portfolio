@@ -23,32 +23,41 @@ const { project, language, open, class: className } = Astro.props;
 const alt = project.thumbnail.altText[language];
 const bodyId = `project-${project.id}-details`;
 
-// A collapsed strip shows the screenshot at the row's height (~600px), so it
-// needs a wider source than the open pane's 424px
-const sizes = "(min-width: 768px) 1100px, calc(100vw - 2rem)";
+// A collapsed strip shows the screenshot at the row's height (500-560px), so
+// it renders up to ~1000px wide, more than the open pane's 424px. From md the
+// cards sit in two columns of the 880px grid
+const sizes =
+  "(min-width: 1024px) 1000px, (min-width: 768px) min(430px, calc(50vw - 1.625rem)), calc(100vw - 2rem)";
 ---
 
-<!-- Without data-state (no JS, or below md) every pane renders open. The
+<!-- Without data-state (no JS) or below lg every pane renders open. The
      section's script sets it: "open" or "closed" (a strip) -->
 <article
   data-pane
+  data-project-id={project.id}
   data-default-open={open ? "" : undefined}
   class={cn(
-    "group/pane flex min-w-0 motion-safe:transition-[flex-grow] motion-safe:duration-flourish md:flex-1 md:data-[state=open]:flex-2",
+    "group/pane flex min-w-0 motion-safe:transition-[flex-grow] motion-safe:duration-flourish md:col-span-2 md:last:col-start-2 lg:flex-1 lg:data-[state=open]:flex-2",
     className
   )}
   style={{ "--thumbnail-focus": project.thumbnail.focus }}
 >
-  <div class="glass glass-interactive relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-3xl has-[>button:focus-visible]:outline-2 has-[>button:focus-visible]:outline-offset-2">
+  <!-- Only strips are clickable, so only they get the hover. The open pane
+       floats above them as raised glass -->
+  <div class="glass relative flex lg:group-data-[state=closed]/pane:glass-interactive lg:group-data-[state=open]/pane:glass-raised lg:group-data-[state=open]/pane:transition-[background-color,box-shadow] lg:group-data-[state=open]/pane:duration-flourish min-w-0 flex-1 flex-col overflow-hidden rounded-3xl has-[>button:focus-visible]:outline-2 has-[>button:focus-visible]:outline-offset-2">
     <!-- Strip: fills the pane. Open: a 16:9 band over the body's spacer -->
-    <div class="absolute inset-x-0 top-0 aspect-video overflow-hidden border-b motion-safe:transition-[height] motion-safe:duration-flourish md:group-data-[state]/pane:aspect-auto md:group-data-[state=closed]/pane:h-full md:group-data-[state=closed]/pane:border-transparent md:group-data-[state=open]/pane:h-(--pane-band)">
+    <div class="absolute inset-x-0 top-0 aspect-video overflow-hidden border-b motion-safe:transition-[height] motion-safe:duration-flourish lg:group-data-[state]/pane:aspect-auto lg:group-data-[state=closed]/pane:h-full lg:group-data-[state=closed]/pane:border-transparent lg:group-data-[state=open]/pane:h-(--pane-band)">
       <ProjectThumbnail
         projectId={project.id}
         alt={alt}
         sizes={sizes}
         themes={project.thumbnail.themes as ThumbnailThemesDTO}
-        class="object-(--thumbnail-focus) motion-safe:transition-transform md:group-data-[state=closed]/pane:motion-safe:group-hover/pane:scale-103"
+        class="object-(--thumbnail-focus) transition-[filter,scale] duration-flourish lg:group-data-[state=closed]/pane:blur-xs lg:group-data-[state=closed]/pane:group-hover/pane:blur-none lg:group-data-[state=closed]/pane:motion-safe:group-hover/pane:scale-103 lg:group-data-[state=closed]/pane:transparency-reduce:blur-none"
       />
+      <!-- Strips are dimmed and frosted (the image's blur) so the open
+           project leads; hover clears the frost as a preview. A backdrop
+           blur here would nest inside the pane's glass and glitch in Chrome -->
+      <div class="pointer-events-none absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-flourish dark:bg-black/50 lg:group-data-[state=closed]/pane:opacity-100"></div>
     </div>
 
     <!-- What appears waits for the width to settle; what leaves goes first -->
@@ -57,9 +66,9 @@ const sizes = "(min-width: 768px) 1100px, calc(100vw - 2rem)";
       data-pane-toggle
       aria-expanded="false"
       aria-controls={bodyId}
-      class="group/toggle absolute inset-0 hidden text-left transition-opacity focus-visible:outline-none md:group-data-[state]/pane:block md:group-data-[state=closed]/pane:delay-(--transition-duration-emphasis) md:group-data-[state=open]/pane:pointer-events-none md:group-data-[state=open]/pane:opacity-0"
+      class="group/toggle absolute inset-0 hidden text-left transition-opacity focus-visible:outline-none lg:group-data-[state]/pane:block lg:group-data-[state=closed]/pane:delay-(--transition-duration-emphasis) lg:group-data-[state=open]/pane:pointer-events-none lg:group-data-[state=open]/pane:opacity-0"
     >
-      <span class="glass absolute inset-x-3 bottom-3 flex items-end justify-between gap-2 rounded-xl glass-raised px-3 py-2.5">
+      <span class="glass absolute inset-x-3 bottom-3 flex items-end justify-between gap-2 rounded-xl px-3 py-2.5 dark:glass-raised">
         <span class="text-body font-semibold">{project.name}</span>
         <LucideMaximize2 class="mb-1.5 size-4 shrink-0 text-muted-foreground/80 transition-colors group-hover/pane:text-primary group-focus-visible/toggle:text-primary" />
       </span>
@@ -69,7 +78,7 @@ const sizes = "(min-width: 768px) 1100px, calc(100vw - 2rem)";
          open height (the row takes the tallest) -->
     <div
       id={bodyId}
-      class="flex flex-1 flex-col transition-opacity md:group-data-[state]/pane:w-(--pane-open) md:group-data-[state=closed]/pane:opacity-0 md:group-data-[state=open]/pane:delay-(--transition-duration-emphasis)"
+      class="flex flex-1 flex-col transition-opacity lg:group-data-[state]/pane:w-(--pane-open) lg:group-data-[state=closed]/pane:opacity-0 lg:group-data-[state=open]/pane:delay-(--transition-duration-emphasis)"
     >
       <div class="aspect-video shrink-0"></div>
 
