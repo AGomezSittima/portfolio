@@ -252,7 +252,7 @@
 
   /* duration-emphasis: nav and theme */
   --transition-duration-emphasis: 300ms;
-  /* duration-flourish: exception for the theme toggle's icon turn */
+  /* duration-flourish: featured pane expand, theme toggle's icon turn */
   --transition-duration-flourish: 500ms;
   /* Section reveals */
   --transition-duration-reveal: 700ms;
