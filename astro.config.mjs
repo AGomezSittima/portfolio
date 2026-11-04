@@ -13,6 +13,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     define: { __BUILD_TIME__: JSON.stringify(Date.now()) },
+    // Server-only native module.
+    optimizeDeps: { exclude: ["@resvg/resvg-js"] },
   },
   integrations: [react()],
   adapter: netlify(),
