@@ -52,3 +52,59 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
       });
   </script>
 </PortfolioSection>
+
+<script>
+  let controller: AbortController | undefined;
+
+  function setupFeaturedProjects() {
+    controller?.abort();
+
+    const row = document.getElementById("featured-projects-row");
+
+    if (!row) return;
+
+    controller = new AbortController();
+    const panes = [...row.querySelectorAll<HTMLElement>("[data-pane]")];
+    const wide = window.matchMedia("(min-width: 48rem)");
+
+    // Strips only exist from md up; below it every pane is open and usable
+    function sync() {
+      for (const pane of panes) {
+        const isOpen = pane.dataset.state === "open";
+        const toggle =
+          pane.querySelector<HTMLButtonElement>("[data-pane-toggle]");
+        const body = document.getElementById(
+          toggle?.getAttribute("aria-controls") ?? ""
+        );
+
+        if (!toggle || !body) continue;
+
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.inert = isOpen;
+        body.inert = wide.matches && !isOpen;
+      }
+    }
+
+    row.addEventListener(
+      "click",
+      (event) => {
+        const toggle = (event.target as Element).closest("[data-pane-toggle]");
+        const target = toggle?.closest<HTMLElement>("[data-pane]");
+
+        if (!target) return;
+
+        panes.forEach((pane) => {
+          pane.dataset.state = pane === target ? "open" : "closed";
+        });
+        sync();
+        // The pressed toggle disappears, so focus moves to the new details
+        target.querySelector<HTMLElement>("h3")?.focus({ preventScroll: true });
+      },
+      { signal: controller.signal }
+    );
+    wide.addEventListener("change", sync, { signal: controller.signal });
+    sync();
+  }
+
+  document.addEventListener("astro:page-load", setupFeaturedProjects);
+</script>
