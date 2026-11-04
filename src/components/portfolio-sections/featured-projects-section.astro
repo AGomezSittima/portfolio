@@ -27,15 +27,28 @@ const tHeader = getI18n("headerData", language) as HeaderDTO;
   eyebrow={`02 / ${tHeader["nav.projects"]}`}
   title={tProjectsPage["section.title"]}
 >
-  <div class="relative left-1/2 grid w-screen max-w-wide -translate-x-1/2 gap-5 px-4 md:grid-cols-2">
+  <!-- Panes split 1:2:1; --pane-open is the open pane's width, --pane-band
+       its screenshot band (16:9) -->
+  <div
+    id="featured-projects-row"
+    class="@container relative left-1/2 flex w-screen max-w-wide -translate-x-1/2 flex-col gap-5 px-4 md:flex-row md:gap-4 md:[--pane-band:calc(var(--pane-open)*9/16)] md:[--pane-open:calc(50cqw-1rem)]"
+  >
     {tProjects
       .filter((project) => project.featured)
       .map((project, index) => (
         <PersonalProject
           project={project}
           language={language}
-          featured={index === 0}
+          open={index === 1}
         />
       ))}
   </div>
+  <!-- Before first paint, so the row doesn't jump; without JS all stay open -->
+  <script is:inline data-astro-rerun>
+    document
+      .querySelectorAll("#featured-projects-row [data-pane]")
+      .forEach((pane) => {
+        pane.dataset.state = "defaultOpen" in pane.dataset ? "open" : "closed";
+      });
+  </script>
 </PortfolioSection>

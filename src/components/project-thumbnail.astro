@@ -8,9 +8,10 @@ interface Props {
   alt: string;
   sizes: string;
   themes: ThumbnailThemesDTO;
+  class?: string;
 }
 
-const { projectId, alt, sizes, themes } = Astro.props;
+const { projectId, alt, sizes, themes, class: className } = Astro.props;
 
 const projectImagesFolder = "/src/assets/projects";
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -47,6 +48,6 @@ const variants = themes.map((theme) => ({
     alt={alt}
     widths={[400, 640, 800, 1080, 1520]}
     sizes={sizes}
-    class={cn("size-full object-cover", variant.class)}
+    class={cn("size-full object-cover", variant.class, className)}
   />
 ))}

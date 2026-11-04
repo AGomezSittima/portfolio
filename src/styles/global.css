@@ -38,18 +38,6 @@
 
   --inset-shadow-highlight: inset 0 1px 0 0 var(--glass-highlight);
 
-  /* Hero light (blue and warm; warm is transparent in dark) */
-  --background-image-panel-glow:
-    radial-gradient(
-      80% 100% at 85% 0%,
-      color-mix(in oklab, var(--primary) 12%, transparent),
-      transparent
-    ),
-    radial-gradient(
-      70% 90% at 10% 100%,
-      color-mix(in oklab, var(--glow-warm) 35%, transparent),
-      transparent
-    );
   --background-image-toggle-glow:
     radial-gradient(
       circle at 30% 70%,
