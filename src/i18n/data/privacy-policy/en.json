@@ -3,7 +3,7 @@
   "shortTitle": "Privacy",
   "description": "What data I collect through the contact form and resume downloads, and how I handle it.",
   "lastUpdated": "Last updated: {date}",
-  "updatedOn": "2026-10-29",
+  "updatedOn": "2026-11-04",
   "sections": [
     {
       "id": "controller",
@@ -43,7 +43,7 @@
     {
       "id": "storage",
       "title": "Cookies and local storage",
-      "content": "This site doesn't use analytics or tracking cookies. It only stores your preferences: a `lang` cookie with your chosen language (1 year) and, in the browser's local storage, the theme (`theme`) and the scroll position when switching languages (`scrollY`)."
+      "content": "This site doesn't use analytics or tracking cookies. It only stores your preferences: a `lang` cookie with your chosen language (1 year); in the browser's local storage, the theme (`theme`) and the scroll position when switching languages (`scrollY`); and, in session storage (cleared when you close the tab), the featured project you last opened (`featured-project`)."
     },
     {
       "id": "changes",

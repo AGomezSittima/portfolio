@@ -3,7 +3,7 @@
   "shortTitle": "Privacidad",
   "description": "Qué datos recojo a través del formulario de contacto y la descarga del CV, y cómo los trato.",
   "lastUpdated": "Última actualización: {date}",
-  "updatedOn": "2026-10-29",
+  "updatedOn": "2026-11-04",
   "sections": [
     {
       "id": "controller",
@@ -43,7 +43,7 @@
     {
       "id": "storage",
       "title": "Cookies y almacenamiento local",
-      "content": "Esta web no usa cookies de analítica ni de seguimiento. Solo guarda tus preferencias: una cookie `lang` con el idioma elegido (1 año) y, en el almacenamiento local del navegador, el tema (`theme`) y la posición de desplazamiento al cambiar de idioma (`scrollY`)."
+      "content": "Esta web no usa cookies de analítica ni de seguimiento. Solo guarda tus preferencias: una cookie `lang` con el idioma elegido (1 año); en el almacenamiento local del navegador, el tema (`theme`) y la posición de desplazamiento al cambiar de idioma (`scrollY`); y, en el almacenamiento de sesión (se borra al cerrar la pestaña), el proyecto destacado que abriste por última vez (`featured-project`)."
     },
     {
       "id": "changes",
