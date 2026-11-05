@@ -124,7 +124,7 @@
 
   /* Background atmosphere, paired with the blue glow (never on text or
      borders). Alpha is set at use */
-  --glow-tint: #ffd98a;
+  --glow-tint: #ffc49b;
 }
 
 .dark {
