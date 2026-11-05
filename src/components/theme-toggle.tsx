@@ -79,12 +79,12 @@ export function ThemeToggle({ tooltip, label }: ThemeToggleProps) {
     >
       <span
         aria-hidden
-        className="bg-toggle-glow duration-emphasis motion-safe:group-hover:animate-spin-slow pointer-events-none absolute inset-1 rounded-full opacity-0 blur-xs transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+        className="bg-toggle-glow duration-emphasis motion-safe:group-hover:animate-spin-slow pointer-events-none absolute inset-1 rounded-full opacity-0 blur-xs transition-opacity group-hover:opacity-75 group-focus-visible:opacity-75"
       />
       <LucideSun
         className={cn(
           iconClass,
-          "group-hover:text-amber-600 motion-safe:group-hover:rotate-90 dark:hidden"
+          "group-hover:text-amber-700 motion-safe:group-hover:rotate-90 dark:hidden"
         )}
       />
       <LucideMoon
