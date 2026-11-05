@@ -47,7 +47,7 @@
     ),
     radial-gradient(
       circle at 62% 38%,
-      color-mix(in oklab, var(--glow-warm) 80%, transparent),
+      color-mix(in oklab, var(--glow-tint) 80%, transparent),
       transparent 58%
     );
 }
@@ -122,9 +122,9 @@
   --glass-shadow-raised:
     0 0 0 0.5px rgba(20, 40, 80, 0.08), 0 12px 40px rgba(20, 40, 80, 0.12);
 
-  /* Background atmosphere, light only (warm never on text or borders; the
-     only warm icon is the theme toggle sun, on hover). Alpha is set at use */
-  --glow-warm: #ffd98a;
+  /* Background atmosphere, paired with the blue glow (never on text or
+     borders). Alpha is set at use */
+  --glow-tint: #ffd98a;
 }
 
 .dark {
@@ -152,7 +152,7 @@
   --glass-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.4);
   --glass-shadow-raised: 0 16px 40px -4px rgba(0, 0, 0, 0.5);
 
-  --glow-warm: transparent;
+  --glow-tint: #34d399;
 }
 
 /* Liquid glass surfaces */
