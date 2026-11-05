@@ -264,20 +264,26 @@
   --animate-spin-slow: spin 8s linear infinite;
 
   /* Background glows */
-  --animate-drift-a: drift-a 26s ease-in-out infinite alternate;
-  --animate-drift-b: drift-b 32s ease-in-out infinite alternate;
+  --animate-drift-a: drift-a 22s ease-in-out infinite alternate;
+  --animate-drift-b: drift-b 27s ease-in-out infinite alternate;
 
+  /* Percentages are of the glow's own size, so the path scales with it. The
+     blue glow starts right and the tint left; at 33% they swing together */
   @keyframes drift-a {
     0% {
       translate: 0 0;
     }
 
-    50% {
-      translate: 60px 30px;
+    33% {
+      translate: -18% 8%;
+    }
+
+    66% {
+      translate: 10% -5%;
     }
 
     100% {
-      translate: -40px -20px;
+      translate: -8% 12%;
     }
   }
 
@@ -286,12 +292,16 @@
       translate: 0 0;
     }
 
-    50% {
-      translate: -50px -35px;
+    33% {
+      translate: 18% -9%;
+    }
+
+    66% {
+      translate: -10% 6%;
     }
 
     100% {
-      translate: 45px 20px;
+      translate: 13% -12%;
     }
   }
 }
