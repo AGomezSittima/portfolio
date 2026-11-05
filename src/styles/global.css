@@ -94,7 +94,7 @@
 
   --background: #f6f8fb;
   --foreground: #0b1220;
-  --card: rgba(255, 255, 255, 0.55);
+  --card: rgba(255, 255, 255, 0.4);
   --card-foreground: #0b1220;
   --popover: #ffffff;
   --popover-foreground: #0b1220;
@@ -115,7 +115,7 @@
   --ring: #2563eb;
 
   /* Liquid glass */
-  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
   --glass-highlight: rgba(255, 255, 255, 0.9);
   --glass-shadow:
     0 0 0 0.5px rgba(20, 40, 80, 0.06), 0 8px 32px rgba(20, 40, 80, 0.08);
@@ -186,9 +186,14 @@
 /* With `glass`: everything that floats (header, menus, popovers, tooltips,
    toasts, dialogs). Denser fill so labels hold over any content */
 @utility glass-raised {
-  --glass-fill: color-mix(in oklab, var(--popover) 75%, transparent);
+  --glass-fill: color-mix(in oklab, var(--popover) 65%, transparent);
   --glass-blur: 32px;
   --glass-elevation: var(--glass-shadow-raised);
+
+  /* Denser in dark: labels must hold over light screenshots */
+  @variant dark {
+    --glass-fill: color-mix(in oklab, var(--popover) 70%, transparent);
+  }
 }
 
 /* With `glass`: hover tints the fill like --accent (relative to this element's
